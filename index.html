@@ -3,127 +3,190 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kmon - Discover Korean Monsters</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131d">
+  <title>KMON - Korean Monster Universe</title>
   <meta name="description" content="Discover Korean monsters and mythical creatures with Kmon.">
   <style>
     * { box-sizing: border-box; }
+    :root {
+      --bg: #10131d;
+      --panel: #1c2130;
+      --line: #343a4b;
+      --text: #f7f7fb;
+      --muted: #b9bfd0;
+      --green: #a9f36d;
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
     body {
       margin: 0;
+      background: var(--bg);
+      color: var(--text);
       font-family: Arial, "Noto Sans KR", sans-serif;
-      background: #10131d;
-      color: #f7f7fb;
+      padding-bottom: 76px;
     }
-    header {
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 7%;
-      border-bottom: 1px solid #303443;
+      min-height: 62px;
+      padding: 0 20px;
+      background: rgba(16,19,29,.96);
+      border-bottom: 1px solid var(--line);
     }
-    .logo { font-size: 28px; font-weight: 900; color: #a9f36d; }
-    nav a {
-      color: #f7f7fb;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-    }
+    .logo { color: var(--green); font-size: 25px; font-weight: 900; letter-spacing: 2px; }
+    .top-link { font-size: 13px; color: var(--muted); }
+    main { width: 100%; max-width: 900px; margin: 0 auto; }
+    section { padding: 30px 20px; }
     .hero {
-      padding: 85px 7% 75px;
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      background: radial-gradient(ellipse at top, #303d58, #10131d 70%);
+      background: radial-gradient(ellipse at top, #303d58, var(--bg) 75%);
     }
-    .tag {
-      color: #a9f36d;
-      letter-spacing: 3px;
-      font-size: 12px;
-      font-weight: bold;
+    .hero-art {
+      width: min(100%, 300px);
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border: 1px dashed #526078;
+      border-radius: 20px;
+      color: #aeb4c6;
+      font-size: 13px;
     }
-    h1 { font-size: clamp(38px, 7vw, 72px); margin: 20px 0; }
-    .hero p { color: #c2c6d5; line-height: 1.8; }
+    .tag, .label { color: var(--green); font-size: 11px; font-weight: bold; letter-spacing: 2px; }
+    h1 { font-size: clamp(32px, 8vw, 54px); line-height: 1.2; margin: 14px 0; }
+    h2 { font-size: 25px; margin: 10px 0; }
+    .intro, .hero p { color: var(--muted); line-height: 1.8; font-size: 14px; }
+    .hero p { max-width: 420px; }
     .button {
       display: inline-block;
-      background: #a9f36d;
-      color: #10131d;
-      padding: 14px 24px;
-      margin-top: 22px;
-      border-radius: 30px;
-      text-decoration: none;
+      padding: 13px 22px;
+      margin-top: 14px;
+      border-radius: 28px;
+      background: var(--green);
+      color: var(--bg);
       font-weight: bold;
+      font-size: 14px;
     }
-    section { padding: 45px 7%; }
-    h2 { font-size: 28px; margin-bottom: 10px; }
-    .intro { color: #aeb4c6; line-height: 1.7; }
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-      margin-top: 25px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
     }
     .card {
-      background: #1c2130;
-      border: 1px solid #343a4b;
-      border-radius: 18px;
-      padding: 25px;
-      min-height: 175px;
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
     }
-    .emoji { font-size: 38px; }
-    .card h3 { margin-bottom: 8px; }
-    .card p { color: #b9bfd0; line-height: 1.6; font-size: 14px; }
-    .label { color: #a9f36d; font-size: 12px; font-weight: bold; }
-    footer {
-      padding: 28px 7%;
-      color: #9299ad;
-      border-top: 1px solid #303443;
-      font-size: 13px;
+    .card-art {
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      background: #252d40;
+      color: var(--green);
+      font-size: 12px;
       text-align: center;
     }
-    @media (max-width: 600px) {
-      header { padding: 18px 5%; }
-      nav a { margin-left: 10px; font-size: 12px; }
-      .hero { padding: 65px 5%; }
-      section { padding: 35px 5%; }
+    .card h3 { margin: 8px 0; font-size: 16px; }
+    .card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .feature {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    footer { padding: 25px 20px; color: #9299ad; text-align: center; font-size: 12px; }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 9px 4px calc(9px + env(safe-area-inset-bottom));
+      background: #171c29;
+      border-top: 1px solid var(--line);
+    }
+    .bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-height: 48px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .bottom-nav .nav-icon { font-size: 20px; }
+    .bottom-nav a:hover, .bottom-nav a:focus { color: var(--green); }
+    @media (min-width: 700px) {
+      section { padding: 42px 30px; }
+      .hero { min-height: 470px; }
+      .hero-art { height: 200px; }
+      .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      #cards .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .bottom-nav { left: 50%; right: auto; width: min(100%, 900px); transform: translateX(-50%); }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">KMON</div>
-    <nav>
-      <a href="#world">세계관</a>
-      <a href="#bestiary">괴물 도감</a>
-      <a href="#cards">디지털 카드</a>
-    </nav>
+  <header class="topbar">
+    <a class="logo" href="#home">KMON</a>
+    <a class="top-link" href="#world">괴물의 세계</a>
   </header>
 
   <main>
-    <section class="hero" id="world">
+    <section class="hero" id="home">
+      <div class="hero-art">대표 캐릭터 이미지 영역</div>
       <div class="tag">KOREAN MONSTER UNIVERSE</div>
       <h1>전설이 살아 움직인다.</h1>
-      <p>
-        한국의 신비로운 괴물과 귀신을 만나 보세요.<br>
-        짧은 영상부터 숨겨진 이야기까지, Kmon의 세계가 시작됩니다.
-      </p>
-      <a class="button" href="#bestiary">괴물 세계 탐험하기</a>
+      <p>한국의 신비로운 괴물과 귀신을 만나 보세요. Kmon의 세계가 시작됩니다.</p>
+      <a class="button" href="#bestiary">괴물 도감 탐험하기</a>
+    </section>
+
+    <section id="world">
+      <div class="label">EXPLORE KMON</div>
+      <h2>Kmon의 세계</h2>
+      <p class="intro">전설 속 존재와 새로운 캐릭터들의 이야기를 발견해 보세요.</p>
     </section>
 
     <section id="bestiary">
       <div class="label">DISCOVER THE UNKNOWN</div>
       <h2>괴물 도감</h2>
-      <p class="intro">Kmon 세계의 존재들을 하나씩 발견해 보세요.</p>
+      <p class="intro">Kmon 세계의 존재들을 하나씩 만나 보세요.</p>
       <div class="cards">
         <article class="card">
-          <div class="emoji">👻</div>
+          <div class="card-art">캐릭터 이미지 영역</div>
           <h3>한국의 귀신</h3>
           <p>밤과 전설 속에 숨어 있는 신비로운 존재들.</p>
         </article>
         <article class="card">
-          <div class="emoji">🌊</div>
+          <div class="card-art">캐릭터 이미지 영역</div>
           <h3>물귀신</h3>
-          <p>물가에 얽힌 이야기와 미스터리를 만나 보세요.</p>
+          <p>물가에 얽힌 이야기와 미스터리.</p>
         </article>
         <article class="card">
-          <div class="emoji">🐉</div>
+          <div class="card-art">캐릭터 이미지 영역</div>
           <h3>전설 속 괴물</h3>
           <p>오래된 이야기에서 태어난 특별한 존재들.</p>
         </article>
@@ -132,28 +195,35 @@
 
     <section id="videos">
       <div class="label">WATCH KMON</div>
-      <h2>짧은 영상</h2>
-      <p class="intro">Kmon의 이야기를 영상으로 만나 보세요. 영상은 준비되는 대로 추가할 수 있어요.</p>
+      <h2>숏폼 영상</h2>
+      <div class="feature">준비된 Kmon 영상을 이 영역에 추가할 예정입니다.</div>
     </section>
 
     <section id="cards">
       <div class="label">COLLECT YOUR WORLD</div>
-      <h2>디지털 카드와 특별한 이야기</h2>
+      <h2>디지털 카드</h2>
       <div class="cards">
         <article class="card">
-          <div class="emoji">🃏</div>
-          <h3>디지털 카드</h3>
-          <p>좋아하는 Kmon 캐릭터를 모아 보세요.</p>
+          <div class="card-art">카드 이미지 영역</div>
+          <h3>캐릭터 카드</h3>
+          <p>좋아하는 Kmon 캐릭터를 만나 보세요.</p>
         </article>
         <article class="card">
-          <div class="emoji">📖</div>
+          <div class="card-art">스토리 이미지 영역</div>
           <h3>특별한 이야기</h3>
-          <p>캐릭터들의 숨겨진 이야기와 세계관을 탐험하세요.</p>
+          <p>캐릭터들의 숨겨진 이야기를 탐험하세요.</p>
         </article>
       </div>
     </section>
   </main>
 
   <footer>© Kmon · Discover Korean Monsters</footer>
+
+  <nav class="bottom-nav" aria-label="주요 메뉴">
+    <a href="#home"><span class="nav-icon">⌂</span><span>홈</span></a>
+    <a href="#bestiary"><span class="nav-icon">♧</span><span>도감</span></a>
+    <a href="#videos"><span class="nav-icon">▷</span><span>영상</span></a>
+    <a href="#cards"><span class="nav-icon">▤</span><span>카드·스토리</span></a>
+  </nav>
 </body>
 </html>
