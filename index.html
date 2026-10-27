@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kmon - Discover Korean Monsters</title>
+  <meta name="description" content="Discover Korean monsters and mythical creatures with Kmon.">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      background: #10131d;
+      color: #f7f7fb;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 7%;
+      border-bottom: 1px solid #303443;
+    }
+    .logo { font-size: 28px; font-weight: 900; color: #a9f36d; }
+    nav a {
+      color: #f7f7fb;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+    .hero {
+      padding: 85px 7% 75px;
+      text-align: center;
+      background: radial-gradient(ellipse at top, #303d58, #10131d 70%);
+    }
+    .tag {
+      color: #a9f36d;
+      letter-spacing: 3px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    h1 { font-size: clamp(38px, 7vw, 72px); margin: 20px 0; }
+    .hero p { color: #c2c6d5; line-height: 1.8; }
+    .button {
+      display: inline-block;
+      background: #a9f36d;
+      color: #10131d;
+      padding: 14px 24px;
+      margin-top: 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section { padding: 45px 7%; }
+    h2 { font-size: 28px; margin-bottom: 10px; }
+    .intro { color: #aeb4c6; line-height: 1.7; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+    .card {
+      background: #1c2130;
+      border: 1px solid #343a4b;
+      border-radius: 18px;
+      padding: 25px;
+      min-height: 175px;
+    }
+    .emoji { font-size: 38px; }
+    .card h3 { margin-bottom: 8px; }
+    .card p { color: #b9bfd0; line-height: 1.6; font-size: 14px; }
+    .label { color: #a9f36d; font-size: 12px; font-weight: bold; }
+    footer {
+      padding: 28px 7%;
+      color: #9299ad;
+      border-top: 1px solid #303443;
+      font-size: 13px;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      header { padding: 18px 5%; }
+      nav a { margin-left: 10px; font-size: 12px; }
+      .hero { padding: 65px 5%; }
+      section { padding: 35px 5%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">KMON</div>
+    <nav>
+      <a href="#world">세계관</a>
+      <a href="#bestiary">괴물 도감</a>
+      <a href="#cards">디지털 카드</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="world">
+      <div class="tag">KOREAN MONSTER UNIVERSE</div>
+      <h1>전설이 살아 움직인다.</h1>
+      <p>
+        한국의 신비로운 괴물과 귀신을 만나 보세요.<br>
+        짧은 영상부터 숨겨진 이야기까지, Kmon의 세계가 시작됩니다.
+      </p>
+      <a class="button" href="#bestiary">괴물 세계 탐험하기</a>
+    </section>
+
+    <section id="bestiary">
+      <div class="label">DISCOVER THE UNKNOWN</div>
+      <h2>괴물 도감</h2>
+      <p class="intro">Kmon 세계의 존재들을 하나씩 발견해 보세요.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="emoji">👻</div>
+          <h3>한국의 귀신</h3>
+          <p>밤과 전설 속에 숨어 있는 신비로운 존재들.</p>
+        </article>
+        <article class="card">
+          <div class="emoji">🌊</div>
+          <h3>물귀신</h3>
+          <p>물가에 얽힌 이야기와 미스터리를 만나 보세요.</p>
+        </article>
+        <article class="card">
+          <div class="emoji">🐉</div>
+          <h3>전설 속 괴물</h3>
+          <p>오래된 이야기에서 태어난 특별한 존재들.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="videos">
+      <div class="label">WATCH KMON</div>
+      <h2>짧은 영상</h2>
+      <p class="intro">Kmon의 이야기를 영상으로 만나 보세요. 영상은 준비되는 대로 추가할 수 있어요.</p>
+    </section>
+
+    <section id="cards">
+      <div class="label">COLLECT YOUR WORLD</div>
+      <h2>디지털 카드와 특별한 이야기</h2>
+      <div class="cards">
+        <article class="card">
+          <div class="emoji">🃏</div>
+          <h3>디지털 카드</h3>
+          <p>좋아하는 Kmon 캐릭터를 모아 보세요.</p>
+        </article>
+        <article class="card">
+          <div class="emoji">📖</div>
+          <h3>특별한 이야기</h3>
+          <p>캐릭터들의 숨겨진 이야기와 세계관을 탐험하세요.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Kmon · Discover Korean Monsters</footer>
+</body>
+</html>
