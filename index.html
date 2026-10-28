@@ -52,17 +52,16 @@
       background: radial-gradient(ellipse at top, #303d58, var(--bg) 75%);
     }
     .hero-art {
-      width: min(100%, 300px);
-      height: 170px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      border: 1px dashed #526078;
-      border-radius: 20px;
-      color: #aeb4c6;
-      font-size: 13px;
-    }
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
     .tag, .label { color: var(--green); font-size: 11px; font-weight: bold; letter-spacing: 2px; }
     h1 { font-size: clamp(32px, 8vw, 54px); line-height: 1.2; margin: 14px 0; }
     h2 { font-size: 25px; margin: 10px 0; }
@@ -142,7 +141,6 @@
     @media (min-width: 700px) {
       section { padding: 42px 30px; }
       .hero { min-height: 470px; }
-      .hero-art { height: 200px; }
       .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       #cards .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .bottom-nav { left: 50%; right: auto; width: min(100%, 900px); transform: translateX(-50%); }
@@ -157,7 +155,9 @@
 
   <main>
     <section class="hero" id="home">
-      <div class="hero-art">대표 캐릭터 이미지 영역</div>
+      <div class="hero-art">
+  <img src="팀케이몬%20vs%20악귀들_최종완성_3.png" alt="팀 Kmon과 악귀들">
+</div>
       <div class="tag">KOREAN MONSTER UNIVERSE</div>
       <h1>전설이 살아 움직인다.</h1>
       <p>한국의 신비로운 괴물과 귀신을 만나 보세요. Kmon의 세계가 시작됩니다.</p>
