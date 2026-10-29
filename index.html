@@ -4,11 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10131d">
+  <meta name="theme-color" content="#f2f5fb">
   <title>KMON - Korean Monster Universe</title>
   <meta name="description" content="Discover Korean monsters and mythical creatures with Kmon.">
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     :root {
       --bg: #f2f5fb;
       --panel: #1c2130;
@@ -17,7 +21,12 @@
       --muted: #65718d;
       --green: #a9f36d;
     }
-    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 20px;
+    }
+
     body {
       margin: 0;
       background: var(--bg);
@@ -25,83 +34,102 @@
       font-family: Arial, "Noto Sans KR", sans-serif;
       padding-bottom: 76px;
     }
-    a { color: inherit; text-decoration: none; }
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 62px;
-      padding: 0 20px;
-      background: rgba(242,245,251,.98);
-      border-bottom: 1px solid #dce3ef;
-    }
-    .logo {
-  display: flex;
-  align-items: center;
-}
-.logo img {
-  display: block;
-  width: 120px;
-  height: 48px;
-  object-fit: contain;
-  object-position: left center;
-}
-    .top-link { font-size: 13px; color: var(--muted); }
-    main { width: 100%; max-width: 900px; margin: 0 auto; }
-    section { padding: 30px 20px; }
-    .hero {
-      .hero {
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  padding: 0;
-  background: #f2f5fb;
-}
-    .hero-art {
-  .hero-art {
-  width: 100%;
-  margin: 0;
-}
 
-.hero-art img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0;
-    .tag, .label { color: var(--green); font-size: 11px; font-weight: bold; letter-spacing: 2px; }
-    h1 { font-size: clamp(32px, 8vw, 54px); line-height: 1.2; margin: 14px 0; }
-    h2 { font-size: 25px; margin: 10px 0; }
-    .intro, .hero p { color: var(--muted); line-height: 1.8; font-size: 14px; }
-    .hero p { max-width: 420px; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 30px 20px;
+    }
+
+    /* 맨 위 대표이미지 */
+    .hero {
+      width: 100%;
+      min-height: 0;
+      display: block;
+      padding: 0;
+      margin: 0;
+      background: var(--bg);
+    }
+
+    .hero-art {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-art img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+    }
+
+    .tag,
+    .label {
+      color: #6b9d32;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 8vw, 54px);
+      line-height: 1.2;
+      margin: 14px 0;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin: 10px 0;
+    }
+
+    .intro,
+    .hero p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .hero p {
+      max-width: 420px;
+    }
+
     .button {
       display: inline-block;
       padding: 13px 22px;
       margin-top: 14px;
       border-radius: 28px;
       background: var(--green);
-      color: var(--bg);
+      color: #202b4b;
       font-weight: bold;
       font-size: 14px;
     }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 20px;
     }
+
     .card {
       min-width: 0;
       padding: 17px;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: var(--panel);
+      color: #f7f7fb;
     }
+
     .card-art {
       min-height: 100px;
       display: flex;
@@ -114,18 +142,36 @@
       font-size: 12px;
       text-align: center;
     }
-    .card h3 { margin: 8px 0; font-size: 16px; }
-    .card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    .card h3 {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #b9bfd0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
     .feature {
       padding: 20px;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: var(--panel);
-      color: var(--muted);
+      color: #b9bfd0;
       font-size: 14px;
       line-height: 1.7;
     }
-    footer { padding: 25px 20px; color: #9299ad; text-align: center; font-size: 12px; }
+
+    footer {
+      padding: 25px 20px;
+      color: #9299ad;
+      text-align: center;
+      font-size: 12px;
+    }
+
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -138,6 +184,7 @@
       background: #171c29;
       border-top: 1px solid var(--line);
     }
+
     .bottom-nav a {
       display: flex;
       flex-direction: column;
@@ -145,27 +192,52 @@
       justify-content: center;
       gap: 4px;
       min-height: 48px;
-      color: var(--muted);
+      color: #b9bfd0;
       font-size: 11px;
     }
-    .bottom-nav .nav-icon { font-size: 20px; }
-    .bottom-nav a:hover, .bottom-nav a:focus { color: var(--green); }
+
+    .bottom-nav .nav-icon {
+      font-size: 20px;
+    }
+
+    .bottom-nav a:hover,
+    .bottom-nav a:focus {
+      color: var(--green);
+    }
+
     @media (min-width: 700px) {
-      section { padding: 42px 30px; }
-      .hero { min-height: 470px; }
-      .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      #cards .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .bottom-nav { left: 50%; right: auto; width: min(100%, 900px); transform: translateX(-50%); }
+      section {
+        padding: 42px 30px;
+      }
+
+      .hero {
+        padding: 0;
+      }
+
+      .cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #cards .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .bottom-nav {
+        left: 50%;
+        right: auto;
+        width: min(100%, 900px);
+        transform: translateX(-50%);
+      }
     }
   </style>
 </head>
-<body>
 
+<body>
   <main>
     <section class="hero" id="home">
       <div class="hero-art">
-  <img src="kmon-main-new.png" alt="팀 Kmon과 악귀들">
-</div>
+        <img src="kmon-main-new.png" alt="팀 Kmon과 악귀들">
+      </div>
     </section>
 
     <section id="world">
@@ -178,17 +250,20 @@
       <div class="label">DISCOVER THE UNKNOWN</div>
       <h2>K몬스터 도감</h2>
       <p class="intro">Kmon Kmon의 존재들을 하나씩 만나 보세요.</p>
+
       <div class="cards">
         <article class="card">
           <div class="card-art">캐릭터 이미지 영역</div>
           <h3>한국의 귀신</h3>
           <p>전설 속에 숨어 있는 신비로운 존재들.</p>
         </article>
+
         <article class="card">
           <div class="card-art">캐릭터 이미지 영역</div>
           <h3>물귀신</h3>
           <p>물가에 얽힌 이야기와 미스터리.</p>
         </article>
+
         <article class="card">
           <div class="card-art">캐릭터 이미지 영역</div>
           <h3>전설 속 괴물</h3>
@@ -206,12 +281,14 @@
     <section id="cards">
       <div class="label">COLLECT YOUR WORLD</div>
       <h2>디지털 카드</h2>
+
       <div class="cards">
         <article class="card">
           <div class="card-art">카드 이미지 영역</div>
           <h3>캐릭터 카드</h3>
           <p>좋아하는 Kmon 캐릭터를 만나 보세요.</p>
         </article>
+
         <article class="card">
           <div class="card-art">스토리 이미지 영역</div>
           <h3>특별한 이야기</h3>
@@ -224,10 +301,22 @@
   <footer>© Kmon · Discover Korean Monsters</footer>
 
   <nav class="bottom-nav" aria-label="주요 메뉴">
-    <a href="#home"><span class="nav-icon">⌂</span><span>홈</span></a>
-    <a href="#bestiary"><span class="nav-icon">♧</span><span>도감</span></a>
-    <a href="#videos"><span class="nav-icon">▷</span><span>영상</span></a>
-    <a href="#cards"><span class="nav-icon">▤</span><span>카드·스토리</span></a>
+    <a href="#home">
+      <span class="nav-icon">⌂</span>
+      <span>홈</span>
+    </a>
+    <a href="#bestiary">
+      <span class="nav-icon">♧</span>
+      <span>도감</span>
+    </a>
+    <a href="#videos">
+      <span class="nav-icon">▷</span>
+      <span>영상</span>
+    </a>
+    <a href="#cards">
+      <span class="nav-icon">▤</span>
+      <span>카드·스토리</span>
+    </a>
   </nav>
 </body>
 </html>
