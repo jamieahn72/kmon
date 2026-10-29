@@ -38,7 +38,17 @@
       background: rgba(16,19,29,.96);
       border-bottom: 1px solid var(--line);
     }
-    .logo { color: var(--green); font-size: 25px; font-weight: 900; letter-spacing: 2px; }
+    .logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  display: block;
+  width: 120px;
+  height: 48px;
+  object-fit: contain;
+  object-position: left center;
+}
     .top-link { font-size: 13px; color: var(--muted); }
     main { width: 100%; max-width: 900px; margin: 0 auto; }
     section { padding: 30px 20px; }
@@ -149,7 +159,9 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="logo" href="#home">KMON</a>
+    <a class="logo" href="#home">
+  <img src="kmon-logo.png" alt="Kmon 로고">
+</a>
     <a class="top-link" href="#world">K몬의 세계</a>
   </header>
 
