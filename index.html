@@ -3,8 +3,8 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f2f5fb">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F7F2E9">
   <title>KMON - Korean Monster Universe</title>
   <meta name="description" content="Discover Korean monsters and mythical creatures with Kmon.">
 
@@ -14,12 +14,12 @@
     }
 
     :root {
-      --bg: #f2f5fb;
+      --bg: #F7F2E9;
       --panel: #ffffff;
-      --line: #dce2ee;
+      --line: #e5dccd;
       --text: #202b4b;
       --muted: #737d91;
-      --orange: #f28a32;
+      --orange: #E58A32;
       --navy: #5276a5;
     }
 
@@ -37,6 +37,11 @@
       overflow-x: hidden;
     }
 
+    body.intro-active {
+      padding: 0;
+      overflow: hidden;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -52,34 +57,97 @@
       padding: 30px 20px;
     }
 
-    /* 메인 이미지 */
-
-    .hero {
+    /* 첫 화면 인트로 */
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      background: #17131c;
     }
 
-    .hero-art {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    .hero-art img {
+    .intro-image {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
-    /* Kmon 세계 배너 */
+    /* 이미지 속 입장 버튼 위에 겹치는 투명 클릭 영역 */
+    .intro-enter {
+      position: absolute;
+      left: 50%;
+      bottom: 5%;
+      transform: translateX(-50%);
+      width: 76%;
+      height: 10%;
+      min-height: 48px;
+      max-height: 90px;
+      border: 0;
+      border-radius: 50px;
+      background: transparent;
+      cursor: pointer;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .intro-enter::after {
+      content: "";
+      position: absolute;
+      top: -30%;
+      left: -65%;
+      width: 35%;
+      height: 160%;
+      transform: skewX(-25deg);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 230, 160, 0.45),
+        transparent
+      );
+      animation: gold-shine 2.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gold-shine {
+      0% {
+        left: -65%;
+      }
+      65%, 100% {
+        left: 130%;
+      }
+    }
+
+    .intro-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .intro-enter::after {
+        animation: none;
+      }
+    }
+
+    /* 홈페이지 */
+    #home-page {
+      display: none;
+    }
 
     .world-banner {
       width: 100%;
       max-width: 900px;
       aspect-ratio: 2.5 / 1;
-      margin: 18px auto 0;
+      margin: 0 auto;
       padding: 0;
       overflow: hidden;
     }
@@ -93,7 +161,6 @@
     }
 
     /* 도감 제목 */
-
     .bestiary-heading {
       margin: 0;
       line-height: 1;
@@ -145,7 +212,6 @@
     }
 
     /* 도감 카드 */
-
     .cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -180,7 +246,7 @@
       overflow: hidden;
       margin-bottom: 10px;
       border-radius: 8px;
-      background: #e7ebf4;
+      background: #eee8df;
       color: var(--muted);
       font-size: 11px;
       text-align: center;
@@ -223,7 +289,6 @@
     }
 
     /* 하단 메뉴 */
-
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -258,7 +323,6 @@
     }
 
     /* 캐릭터 상세 페이지 */
-
     .character-detail {
       display: none;
       min-height: 80vh;
@@ -312,10 +376,8 @@
       width: 100%;
       height: auto;
       border-radius: 12px;
-      background: #e7ebf4;
+      background: #eee8df;
     }
-
-    /* 캐릭터 설명란 */
 
     .character-description {
       padding: 16px;
@@ -342,12 +404,8 @@
         padding: 42px 30px;
       }
 
-      .hero {
-        padding: 0;
-      }
-
       .world-banner {
-        margin-top: 18px;
+        margin-top: 0;
       }
 
       .bottom-nav {
@@ -378,26 +436,34 @@
   </style>
 </head>
 
-<body>
+<body class="intro-active">
+
+  <!-- 첫 화면 인트로 -->
+  <div class="intro-screen" id="intro-screen">
+    <img
+      class="intro-image"
+      src="kmon-intro.png"
+      alt="Kmon 인트로"
+    >
+
+    <button
+      class="intro-enter"
+      id="intro-enter"
+      type="button"
+      aria-label="Kmon World 입장하기"
+    ></button>
+  </div>
 
   <!-- 홈페이지 -->
   <main id="home-page">
 
-    <!-- 메인 배너 -->
-    <section class="hero" id="home">
-      <div class="hero-art">
-        <img src="kmon-main-new.png" alt="팀 Kmon과 악귀들">
-      </div>
-    </section>
-
-    <!-- Kmon 세계 배너 -->
+    <!-- Kmon의 세계 배너: 홈페이지 최상단 -->
     <section class="world-banner" id="world">
       <img src="kmon-world.png" alt="Kmon의 세계">
     </section>
 
     <!-- 몬스터 도감 -->
     <section id="bestiary">
-
       <div class="bestiary-heading">
         <div class="label">DISCOVER THE UNKNOWN</div>
 
@@ -559,7 +625,7 @@
   <!-- 하단 메뉴 -->
   <nav class="bottom-nav" id="bottom-nav" aria-label="주요 메뉴">
 
-    <a href="#home">
+    <a href="#world">
       <span class="nav-icon">⌂</span>
       <span>홈</span>
     </a>
@@ -582,7 +648,6 @@
   </nav>
 
   <script>
-
     /* 세로 이미지 목록 */
     const seroImages = [
       "sero_1.png",
@@ -611,11 +676,9 @@
       설명은 첫 번째 이미지 바로 아래에 배치한다.
     */
     function createGallery(galleryId, images, description) {
-
       const gallery = document.getElementById(galleryId);
 
       images.forEach((fileName, index) => {
-
         const image = document.createElement("img");
 
         image.src = fileName;
@@ -625,7 +688,6 @@
         gallery.appendChild(image);
 
         if (index === 0 && description) {
-
           const descriptionBox = document.createElement("div");
 
           descriptionBox.className = "character-description";
@@ -633,18 +695,33 @@
 
           gallery.appendChild(descriptionBox);
         }
-
       });
-
     }
 
     /* 상세 페이지 갤러리 생성 */
     createGallery("sero-gallery", seroImages, seroDescription);
     createGallery("chesy-gallery", chesyImages, chesyDescription);
 
+    /* 인트로 입장 버튼 */
+    const introScreen = document.getElementById("intro-screen");
+    const introEnter = document.getElementById("intro-enter");
+
+    function enterKmonWorld() {
+      introScreen.classList.add("hide");
+      document.body.classList.remove("intro-active");
+
+      document.getElementById("home-page").style.display = "block";
+      document.getElementById("bottom-nav").style.display = "grid";
+      document.getElementById("page-footer").style.display = "block";
+
+      window.location.hash = "#world";
+      window.scrollTo(0, 0);
+    }
+
+    introEnter.addEventListener("click", enterKmonWorld);
+
     /* 화면 전환 */
     function updatePage() {
-
       const hash = window.location.hash;
 
       const pages = {
@@ -654,6 +731,16 @@
 
       const selectedPage = pages[hash] || null;
       const isDetailPage = selectedPage !== null;
+
+      /* 인트로가 아직 표시 중이면 홈페이지를 열지 않는다. */
+      if (document.body.classList.contains("intro-active")) {
+        document.getElementById("home-page").style.display = "none";
+        document.getElementById("sero-detail").style.display = "none";
+        document.getElementById("chesy-detail").style.display = "none";
+        document.getElementById("page-footer").style.display = "none";
+        document.getElementById("bottom-nav").style.display = "none";
+        return;
+      }
 
       document.getElementById("home-page").style.display =
         isDetailPage ? "none" : "block";
@@ -676,7 +763,6 @@
     window.addEventListener("hashchange", updatePage);
 
     updatePage();
-
   </script>
 
 </body>
