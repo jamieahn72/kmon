@@ -260,6 +260,22 @@ section { padding:30px 20px; }
   .intro-art { width:min(520px,100vw,calc(100dvh * 9 / 16)); }
 }
 
+/* 모바일에서만 번개 크기 조정: PC 원본 설정은 유지 */
+@media (max-width:600px) {
+  .lightning.one {
+    left:39%;
+    top:9%;
+    width:31%;
+    height:44%;
+  }
+  .lightning.two {
+    left:17%;
+    top:13%;
+    width:20%;
+    height:32%;
+  }
+}
+
 /* 움직임 줄이기 설정 */
 @media (prefers-reduced-motion:reduce) {
   .intro-enter::after,.petal { animation:none; }
