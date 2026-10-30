@@ -306,14 +306,16 @@
       background: #e7ebf4;
     }
 
+    /* 체시 설명란: 행간과 내부 여백 축소 */
+
     .character-description {
-      padding: 20px;
+      padding: 16px;
       border: 1px solid var(--line);
       border-radius: 12px;
       background: #fff;
       color: var(--text);
       font-size: 15px;
-      line-height: 1.9;
+      line-height: 1.5;
       white-space: pre-line;
     }
 
@@ -412,7 +414,7 @@
         <article class="card">
           <a class="card-link" href="#chesy">
             <div class="card-art">
-              <img src="chesy_1.png" alt="체시(Chesy)">
+              <img src="chesy_thumbnail_1.png" alt="체시(Chesy)">
             </div>
             <h3>체시(Chesy)</h3>
             <p>Kmon팀소속, 세자매의 맏언니(처녀귀신)</p>
@@ -552,13 +554,13 @@
 
     // 체시 스틸 이미지 목록
     const chesyImages = [
-      "chesy_thumbnail_1.png"
+      "chesy_1.png"
     ];
 
-    // 체시 설명
+    // 체시 설명: 빈 줄 없이 세 줄로 표시
     const chesyDescription =
-      "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 Kmon팀에서 가지고 있다.\n\n" +
-      "평소엔 규율부장같지만 속마음은 츤데레같이 따뜻한 마음의 소유자이다.\n\n" +
+      "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 Kmon팀에서 가지고 있다.\n" +
+      "평소엔 규율부장같지만 속마음은 츤데레같이 따뜻한 마음의 소유자이다.\n" +
       "Kmon팀의 안살림을 맡고 있다.";
 
     // 이미지와 설명을 순서대로 표시
