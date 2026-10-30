@@ -33,6 +33,7 @@
       color: var(--text);
       font-family: Arial, "Noto Sans KR", sans-serif;
       padding-bottom: 76px;
+      overflow-x: hidden;
     }
 
     a {
@@ -72,6 +73,21 @@
       border-radius: 0;
     }
 
+    /* Kmon의 세계 전체 폭 배너 */
+    .world-banner {
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(50% - 50vw);
+      padding: 0;
+    }
+
+    .world-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+    }
+
     .label {
       color: #6b9d32;
       font-size: 11px;
@@ -90,7 +106,7 @@
       font-size: 14px;
     }
 
-    /* 기본 카드 배치: 한 줄에 2칸 */
+    /* 카드 배치: 한 줄에 2칸 */
     .cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -192,13 +208,17 @@
       color: #6b9d32;
     }
 
-    /* 큰 화면에서도 도감은 2칸씩 유지 */
+    /* 큰 화면 */
     @media (min-width: 700px) {
       section {
         padding: 42px 30px;
       }
 
       .hero {
+        padding: 0;
+      }
+
+      .world-banner {
         padding: 0;
       }
 
@@ -218,6 +238,7 @@
 
 <body>
   <main>
+
     <!-- 맨 위 대표 이미지 -->
     <section class="hero" id="home">
       <div class="hero-art">
@@ -225,22 +246,19 @@
       </div>
     </section>
 
-    <!-- Kmon 세계 소개 -->
-    <section id="world">
-      <div class="label">EXPLORE KMON</div>
-      <h2>Kmon의 세계</h2>
-      <p class="intro">
-        전설 속 존재와 새로운 캐릭터들의 이야기를 발견해 보세요.
-      </p>
+    <!-- Kmon의 세계 전체 폭 배너 -->
+    <section class="world-banner" id="world">
+      <img src="kmon-world.png" alt="Kmon의 세계">
     </section>
 
-    <!-- 몬스터 도감: 2칸씩, 총 6개 카드 -->
+    <!-- 몬스터 도감 -->
     <section id="bestiary">
       <div class="label">DISCOVER THE UNKNOWN</div>
       <h2>K몬스터 도감</h2>
       <p class="intro">Kmon의 존재들을 하나씩 만나 보세요.</p>
 
       <div class="cards">
+
         <article class="card">
           <div class="card-art">캐릭터 이미지 영역</div>
           <h3>한국의 귀신</h3>
@@ -276,10 +294,11 @@
           <h3>전설 속 괴물</h3>
           <p>오래된 이야기에서 태어난 특별한 존재들.</p>
         </article>
+
       </div>
     </section>
 
-    <!-- 영상 -->
+    <!-- 숏폼 영상 -->
     <section id="videos">
       <div class="label">WATCH KMON</div>
       <h2>숏폼 영상</h2>
@@ -307,6 +326,7 @@
         </article>
       </div>
     </section>
+
   </main>
 
   <footer>© Kmon · Discover Korean Monsters</footer>
@@ -317,18 +337,22 @@
       <span class="nav-icon">⌂</span>
       <span>홈</span>
     </a>
+
     <a href="#bestiary">
       <span class="nav-icon">♧</span>
       <span>도감</span>
     </a>
+
     <a href="#videos">
       <span class="nav-icon">▷</span>
       <span>영상</span>
     </a>
+
     <a href="#cards">
       <span class="nav-icon">▤</span>
       <span>카드·스토리</span>
     </a>
   </nav>
+
 </body>
 </html>
