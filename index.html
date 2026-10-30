@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -80,24 +79,24 @@ section { padding:30px 20px; }
   animation:storm-flash-two 9s infinite;
 }
 
-/* 첫 번째 번개: 짧은 두 번의 섬광 */
+/* 첫 번째 번개: 눈에 보이도록 섬광 구간을 늘린 두 번의 점등 */
 @keyframes storm-flash-one {
-  0%,17%,22%,100% { opacity:0; }
-  17.5% { opacity:1; }
-  18.2% { opacity:.12; }
-  18.8% { opacity:.95; }
-  19.5% { opacity:0; }
+  0%,16%,21%,100% { opacity:0; }
+  16.8% { opacity:1; }
+  17.8% { opacity:.12; }
+  18.8% { opacity:1; }
+  20% { opacity:0; }
   20.5% { opacity:.65; }
   21% { opacity:0; }
 }
 
 /* 두 번째 번개 */
 @keyframes storm-flash-two {
-  0%,40%,45%,100% { opacity:0; }
-  40.5% { opacity:.95; }
-  41.2% { opacity:.12; }
-  41.8% { opacity:.9; }
-  42.5% { opacity:0; }
+  0%,39%,44%,100% { opacity:0; }
+  39.8% { opacity:.95; }
+  40.8% { opacity:.12; }
+  41.8% { opacity:.95; }
+  43% { opacity:0; }
   43.5% { opacity:.6; }
   44% { opacity:0; }
 }
@@ -135,21 +134,21 @@ section { padding:30px 20px; }
 }
 
 @keyframes spire-flash {
-  0%,17%,22%,100% { opacity:0; }
-  17.5% { opacity:.8; }
-  18.2% { opacity:.12; }
+  0%,16%,21%,100% { opacity:0; }
+  16.8% { opacity:.8; }
+  17.8% { opacity:.12; }
   18.8% { opacity:.7; }
-  19.5% { opacity:0; }
+  20% { opacity:0; }
   20.5% { opacity:.5; }
   21% { opacity:0; }
 }
 
 @keyframes wall-flash {
-  0%,17%,22%,100% { opacity:0; }
-  17.5% { opacity:.6; }
-  18.2% { opacity:.1; }
+  0%,16%,21%,100% { opacity:0; }
+  16.8% { opacity:.6; }
+  17.8% { opacity:.1; }
   18.8% { opacity:.5; }
-  19.5% { opacity:0; }
+  20% { opacity:0; }
   20.5% { opacity:.35; }
   21% { opacity:0; }
 }
@@ -175,20 +174,20 @@ section { padding:30px 20px; }
 }
 
 @keyframes spire-flash-two {
-  0%,40%,45%,100% { opacity:0; }
-  40.5% { opacity:.75; }
-  41.2% { opacity:.1; }
+  0%,39%,44%,100% { opacity:0; }
+  39.8% { opacity:.75; }
+  40.8% { opacity:.1; }
   41.8% { opacity:.65; }
-  42.5% { opacity:0; }
+  43% { opacity:0; }
   43.5% { opacity:.45; }
   44% { opacity:0; }
 }
 @keyframes wall-flash-two {
-  0%,40%,45%,100% { opacity:0; }
-  40.5% { opacity:.55; }
-  41.2% { opacity:.1; }
+  0%,39%,44%,100% { opacity:0; }
+  39.8% { opacity:.55; }
+  40.8% { opacity:.1; }
   41.8% { opacity:.45; }
-  42.5% { opacity:0; }
+  43% { opacity:0; }
   43.5% { opacity:.3; }
   44% { opacity:0; }
 }
@@ -244,8 +243,28 @@ section { padding:30px 20px; }
 @media (min-width:768px) {
   .intro-art { width:min(520px,100vw,calc(100dvh * 9 / 16)); }
 }
+
+/* 움직임 줄이기 설정에서도 번개를 완전히 숨기지 않고, 느린 단일 점등으로 표시 */
 @media (prefers-reduced-motion:reduce) {
-  .intro-enter::after,.petal,.lightning,.castle-flash { animation:none; }
+  .intro-enter::after,.petal { animation:none; }
+  .lightning.one,.castle-flash.spire,.castle-flash.wall {
+    animation:reduced-flash-one 7s infinite;
+  }
+  .lightning.two,.castle-flash.spire-two,.castle-flash.wall-two {
+    animation:reduced-flash-two 9s infinite;
+  }
+}
+@keyframes reduced-flash-one {
+  0%,16%,100% { opacity:0; }
+  17% { opacity:.85; }
+  19% { opacity:.85; }
+  20% { opacity:0; }
+}
+@keyframes reduced-flash-two {
+  0%,39%,100% { opacity:0; }
+  40% { opacity:.8; }
+  42% { opacity:.8; }
+  43% { opacity:0; }
 }
 
 /* 홈페이지 */
