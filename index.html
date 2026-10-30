@@ -9,7 +9,9 @@
   <meta name="description" content="Discover Korean monsters and mythical creatures with Kmon.">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     :root {
       --bg: #f2f5fb;
@@ -50,11 +52,12 @@
       padding: 30px 20px;
     }
 
+    /* 메인 이미지 */
+
     .hero {
       width: 100%;
-      display: block;
-      padding: 0;
       margin: 0;
+      padding: 0;
       background: var(--bg);
     }
 
@@ -68,8 +71,9 @@
       display: block;
       width: 100%;
       height: auto;
-      border-radius: 0;
     }
+
+    /* Kmon 세계 배너 */
 
     .world-banner {
       width: 100%;
@@ -86,8 +90,9 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      border-radius: 0;
     }
+
+    /* 도감 제목 */
 
     .bestiary-heading {
       margin: 0;
@@ -138,6 +143,8 @@
       font-size: 13px;
       margin: 2px 0 0;
     }
+
+    /* 도감 카드 */
 
     .cards {
       display: grid;
@@ -214,6 +221,8 @@
       text-align: center;
       font-size: 12px;
     }
+
+    /* 하단 메뉴 */
 
     .bottom-nav {
       position: fixed;
@@ -306,7 +315,7 @@
       background: #e7ebf4;
     }
 
-    /* 체시 설명란: 행간과 내부 여백 축소 */
+    /* 캐릭터 설명란 */
 
     .character-description {
       padding: 16px;
@@ -341,10 +350,6 @@
         margin-top: 18px;
       }
 
-      #cards .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
       .bottom-nav {
         left: 50%;
         right: auto;
@@ -375,31 +380,47 @@
 
 <body>
 
+  <!-- 홈페이지 -->
   <main id="home-page">
 
+    <!-- 메인 배너 -->
     <section class="hero" id="home">
       <div class="hero-art">
         <img src="kmon-main-new.png" alt="팀 Kmon과 악귀들">
       </div>
     </section>
 
+    <!-- Kmon 세계 배너 -->
     <section class="world-banner" id="world">
       <img src="kmon-world.png" alt="Kmon의 세계">
     </section>
 
+    <!-- 몬스터 도감 -->
     <section id="bestiary">
+
       <div class="bestiary-heading">
         <div class="label">DISCOVER THE UNKNOWN</div>
+
         <h2 class="bestiary-title">
           <span class="title-k">K</span>
           <span class="title-text">몬스터 도감</span>
         </h2>
+
         <p class="intro">Kmon의 존재들을 하나씩 만나 보세요.</p>
       </div>
 
       <div class="cards">
 
-        <!-- 세로 카드 -->
+        <!-- 1. 이달의 몬스터 -->
+        <article class="card">
+          <div class="card-art">
+            이미지 추후 적용
+          </div>
+          <h3>이달의 몬스터</h3>
+          <p>Monster of the Month<br>이미지와 설명 추후 적용</p>
+        </article>
+
+        <!-- 2. 세로 -->
         <article class="card">
           <a class="card-link" href="#sero">
             <div class="card-art">
@@ -410,7 +431,7 @@
           </a>
         </article>
 
-        <!-- 체시 카드 -->
+        <!-- 3. 체시 -->
         <article class="card">
           <a class="card-link" href="#chesy">
             <div class="card-art">
@@ -421,45 +442,53 @@
           </a>
         </article>
 
+        <!-- 4. 체리 -->
         <article class="card">
-          <div class="card-art">캐릭터 이미지 영역</div>
-          <h3>덤부</h3>
-          <p>Kmon 세계의 특별한 캐릭터.</p>
+          <div class="card-art">
+            이미지 추후 적용
+          </div>
+          <h3>체리(Chery)</h3>
+          <p>이미지와 설명 추후 적용</p>
         </article>
 
+        <!-- 5. 체미 -->
         <article class="card">
-          <div class="card-art">캐릭터 이미지 영역</div>
-          <h3>체리</h3>
-          <p>개성 있는 Kmon 캐릭터.</p>
+          <div class="card-art">
+            이미지 추후 적용
+          </div>
+          <h3>체미(Chemi)</h3>
+          <p>이미지와 설명 추후 적용</p>
         </article>
 
+        <!-- 6. 덤부 -->
         <article class="card">
-          <div class="card-art">캐릭터 이미지 영역</div>
-          <h3>체미</h3>
-          <p>새로운 이야기를 만들어 가는 캐릭터.</p>
-        </article>
-
-        <article class="card">
-          <div class="card-art">캐릭터 이미지 영역</div>
-          <h3>전설 속 괴물</h3>
-          <p>오래된 이야기에서 태어난 특별한 존재들.</p>
+          <div class="card-art">
+            이미지 추후 적용
+          </div>
+          <h3>덤부(Dumboo)</h3>
+          <p>이미지와 설명 추후 적용</p>
         </article>
 
       </div>
     </section>
 
+    <!-- 숏폼 영상 -->
     <section id="videos">
       <div class="label">WATCH KMON</div>
       <h2>숏폼 영상</h2>
+
       <div class="feature">
         준비된 Kmon 영상을 이 영역에 추가할 예정입니다.
       </div>
     </section>
 
+    <!-- 디지털 카드와 스토리 -->
     <section id="cards">
       <div class="label">COLLECT YOUR WORLD</div>
       <h2>디지털 카드</h2>
+
       <div class="cards">
+
         <article class="card">
           <div class="card-art">카드 이미지 영역</div>
           <h3>캐릭터 카드</h3>
@@ -471,6 +500,7 @@
           <h3>특별한 이야기</h3>
           <p>캐릭터들의 숨겨진 이야기를 탐험하세요.</p>
         </article>
+
       </div>
     </section>
 
@@ -526,71 +556,95 @@
     © Kmon · Discover Korean Monsters
   </footer>
 
+  <!-- 하단 메뉴 -->
   <nav class="bottom-nav" id="bottom-nav" aria-label="주요 메뉴">
+
     <a href="#home">
       <span class="nav-icon">⌂</span>
       <span>홈</span>
     </a>
+
     <a href="#bestiary">
       <span class="nav-icon">♧</span>
       <span>도감</span>
     </a>
+
     <a href="#videos">
       <span class="nav-icon">▷</span>
       <span>영상</span>
     </a>
+
     <a href="#cards">
       <span class="nav-icon">▤</span>
       <span>카드·스토리</span>
     </a>
+
   </nav>
 
   <script>
-    // 세로 스틸 이미지 목록
+
+    /* 세로 이미지 목록 */
     const seroImages = [
       "sero_1.png",
       "sero_2.png"
     ];
 
-    // 체시 스틸 이미지 목록
+    /* 체시 이미지 목록 */
     const chesyImages = [
       "chesy_1.png"
     ];
 
-    // 체시 설명: 빈 줄 없이 세 줄로 표시
+    /* 세로 설명 */
+    const seroDescription =
+      "Kmon팀의 리더이자 저승사자이며 귀신들을 관장한다.\n" +
+      "염라대왕의 명을 받아 한국의 악귀들을 소탕해야하는 임무를 가지고 있지만 팀원들인 체시, 체리, 체미, 덤부가 딱히 도움이 되진 않는다.\n" +
+      "늘 고독을 씹으며 혼자 있기를 좋아한다.";
+
+    /* 체시 설명 */
     const chesyDescription =
       "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 Kmon팀에서 가지고 있다.\n" +
       "평소엔 규율부장같지만 속마음은 츤데레같이 따뜻한 마음의 소유자이다.\n" +
       "Kmon팀의 안살림을 맡고 있다.";
 
-    // 이미지와 설명을 순서대로 표시
+    /*
+      이미지와 설명을 순서대로 표시하는 함수.
+      설명은 첫 번째 이미지 바로 아래에 배치한다.
+    */
     function createGallery(galleryId, images, description) {
+
       const gallery = document.getElementById(galleryId);
 
       images.forEach((fileName, index) => {
+
         const image = document.createElement("img");
 
         image.src = fileName;
-        image.alt = "스틸 이미지 " + (index + 1);
+        image.alt = "캐릭터 스틸 이미지 " + (index + 1);
         image.loading = "lazy";
 
         gallery.appendChild(image);
 
-        // 첫 번째 이미지 바로 아래에 설명 표시
         if (index === 0 && description) {
+
           const descriptionBox = document.createElement("div");
+
           descriptionBox.className = "character-description";
           descriptionBox.textContent = description;
+
           gallery.appendChild(descriptionBox);
         }
+
       });
+
     }
 
-    createGallery("sero-gallery", seroImages, "");
+    /* 상세 페이지 갤러리 생성 */
+    createGallery("sero-gallery", seroImages, seroDescription);
     createGallery("chesy-gallery", chesyImages, chesyDescription);
 
-    // 화면 전환
+    /* 화면 전환 */
     function updatePage() {
+
       const hash = window.location.hash;
 
       const pages = {
@@ -620,7 +674,9 @@
     }
 
     window.addEventListener("hashchange", updatePage);
+
     updatePage();
+
   </script>
 
 </body>
