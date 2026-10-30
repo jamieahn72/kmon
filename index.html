@@ -91,125 +91,109 @@ section { padding: 30px 20px; }
   z-index: 2;
 }
 
-/* =================================
-   멀리 있는 먹구름 속 가느다란 번개
-================================= */
+/* ======================================
+   먹구름 속 먼 거리의 가느다란 번개
+   번개 모양 그래픽 없이 짧은 실선만 사용
+====================================== */
 
 .lightning {
   position: absolute;
   height: 0;
-  width: 0;
   opacity: 0;
-  transform-origin: left center;
   pointer-events: none;
-  animation: distant-lightning 9s infinite;
+  transform-origin: left center;
+  animation-name: distant-lightning;
+  animation-timing-function: steps(1, end);
+  animation-iteration-count: infinite;
 }
 
-/* 각 번개는 얇은 실선 두 개로 표현 */
-.lightning::before,
+/* 흰색 중심 실선 */
+.lightning::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--length);
+  height: var(--thickness, 1px);
+  border-radius: 50%;
+  background: rgba(248, 244, 255, var(--brightness, .9));
+}
+
+/* 연보라색의 아주 약한 보조선 */
 .lightning::after {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
+  width: var(--length);
   height: 1px;
   border-radius: 50%;
-  transform-origin: left center;
+  background: rgba(190, 165, 255, .55);
+  filter: blur(1px);
 }
 
-.lightning::before {
-  width: var(--length);
-  background: rgba(245, 239, 255, 0.95);
-  box-shadow: 0 0 2px rgba(255,255,255,.8);
-}
-
-.lightning::after {
-  width: var(--length);
-  background: rgba(183, 145, 255, 0.5);
-  filter: blur(2px);
-}
-
-/* 1번 위치 */
+/* 1번: 짧고 희미한 실선 */
 .lightning.one {
-  left: 8%;
+  left: 9%;
   top: 19%;
-  --length: 7%;
-  transform: rotate(16deg);
-  animation-delay: 0s;
+  --length: 3.5%;
+  --thickness: 1px;
+  --brightness: .65;
+  transform: rotate(18deg);
+  animation-duration: 8.7s;
+  animation-delay: .8s;
 }
 
-/* 2번 위치 */
+/* 2번: 중간 길이 */
 .lightning.two {
-  left: 27%;
-  top: 11%;
-  --length: 5%;
-  transform: rotate(108deg);
-  animation-delay: 2.1s;
-  animation-duration: 10s;
-}
-
-/* 3번 위치 */
-.lightning.three {
-  left: 17%;
-  top: 31%;
+  left: 25%;
+  top: 13%;
   --length: 6%;
-  transform: rotate(-28deg);
-  animation-delay: 4.4s;
-  animation-duration: 9.5s;
+  --thickness: 1.2px;
+  --brightness: .85;
+  transform: rotate(105deg);
+  animation-duration: 10.3s;
+  animation-delay: 3.1s;
 }
 
-/* 4번 위치 */
+/* 3번: 가장 길고 조금 밝은 실선 */
+.lightning.three {
+  left: 15%;
+  top: 30%;
+  --length: 9%;
+  --thickness: 1.5px;
+  --brightness: 1;
+  transform: rotate(-17deg);
+  animation-duration: 9.6s;
+  animation-delay: 5.4s;
+}
+
+/* 4번: 짧고 빠르게 번쩍이는 실선 */
 .lightning.four {
   left: 36%;
   top: 23%;
-  --length: 4%;
+  --length: 4.5%;
+  --thickness: 1px;
+  --brightness: .75;
   transform: rotate(72deg);
-  animation-delay: 6.5s;
-  animation-duration: 11s;
+  animation-duration: 11.2s;
+  animation-delay: 7.2s;
 }
 
+/* 위치마다 서로 다른 타이밍으로 순간 점등 */
 @keyframes distant-lightning {
-  0%, 3%, 5%, 100% {
-    opacity: 0;
-  }
-  3.4% {
-    opacity: 0.9;
-  }
-  3.8% {
-    opacity: 0;
-  }
-  4.2% {
-    opacity: 0.65;
-  }
-  4.6% {
-    opacity: 0;
-  }
+  0%, 2%, 4%, 100% { opacity: 0; }
+  2.2% { opacity: 1; }
+  2.5% { opacity: 0; }
+  2.8% { opacity: .75; }
+  3.1% { opacity: 0; }
 }
 
-/* 아주 약한 구름 주변 빛 */
-.lightning-glow {
-  position: absolute;
-  left: 3%;
-  top: 7%;
-  width: 39%;
-  height: 30%;
-  background: rgba(150, 105, 220, 0.08);
-  filter: blur(24px);
-  opacity: 0;
-  animation: cloud-glow 9s infinite;
-  pointer-events: none;
-}
+/* 번개 주변의 큰 빛 번짐은 사용하지 않음 */
 
-@keyframes cloud-glow {
-  0%, 3%, 5%, 100% { opacity: 0; }
-  3.5% { opacity: 0.55; }
-  4% { opacity: 0.05; }
-  4.3% { opacity: 0.35; }
-}
-
-/* =================================
-   오른쪽 벚꽃잎
-================================= */
+/* ======================================
+   벚꽃잎
+====================================== */
 
 .petal {
   position: absolute;
@@ -362,8 +346,7 @@ section { padding: 30px 20px; }
 @media (prefers-reduced-motion: reduce) {
   .intro-enter::after,
   .petal,
-  .lightning,
-  .lightning-glow {
+  .lightning {
     animation: none;
   }
 }
@@ -644,8 +627,7 @@ footer {
 
     <div class="effect-layer" aria-hidden="true">
 
-      <!-- 먹구름 속 서로 다른 4곳의 가느다란 번개 -->
-      <div class="lightning-glow"></div>
+      <!-- 먹구름 속 길이가 다른 4개의 번개 실선 -->
       <span class="lightning one"></span>
       <span class="lightning two"></span>
       <span class="lightning three"></span>
