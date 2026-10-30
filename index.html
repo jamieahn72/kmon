@@ -91,35 +91,26 @@ section { padding: 30px 20px; }
   z-index: 2;
 }
 
-/* ======================================
-   먹구름 속 먼 거리의 가느다란 번개
-   번개 모양 그래픽 없이 짧은 실선만 사용
-====================================== */
-
+/* 먹구름 속 가느다란 번개 */
 .lightning {
   position: absolute;
   height: 0;
   opacity: 0;
   pointer-events: none;
   transform-origin: left center;
-  animation-name: distant-lightning;
-  animation-timing-function: steps(1, end);
-  animation-iteration-count: infinite;
 }
 
-/* 흰색 중심 실선 */
 .lightning::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   width: var(--length);
-  height: var(--thickness, 1px);
+  height: var(--thickness, 1.5px);
   border-radius: 50%;
-  background: rgba(248, 244, 255, var(--brightness, .9));
+  background: rgba(250, 247, 255, 1);
 }
 
-/* 연보라색의 아주 약한 보조선 */
 .lightning::after {
   content: "";
   position: absolute;
@@ -127,74 +118,119 @@ section { padding: 30px 20px; }
   top: 0;
   width: var(--length);
   height: 1px;
-  border-radius: 50%;
-  background: rgba(190, 165, 255, .55);
-  filter: blur(1px);
+  background: rgba(190, 175, 255, .65);
 }
 
-/* 1번: 짧고 희미한 실선 */
+/* 번개 4개 - 각각 다른 위치와 타이밍 */
 .lightning.one {
   left: 9%;
   top: 19%;
-  --length: 3.5%;
+  --length: 4%;
   --thickness: 1px;
-  --brightness: .65;
   transform: rotate(18deg);
-  animation-duration: 8.7s;
-  animation-delay: .8s;
+  animation: flash-one 8s linear infinite;
 }
 
-/* 2번: 중간 길이 */
 .lightning.two {
   left: 25%;
   top: 13%;
   --length: 6%;
-  --thickness: 1.2px;
-  --brightness: .85;
+  --thickness: 1.3px;
   transform: rotate(105deg);
-  animation-duration: 10.3s;
-  animation-delay: 3.1s;
+  animation: flash-two 10s linear infinite;
 }
 
-/* 3번: 가장 길고 조금 밝은 실선 */
 .lightning.three {
   left: 15%;
   top: 30%;
-  --length: 9%;
+  --length: 8%;
   --thickness: 1.5px;
-  --brightness: 1;
   transform: rotate(-17deg);
-  animation-duration: 9.6s;
-  animation-delay: 5.4s;
+  animation: flash-three 9s linear infinite;
 }
 
-/* 4번: 짧고 빠르게 번쩍이는 실선 */
 .lightning.four {
   left: 36%;
   top: 23%;
-  --length: 4.5%;
+  --length: 5%;
   --thickness: 1px;
-  --brightness: .75;
   transform: rotate(72deg);
-  animation-duration: 11.2s;
-  animation-delay: 7.2s;
+  animation: flash-four 11s linear infinite;
 }
 
-/* 위치마다 서로 다른 타이밍으로 순간 점등 */
-@keyframes distant-lightning {
-  0%, 2%, 4%, 100% { opacity: 0; }
-  2.2% { opacity: 1; }
-  2.5% { opacity: 0; }
-  2.8% { opacity: .75; }
-  3.1% { opacity: 0; }
+@keyframes flash-one {
+  0%, 10%, 100% { opacity: 0; }
+  12% { opacity: .95; }
+  15% { opacity: .15; }
+  18% { opacity: .85; }
+  22% { opacity: 0; }
 }
 
-/* 번개 주변의 큰 빛 번짐은 사용하지 않음 */
+@keyframes flash-two {
+  0%, 24%, 100% { opacity: 0; }
+  26% { opacity: .9; }
+  29% { opacity: 0; }
+}
 
-/* ======================================
-   벚꽃잎
-====================================== */
+@keyframes flash-three {
+  0%, 42%, 100% { opacity: 0; }
+  44% { opacity: 1; }
+  47% { opacity: 0; }
+  50% { opacity: .8; }
+  53% { opacity: 0; }
+}
 
+@keyframes flash-four {
+  0%, 60%, 100% { opacity: 0; }
+  62% { opacity: .9; }
+  65% { opacity: 0; }
+}
+
+/* 성에 비치는 순간 반사광
+   원본 이미지는 수정하지 않고 투명한 빛만 겹침 */
+.castle-flash {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(235, 230, 255, .35);
+  mix-blend-mode: screen;
+}
+
+.castle-flash.spire {
+  left: 12%;
+  top: 25%;
+  width: 5%;
+  height: 8%;
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: castle-flash-one 8s linear infinite;
+}
+
+.castle-flash.wall {
+  left: 5%;
+  top: 32%;
+  width: 13%;
+  height: 3%;
+  border-radius: 50%;
+  filter: blur(6px);
+  animation: castle-flash-two 10s linear infinite;
+}
+
+@keyframes castle-flash-one {
+  0%, 10%, 100% { opacity: 0; }
+  12% { opacity: .55; }
+  15% { opacity: .08; }
+  18% { opacity: .4; }
+  22% { opacity: 0; }
+}
+
+@keyframes castle-flash-two {
+  0%, 24%, 100% { opacity: 0; }
+  26% { opacity: .45; }
+  29% { opacity: 0; }
+}
+
+/* 벚꽃잎 */
 .petal {
   position: absolute;
   top: -8%;
@@ -346,7 +382,8 @@ section { padding: 30px 20px; }
 @media (prefers-reduced-motion: reduce) {
   .intro-enter::after,
   .petal,
-  .lightning {
+  .lightning,
+  .castle-flash {
     animation: none;
   }
 }
@@ -547,7 +584,6 @@ footer {
 }
 
 .detail-heading { margin-bottom: 22px; }
-
 .detail-heading .label { margin-bottom: 8px; }
 
 .detail-heading h1 {
@@ -626,12 +662,15 @@ footer {
     <img class="intro-image" src="kmon-intro.png" alt="Kmon 인트로">
 
     <div class="effect-layer" aria-hidden="true">
-
-      <!-- 먹구름 속 길이가 다른 4개의 번개 실선 -->
+      <!-- 먹구름 속 번개 -->
       <span class="lightning one"></span>
       <span class="lightning two"></span>
       <span class="lightning three"></span>
       <span class="lightning four"></span>
+
+      <!-- 성의 순간 반사광 -->
+      <span class="castle-flash spire"></span>
+      <span class="castle-flash wall"></span>
 
       <!-- 벚꽃잎 -->
       <span class="petal"></span>
@@ -642,7 +681,6 @@ footer {
       <span class="petal"></span>
       <span class="petal"></span>
       <span class="petal"></span>
-
     </div>
 
     <button
