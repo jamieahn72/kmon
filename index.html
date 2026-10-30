@@ -57,7 +57,7 @@
       padding: 30px 20px;
     }
 
-    /* 첫 화면 인트로 */
+    /* 인트로 화면 */
     .intro-screen {
       position: fixed;
       inset: 0;
@@ -76,11 +76,11 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
     }
 
-    /* 이미지 속 입장 버튼 위에 겹치는 투명 클릭 영역 */
+    /* 투명한 입장 버튼 클릭 영역 */
     .intro-enter {
       position: absolute;
       left: 50%;
@@ -95,33 +95,38 @@
       background: transparent;
       cursor: pointer;
       overflow: hidden;
+      isolation: isolate;
       -webkit-tap-highlight-color: transparent;
     }
 
+    /* 버튼 안에서만 움직이는 골드빛 */
     .intro-enter::after {
       content: "";
       position: absolute;
-      top: -30%;
-      left: -65%;
-      width: 35%;
-      height: 160%;
-      transform: skewX(-25deg);
+      z-index: 1;
+      top: 0;
+      bottom: 0;
+      left: -55%;
+      width: 38%;
+      border-radius: inherit;
       background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 230, 160, 0.45),
-        transparent
+        100deg,
+        transparent 0%,
+        rgba(255, 255, 225, 0.08) 25%,
+        rgba(255, 226, 151, 0.65) 50%,
+        rgba(255, 255, 225, 0.08) 75%,
+        transparent 100%
       );
-      animation: gold-shine 2.6s ease-in-out infinite;
+      animation: gold-shine 2.8s ease-in-out infinite;
       pointer-events: none;
     }
 
     @keyframes gold-shine {
       0% {
-        left: -65%;
+        left: -55%;
       }
       65%, 100% {
-        left: 130%;
+        left: 120%;
       }
     }
 
@@ -130,6 +135,22 @@
       visibility: hidden;
       pointer-events: none;
       transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+
+    /* PC에서는 세로 이미지를 적당한 크기로 제한 */
+    @media (min-width: 768px) {
+      .intro-image {
+        width: auto;
+        height: 100%;
+        max-width: min(520px, 100vw);
+        object-fit: contain;
+      }
+
+      .intro-enter {
+        width: min(395px, 76%);
+        height: 9%;
+        bottom: 5%;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -457,7 +478,6 @@
   <!-- 홈페이지 -->
   <main id="home-page">
 
-    <!-- Kmon의 세계 배너: 홈페이지 최상단 -->
     <section class="world-banner" id="world">
       <img src="kmon-world.png" alt="Kmon의 세계">
     </section>
@@ -477,16 +497,12 @@
 
       <div class="cards">
 
-        <!-- 1. 이달의 몬스터 -->
         <article class="card">
-          <div class="card-art">
-            이미지 추후 적용
-          </div>
+          <div class="card-art">이미지 추후 적용</div>
           <h3>이달의 몬스터</h3>
           <p>Monster of the Month<br>이미지와 설명 추후 적용</p>
         </article>
 
-        <!-- 2. 세로 -->
         <article class="card">
           <a class="card-link" href="#sero">
             <div class="card-art">
@@ -497,7 +513,6 @@
           </a>
         </article>
 
-        <!-- 3. 체시 -->
         <article class="card">
           <a class="card-link" href="#chesy">
             <div class="card-art">
@@ -508,29 +523,20 @@
           </a>
         </article>
 
-        <!-- 4. 체리 -->
         <article class="card">
-          <div class="card-art">
-            이미지 추후 적용
-          </div>
+          <div class="card-art">이미지 추후 적용</div>
           <h3>체리(Chery)</h3>
           <p>이미지와 설명 추후 적용</p>
         </article>
 
-        <!-- 5. 체미 -->
         <article class="card">
-          <div class="card-art">
-            이미지 추후 적용
-          </div>
+          <div class="card-art">이미지 추후 적용</div>
           <h3>체미(Chemi)</h3>
           <p>이미지와 설명 추후 적용</p>
         </article>
 
-        <!-- 6. 덤부 -->
         <article class="card">
-          <div class="card-art">
-            이미지 추후 적용
-          </div>
+          <div class="card-art">이미지 추후 적용</div>
           <h3>덤부(Dumboo)</h3>
           <p>이미지와 설명 추후 적용</p>
         </article>
@@ -554,7 +560,6 @@
       <h2>디지털 카드</h2>
 
       <div class="cards">
-
         <article class="card">
           <div class="card-art">카드 이미지 영역</div>
           <h3>캐릭터 카드</h3>
@@ -566,7 +571,6 @@
           <h3>특별한 이야기</h3>
           <p>캐릭터들의 숨겨진 이야기를 탐험하세요.</p>
         </article>
-
       </div>
     </section>
 
@@ -671,10 +675,7 @@
       "평소엔 규율부장같지만 속마음은 츤데레같이 따뜻한 마음의 소유자이다.\n" +
       "Kmon팀의 안살림을 맡고 있다.";
 
-    /*
-      이미지와 설명을 순서대로 표시하는 함수.
-      설명은 첫 번째 이미지 바로 아래에 배치한다.
-    */
+    /* 이미지와 설명 표시 */
     function createGallery(galleryId, images, description) {
       const gallery = document.getElementById(galleryId);
 
@@ -682,7 +683,7 @@
         const image = document.createElement("img");
 
         image.src = fileName;
-        image.alt = "캐릭터 스틸 이미지 " + (index + 1);
+        image.alt = "캐릭터 이미지 " + (index + 1);
         image.loading = "lazy";
 
         gallery.appendChild(image);
@@ -698,7 +699,6 @@
       });
     }
 
-    /* 상세 페이지 갤러리 생성 */
     createGallery("sero-gallery", seroImages, seroDescription);
     createGallery("chesy-gallery", chesyImages, chesyDescription);
 
@@ -714,7 +714,7 @@
       document.getElementById("bottom-nav").style.display = "grid";
       document.getElementById("page-footer").style.display = "block";
 
-      window.location.hash = "#world";
+      history.replaceState(null, "", "#world");
       window.scrollTo(0, 0);
     }
 
@@ -732,7 +732,6 @@
       const selectedPage = pages[hash] || null;
       const isDetailPage = selectedPage !== null;
 
-      /* 인트로가 아직 표시 중이면 홈페이지를 열지 않는다. */
       if (document.body.classList.contains("intro-active")) {
         document.getElementById("home-page").style.display = "none";
         document.getElementById("sero-detail").style.display = "none";
