@@ -9,9 +9,7 @@
   <meta name="description" content="Discover Korean monsters and mythical creatures with Kmon.">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --bg: #f2f5fb;
@@ -51,7 +49,6 @@
       padding: 30px 20px;
     }
 
-    /* 맨 위 대표 이미지 */
     .hero {
       width: 100%;
       display: block;
@@ -73,7 +70,6 @@
       border-radius: 0;
     }
 
-    /* Kmon의 세계 배너: 대표 이미지 높이의 약 70% */
     .world-banner {
       width: 100%;
       max-width: 900px;
@@ -100,7 +96,10 @@
     }
 
     h2 {
+      font-family: Arial, "Noto Sans KR", sans-serif;
       font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
       margin: 10px 0;
     }
 
@@ -110,7 +109,6 @@
       font-size: 14px;
     }
 
-    /* 카드 배치: 한 줄에 2칸 */
     .cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -178,7 +176,6 @@
       font-size: 12px;
     }
 
-    /* 하단 메뉴 */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -212,7 +209,6 @@
       color: #6b9d32;
     }
 
-    /* 큰 화면 */
     @media (min-width: 700px) {
       section {
         padding: 42px 30px;
@@ -242,20 +238,16 @@
 
 <body>
   <main>
-
-    <!-- 맨 위 대표 이미지 -->
     <section class="hero" id="home">
       <div class="hero-art">
         <img src="kmon-main-new.png" alt="팀 Kmon과 악귀들">
       </div>
     </section>
 
-    <!-- Kmon의 세계 배너 -->
     <section class="world-banner" id="world">
       <img src="kmon-world.png" alt="Kmon의 세계">
     </section>
 
-    <!-- 몬스터 도감 -->
     <section id="bestiary">
       <div class="label">DISCOVER THE UNKNOWN</div>
       <h2>K몬스터 도감</h2>
@@ -300,7 +292,6 @@
       </div>
     </section>
 
-    <!-- 숏폼 영상 -->
     <section id="videos">
       <div class="label">WATCH KMON</div>
       <h2>숏폼 영상</h2>
@@ -309,7 +300,6 @@
       </div>
     </section>
 
-    <!-- 디지털 카드 -->
     <section id="cards">
       <div class="label">COLLECT YOUR WORLD</div>
       <h2>디지털 카드</h2>
@@ -328,33 +318,27 @@
         </article>
       </div>
     </section>
-
   </main>
 
   <footer>© Kmon · Discover Korean Monsters</footer>
 
-  <!-- 하단 메뉴 -->
   <nav class="bottom-nav" aria-label="주요 메뉴">
     <a href="#home">
       <span class="nav-icon">⌂</span>
       <span>홈</span>
     </a>
-
     <a href="#bestiary">
       <span class="nav-icon">♧</span>
       <span>도감</span>
     </a>
-
     <a href="#videos">
       <span class="nav-icon">▷</span>
       <span>영상</span>
     </a>
-
     <a href="#cards">
       <span class="nav-icon">▤</span>
       <span>카드·스토리</span>
     </a>
   </nav>
-
 </body>
 </html>
