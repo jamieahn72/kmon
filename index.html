@@ -43,53 +43,62 @@ section { padding:30px 20px; }
   pointer-events:none; z-index:2;
 }
 
-/* 왼쪽 성 뒤쪽의 번개 2개 */
+/* 왼쪽 성 뒤쪽의 가느다란 번개 2개 */
 .lightning {
   position:absolute;
   display:block;
-  height:2px;
+  width:var(--length);
+  height:var(--thickness, 1.5px);
   opacity:0;
   pointer-events:none;
   transform-origin:left center;
-  background:#fff;
+  background:rgba(255,255,255,.98);
   border-radius:50%;
-  box-shadow:0 0 2px rgba(255,255,255,.8);
+  box-shadow:
+    0 0 2px rgba(255,255,255,.95),
+    0 0 5px rgba(220,225,255,.65);
   z-index:3;
 }
 
 /* 첫 번째 번개 */
 .lightning.one {
+  --length:7%;
+  --thickness:1.5px;
   left:8%;
   top:24%;
-  width:7%;
   transform:rotate(22deg);
   animation:storm-flash-one 7s infinite;
 }
 
 /* 두 번째 번개 */
 .lightning.two {
+  --length:5%;
+  --thickness:1.2px;
   left:19%;
   top:17%;
-  width:5%;
-  height:1.5px;
   transform:rotate(78deg);
   animation:storm-flash-two 9s infinite;
 }
 
+/* 첫 번째 번개: 짧은 두 번의 섬광 */
 @keyframes storm-flash-one {
-  0%,18%,20%,22%,100% { opacity:0; }
-  18.5% { opacity:1; }
-  19% { opacity:.15; }
-  19.5% { opacity:1; }
-  20% { opacity:0; }
-  21% { opacity:.8; }
+  0%,17%,22%,100% { opacity:0; }
+  17.5% { opacity:1; }
+  18.2% { opacity:.12; }
+  18.8% { opacity:.95; }
+  19.5% { opacity:0; }
+  20.5% { opacity:.65; }
+  21% { opacity:0; }
 }
 
+/* 두 번째 번개 */
 @keyframes storm-flash-two {
-  0%,42%,44%,100% { opacity:0; }
-  42.5% { opacity:1; }
-  43% { opacity:.2; }
-  43.5% { opacity:1; }
+  0%,40%,45%,100% { opacity:0; }
+  40.5% { opacity:.95; }
+  41.2% { opacity:.12; }
+  41.8% { opacity:.9; }
+  42.5% { opacity:0; }
+  43.5% { opacity:.6; }
   44% { opacity:0; }
 }
 
@@ -103,7 +112,7 @@ section { padding:30px 20px; }
   mix-blend-mode:screen;
 }
 
-/* 첨탑 부분 */
+/* 첫 번째 번개: 첨탑 */
 .castle-flash.spire {
   left:10%;
   top:28%;
@@ -114,7 +123,7 @@ section { padding:30px 20px; }
   animation:spire-flash 7s infinite;
 }
 
-/* 성벽 일부 */
+/* 첫 번째 번개: 성벽 */
 .castle-flash.wall {
   left:4%;
   top:34%;
@@ -126,21 +135,23 @@ section { padding:30px 20px; }
 }
 
 @keyframes spire-flash {
-  0%,18%,20%,22%,100% { opacity:0; }
-  18.5% { opacity:.75; }
-  19% { opacity:.15; }
-  19.5% { opacity:.65; }
-  20% { opacity:0; }
-  21% { opacity:.5; }
+  0%,17%,22%,100% { opacity:0; }
+  17.5% { opacity:.8; }
+  18.2% { opacity:.12; }
+  18.8% { opacity:.7; }
+  19.5% { opacity:0; }
+  20.5% { opacity:.5; }
+  21% { opacity:0; }
 }
 
 @keyframes wall-flash {
-  0%,18%,20%,22%,100% { opacity:0; }
-  18.5% { opacity:.55; }
-  19% { opacity:.1; }
-  19.5% { opacity:.45; }
-  20% { opacity:0; }
-  21% { opacity:.35; }
+  0%,17%,22%,100% { opacity:0; }
+  17.5% { opacity:.6; }
+  18.2% { opacity:.1; }
+  18.8% { opacity:.5; }
+  19.5% { opacity:0; }
+  20.5% { opacity:.35; }
+  21% { opacity:0; }
 }
 
 /* 두 번째 번개와 성 반사광 */
@@ -149,6 +160,8 @@ section { padding:30px 20px; }
   top:29%;
   width:3%;
   height:5%;
+  border-radius:50%;
+  filter:blur(2px);
   animation:spire-flash-two 9s infinite;
 }
 .castle-flash.wall-two {
@@ -156,21 +169,27 @@ section { padding:30px 20px; }
   top:35%;
   width:10%;
   height:2%;
+  border-radius:50%;
+  filter:blur(3px);
   animation:wall-flash-two 9s infinite;
 }
 
 @keyframes spire-flash-two {
-  0%,42%,44%,100% { opacity:0; }
-  42.5% { opacity:.7; }
-  43% { opacity:.1; }
-  43.5% { opacity:.6; }
+  0%,40%,45%,100% { opacity:0; }
+  40.5% { opacity:.75; }
+  41.2% { opacity:.1; }
+  41.8% { opacity:.65; }
+  42.5% { opacity:0; }
+  43.5% { opacity:.45; }
   44% { opacity:0; }
 }
 @keyframes wall-flash-two {
-  0%,42%,44%,100% { opacity:0; }
-  42.5% { opacity:.5; }
-  43% { opacity:.1; }
-  43.5% { opacity:.4; }
+  0%,40%,45%,100% { opacity:0; }
+  40.5% { opacity:.55; }
+  41.2% { opacity:.1; }
+  41.8% { opacity:.45; }
+  42.5% { opacity:0; }
+  43.5% { opacity:.3; }
   44% { opacity:0; }
 }
 
