@@ -42,151 +42,170 @@ section { padding:30px 20px; }
   pointer-events:none; z-index:2;
 }
 
-/* 번개가 치는 순간 하늘과 화면 전체가 함께 반응하는 섬광.
-   원형 조명 대신 넓고 약한 색조 변화로 표현한다. */
-.effect-layer::before {
+/* 번개가 칠 때 하늘 전체가 순간적으로 밝아지는 효과 */
+.effect-layer::before,
+.effect-layer::after {
   content:"";
-  position:absolute; inset:-2%;
-  z-index:1; pointer-events:none; opacity:0;
-  background:linear-gradient(112deg,
-    rgba(184,198,255,.06) 0%,
-    rgba(220,226,255,.15) 24%,
-    rgba(239,241,255,.22) 48%,
-    rgba(190,203,255,.12) 72%,
-    rgba(170,183,238,.05) 100%);
-  mix-blend-mode:screen;
-  animation:sky-flash-one 8.7s infinite;
+  position:absolute; inset:0;
+  pointer-events:none; z-index:1;
+  opacity:0; mix-blend-mode:screen;
+}
+.effect-layer::before {
+  background:rgba(205,218,255,.28);
+  animation:sky-flash-one 9.2s infinite;
+}
+.effect-layer::after {
+  background:rgba(205,218,255,.22);
+  animation:sky-flash-two 13.5s infinite;
 }
 
-/* 번개 본체: 굵기가 일정한 선이 아니라 꺾이고 갈라지는 불규칙한 가지형 */
+/* 자연스러운 번개 본체 */
 .lightning {
-  position:absolute; display:block;
-  width:10%; height:15%;
-  opacity:0; pointer-events:none;
-  z-index:3; background:rgba(247,249,255,.98);
-  clip-path:polygon(
-    54% 0%, 38% 24%, 57% 23%, 20% 63%,
-    42% 60%, 8% 100%, 34% 54%, 14% 57%,
-    45% 30%, 31% 31%
-  );
+  position:absolute;
+  display:block;
+  opacity:0;
+  pointer-events:none;
+  z-index:3;
+  background:rgba(250,252,255,.98);
   filter:
-    drop-shadow(0 0 2px rgba(255,255,255,.95))
-    drop-shadow(0 0 5px rgba(190,205,255,.72))
-    drop-shadow(0 0 11px rgba(133,151,235,.38));
+    drop-shadow(0 0 2px #fff)
+    drop-shadow(0 0 5px rgba(195,210,255,.95))
+    drop-shadow(0 0 12px rgba(150,175,255,.7))
+    drop-shadow(0 0 22px rgba(120,145,255,.35));
 }
 
-/* 첫 번째: 성 왼쪽 뒤편으로 짧게 갈라지는 번개 */
+/* 첫 번째 번개: 구름에서 성 방향으로 길게 내려오는 불규칙한 지그재그 */
 .lightning.one {
-  left:7%; top:17%;
-  transform:rotate(-7deg);
-  animation:storm-flash-one 8.7s infinite;
-}
-
-/* 두 번째: 조금 떨어진 곳에서 방향을 달리해 치는 번개 */
-.lightning.two {
-  left:18%; top:12%; width:7%; height:12%;
-  transform:rotate(19deg) scaleX(-1);
+  left:34%;
+  top:7%;
+  width:43%;
+  height:57%;
   clip-path:polygon(
-    52% 0%, 34% 27%, 56% 25%, 18% 66%,
-    39% 62%, 12% 100%, 34% 57%, 13% 60%,
-    44% 32%, 29% 33%
+    43% 0%, 48% 0%, 44% 13%, 56% 12%,
+    45% 25%, 52% 24%, 37% 42%,
+    43% 41%, 28% 61%, 34% 59%,
+    18% 81%, 25% 78%, 9% 100%,
+    19% 76%, 12% 78%, 27% 58%,
+    21% 60%, 35% 40%, 29% 41%,
+    43% 23%, 36% 24%
   );
-  filter:
-    drop-shadow(0 0 2px rgba(255,255,255,.9))
-    drop-shadow(0 0 6px rgba(190,205,255,.62))
-    drop-shadow(0 0 12px rgba(133,151,235,.32));
-  animation:storm-flash-two 11.3s infinite;
+  animation:storm-flash-one 9.2s infinite;
 }
 
-/* 한 번 강하게, 짧게 끊기고 약하게 재점등하는 자연스러운 노출 변화 */
+/* 번개에서 옆으로 뻗는 가느다란 가지 */
+.lightning.one::before {
+  content:"";
+  position:absolute;
+  left:26%; top:30%;
+  width:55%; height:38%;
+  background:rgba(250,252,255,.95);
+  clip-path:polygon(
+    0 38%, 42% 0, 37% 29%, 100% 12%,
+    43% 42%, 48% 20%, 8% 63%
+  );
+  filter:drop-shadow(0 0 5px rgba(210,220,255,.9));
+}
+.lightning.one::after {
+  content:"";
+  position:absolute;
+  left:5%; top:53%;
+  width:48%; height:34%;
+  background:rgba(245,249,255,.95);
+  clip-path:polygon(
+    100% 0, 54% 45%, 64% 25%,
+    0 100%, 43% 39%, 38% 59%
+  );
+  filter:drop-shadow(0 0 5px rgba(210,220,255,.9));
+}
+
+/* 두 번째 번개: 첫 번째와 다른 방향으로 나타나는 보조 번개 */
+.lightning.two {
+  left:13%;
+  top:12%;
+  width:28%;
+  height:43%;
+  clip-path:polygon(
+    58% 0, 64% 0, 55% 17%, 73% 16%,
+    55% 34%, 64% 33%, 43% 53%,
+    50% 51%, 25% 78%, 33% 75%,
+    7% 100%, 25% 74%, 17% 77%,
+    39% 50%, 32% 52%, 51% 31%,
+    43% 32%
+  );
+  animation:storm-flash-two 13.5s infinite;
+}
+
+/* 번개가 짧게 끊겼다가 다시 번쩍이는 점멸 */
 @keyframes storm-flash-one {
   0%,18%,100% { opacity:0; }
-  18.25% { opacity:1; }
-  18.42% { opacity:.08; }
-  18.58% { opacity:.88; }
-  18.82% { opacity:0; }
-  19.05% { opacity:.32; }
-  19.18% { opacity:0; }
+  18.18% { opacity:1; }
+  18.32% { opacity:.12; }
+  18.48% { opacity:.95; }
+  18.72% { opacity:.18; }
+  18.88% { opacity:.65; }
+  19.05% { opacity:0; }
 }
 @keyframes storm-flash-two {
   0%,43%,100% { opacity:0; }
-  43.2% { opacity:.92; }
-  43.38% { opacity:.05; }
-  43.55% { opacity:.78; }
-  43.78% { opacity:0; }
-  44% { opacity:.25; }
-  44.12% { opacity:0; }
+  43.18% { opacity:1; }
+  43.34% { opacity:.08; }
+  43.5% { opacity:.88; }
+  43.72% { opacity:.2; }
+  43.9% { opacity:0; }
 }
 
-/* 성에 생기는 반사광은 작은 원형 조명 대신 실제 표면을 따라 번지는 얇은 면광 */
+/* 성벽에 번개 빛이 순간적으로 반사되는 효과 */
 .castle-flash {
-  position:absolute; pointer-events:none; z-index:2; opacity:0;
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+  opacity:0;
   mix-blend-mode:screen;
-  background:linear-gradient(90deg,
-    rgba(210,220,255,0) 0%,
-    rgba(225,230,255,.2) 35%,
-    rgba(245,246,255,.42) 52%,
-    rgba(205,216,255,.12) 78%,
-    rgba(210,220,255,0) 100%);
+  background:linear-gradient(
+    180deg,
+    rgba(190,205,255,.02) 0%,
+    rgba(210,222,255,.12) 45%,
+    rgba(235,240,255,.24) 72%,
+    rgba(190,205,255,.04) 100%
+  );
 }
-.castle-flash.spire {
-  left:7%; top:27%; width:10%; height:5%;
-  transform:rotate(-24deg); filter:blur(3px);
-  animation:castle-reflect-one 8.7s infinite;
-}
+.castle-flash.spire,
 .castle-flash.wall {
-  left:2%; top:34%; width:17%; height:2.5%;
-  transform:rotate(-3deg); filter:blur(4px);
-  animation:castle-reflect-one 8.7s infinite;
+  animation:castle-reflect-one 9.2s infinite;
 }
-.castle-flash.spire-two {
-  left:12%; top:25%; width:8%; height:4%;
-  transform:rotate(18deg); filter:blur(3px);
-  animation:castle-reflect-two 11.3s infinite;
-}
+.castle-flash.spire-two,
 .castle-flash.wall-two {
-  left:5%; top:36%; width:13%; height:2%;
-  transform:rotate(2deg); filter:blur(4px);
-  animation:castle-reflect-two 11.3s infinite;
-}
-@keyframes sky-flash-one {
-  0%,18%,100% { opacity:0; }
-  18.25% { opacity:.52; }
-  18.42% { opacity:.04; }
-  18.58% { opacity:.34; }
-  18.82% { opacity:0; }
-  19.05% { opacity:.12; }
-  19.18% { opacity:0; }
+  animation:castle-reflect-two 13.5s infinite;
 }
 @keyframes castle-reflect-one {
   0%,18%,100% { opacity:0; }
-  18.25% { opacity:.8; }
-  18.42% { opacity:.08; }
-  18.58% { opacity:.52; }
-  18.82% { opacity:0; }
-  19.05% { opacity:.18; }
-  19.18% { opacity:0; }
+  18.18% { opacity:.55; }
+  18.32% { opacity:.08; }
+  18.48% { opacity:.38; }
+  18.72% { opacity:0; }
+  19.05% { opacity:0; }
 }
 @keyframes castle-reflect-two {
   0%,43%,100% { opacity:0; }
-  43.2% { opacity:.7; }
-  43.38% { opacity:.06; }
-  43.55% { opacity:.42; }
-  43.78% { opacity:0; }
-  44% { opacity:.15; }
-  44.12% { opacity:0; }
+  43.18% { opacity:.45; }
+  43.34% { opacity:.05; }
+  43.5% { opacity:.3; }
+  43.9% { opacity:0; }
 }
-
-/* 두 번째 번개 때도 화면 전체에 아주 약한 섬광 */
-.effect-layer::after {
-  content:""; position:absolute; inset:-2%; z-index:1;
-  pointer-events:none; opacity:0;
-  background:linear-gradient(24deg,
-    rgba(175,190,255,.04),
-    rgba(232,237,255,.17) 48%,
-    rgba(180,194,255,.05));
-  mix-blend-mode:screen;
-  animation:sky-flash-two 11.3s infinite;
+@keyframes sky-flash-one {
+  0%,18%,100% { opacity:0; }
+  18.18% { opacity:.48; }
+  18.32% { opacity:.04; }
+  18.48% { opacity:.3; }
+  18.88% { opacity:0; }
+}
+@keyframes sky-flash-two {
+  0%,43%,100% { opacity:0; }
+  43.18% { opacity:.4; }
+  43.34% { opacity:.03; }
+  43.5% { opacity:.25; }
+  43.9% { opacity:0; }
 }
 
 /* 벚꽃잎 */
@@ -241,13 +260,13 @@ section { padding:30px 20px; }
   .intro-art { width:min(520px,100vw,calc(100dvh * 9 / 16)); }
 }
 
-/* 움직임 줄이기 설정에서는 과도한 점멸을 줄여 단일 섬광만 표시 */
+/* 움직임 줄이기 설정 */
 @media (prefers-reduced-motion:reduce) {
   .intro-enter::after,.petal { animation:none; }
   .lightning.one,.castle-flash.spire,.castle-flash.wall,
-  .effect-layer::before { animation:reduced-flash-one 8.7s infinite; }
+  .effect-layer::before { animation:reduced-flash-one 9.2s infinite; }
   .lightning.two,.castle-flash.spire-two,.castle-flash.wall-two,
-  .effect-layer::after { animation:reduced-flash-two 11.3s infinite; }
+  .effect-layer::after { animation:reduced-flash-two 13.5s infinite; }
 }
 @keyframes reduced-flash-one {
   0%,18%,100% { opacity:0; }
