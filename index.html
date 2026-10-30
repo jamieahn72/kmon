@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -42,172 +43,6 @@ section { padding:30px 20px; }
   pointer-events:none; z-index:2;
 }
 
-/* 번개가 칠 때 하늘 전체가 순간적으로 밝아지는 효과 */
-.effect-layer::before,
-.effect-layer::after {
-  content:"";
-  position:absolute; inset:0;
-  pointer-events:none; z-index:1;
-  opacity:0; mix-blend-mode:screen;
-}
-.effect-layer::before {
-  background:rgba(205,218,255,.28);
-  animation:sky-flash-one 9.2s infinite;
-}
-.effect-layer::after {
-  background:rgba(205,218,255,.22);
-  animation:sky-flash-two 13.5s infinite;
-}
-
-/* 자연스러운 번개 본체 */
-.lightning {
-  position:absolute;
-  display:block;
-  opacity:0;
-  pointer-events:none;
-  z-index:3;
-  background:rgba(250,252,255,.98);
-  filter:
-    drop-shadow(0 0 2px #fff)
-    drop-shadow(0 0 5px rgba(195,210,255,.95))
-    drop-shadow(0 0 12px rgba(150,175,255,.7))
-    drop-shadow(0 0 22px rgba(120,145,255,.35));
-}
-
-/* 첫 번째 번개: 구름에서 성 방향으로 길게 내려오는 불규칙한 지그재그 */
-.lightning.one {
-  left:34%;
-  top:7%;
-  width:43%;
-  height:57%;
-  clip-path:polygon(
-    43% 0%, 48% 0%, 44% 13%, 56% 12%,
-    45% 25%, 52% 24%, 37% 42%,
-    43% 41%, 28% 61%, 34% 59%,
-    18% 81%, 25% 78%, 9% 100%,
-    19% 76%, 12% 78%, 27% 58%,
-    21% 60%, 35% 40%, 29% 41%,
-    43% 23%, 36% 24%
-  );
-  animation:storm-flash-one 9.2s infinite;
-}
-
-/* 번개에서 옆으로 뻗는 가느다란 가지 */
-.lightning.one::before {
-  content:"";
-  position:absolute;
-  left:26%; top:30%;
-  width:55%; height:38%;
-  background:rgba(250,252,255,.95);
-  clip-path:polygon(
-    0 38%, 42% 0, 37% 29%, 100% 12%,
-    43% 42%, 48% 20%, 8% 63%
-  );
-  filter:drop-shadow(0 0 5px rgba(210,220,255,.9));
-}
-.lightning.one::after {
-  content:"";
-  position:absolute;
-  left:5%; top:53%;
-  width:48%; height:34%;
-  background:rgba(245,249,255,.95);
-  clip-path:polygon(
-    100% 0, 54% 45%, 64% 25%,
-    0 100%, 43% 39%, 38% 59%
-  );
-  filter:drop-shadow(0 0 5px rgba(210,220,255,.9));
-}
-
-/* 두 번째 번개: 첫 번째와 다른 방향으로 나타나는 보조 번개 */
-.lightning.two {
-  left:13%;
-  top:12%;
-  width:28%;
-  height:43%;
-  clip-path:polygon(
-    58% 0, 64% 0, 55% 17%, 73% 16%,
-    55% 34%, 64% 33%, 43% 53%,
-    50% 51%, 25% 78%, 33% 75%,
-    7% 100%, 25% 74%, 17% 77%,
-    39% 50%, 32% 52%, 51% 31%,
-    43% 32%
-  );
-  animation:storm-flash-two 13.5s infinite;
-}
-
-/* 번개가 짧게 끊겼다가 다시 번쩍이는 점멸 */
-@keyframes storm-flash-one {
-  0%,18%,100% { opacity:0; }
-  18.18% { opacity:1; }
-  18.32% { opacity:.12; }
-  18.48% { opacity:.95; }
-  18.72% { opacity:.18; }
-  18.88% { opacity:.65; }
-  19.05% { opacity:0; }
-}
-@keyframes storm-flash-two {
-  0%,43%,100% { opacity:0; }
-  43.18% { opacity:1; }
-  43.34% { opacity:.08; }
-  43.5% { opacity:.88; }
-  43.72% { opacity:.2; }
-  43.9% { opacity:0; }
-}
-
-/* 성벽에 번개 빛이 순간적으로 반사되는 효과 */
-.castle-flash {
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:2;
-  opacity:0;
-  mix-blend-mode:screen;
-  background:linear-gradient(
-    180deg,
-    rgba(190,205,255,.02) 0%,
-    rgba(210,222,255,.12) 45%,
-    rgba(235,240,255,.24) 72%,
-    rgba(190,205,255,.04) 100%
-  );
-}
-.castle-flash.spire,
-.castle-flash.wall {
-  animation:castle-reflect-one 9.2s infinite;
-}
-.castle-flash.spire-two,
-.castle-flash.wall-two {
-  animation:castle-reflect-two 13.5s infinite;
-}
-@keyframes castle-reflect-one {
-  0%,18%,100% { opacity:0; }
-  18.18% { opacity:.55; }
-  18.32% { opacity:.08; }
-  18.48% { opacity:.38; }
-  18.72% { opacity:0; }
-  19.05% { opacity:0; }
-}
-@keyframes castle-reflect-two {
-  0%,43%,100% { opacity:0; }
-  43.18% { opacity:.45; }
-  43.34% { opacity:.05; }
-  43.5% { opacity:.3; }
-  43.9% { opacity:0; }
-}
-@keyframes sky-flash-one {
-  0%,18%,100% { opacity:0; }
-  18.18% { opacity:.48; }
-  18.32% { opacity:.04; }
-  18.48% { opacity:.3; }
-  18.88% { opacity:0; }
-}
-@keyframes sky-flash-two {
-  0%,43%,100% { opacity:0; }
-  43.18% { opacity:.4; }
-  43.34% { opacity:.03; }
-  43.5% { opacity:.25; }
-  43.9% { opacity:0; }
-}
-
 /* 벚꽃잎 */
 .petal {
   position:absolute; top:-8%; width:12px; height:17px;
@@ -216,14 +51,14 @@ section { padding:30px 20px; }
   box-shadow:0 0 5px rgba(255,180,220,.35);
   opacity:0; animation:petal-fall linear infinite;
 }
-.petal:nth-child(7) { left:72%; animation-duration:9s; animation-delay:0s; }
-.petal:nth-child(8) { left:87%; width:9px; height:13px; animation-duration:11s; animation-delay:2s; }
-.petal:nth-child(9) { left:94%; animation-duration:8s; animation-delay:4s; }
-.petal:nth-child(10) { left:78%; width:8px; height:12px; animation-duration:10s; animation-delay:5s; }
-.petal:nth-child(11) { left:98%; animation-duration:12s; animation-delay:1s; }
-.petal:nth-child(12) { left:67%; width:10px; height:14px; animation-duration:9.5s; animation-delay:3s; }
-.petal:nth-child(13) { left:83%; animation-duration:13s; animation-delay:6s; }
-.petal:nth-child(14) { left:91%; width:7px; height:11px; animation-duration:10.5s; animation-delay:7s; }
+.petal:nth-child(1) { left:72%; animation-duration:9s; animation-delay:0s; }
+.petal:nth-child(2) { left:87%; width:9px; height:13px; animation-duration:11s; animation-delay:2s; }
+.petal:nth-child(3) { left:94%; animation-duration:8s; animation-delay:4s; }
+.petal:nth-child(4) { left:78%; width:8px; height:12px; animation-duration:10s; animation-delay:5s; }
+.petal:nth-child(5) { left:98%; animation-duration:12s; animation-delay:1s; }
+.petal:nth-child(6) { left:67%; width:10px; height:14px; animation-duration:9.5s; animation-delay:3s; }
+.petal:nth-child(7) { left:83%; animation-duration:13s; animation-delay:6s; }
+.petal:nth-child(8) { left:91%; width:7px; height:11px; animation-duration:10.5s; animation-delay:7s; }
 
 @keyframes petal-fall {
   0% { transform:translate3d(0,-5vh,0) rotate(0deg); opacity:0; }
@@ -260,39 +95,9 @@ section { padding:30px 20px; }
   .intro-art { width:min(520px,100vw,calc(100dvh * 9 / 16)); }
 }
 
-/* 모바일에서만 번개 크기 조정: PC 원본 설정은 유지 */
-@media (max-width:600px) {
-  .lightning.one {
-    left:39%;
-    top:9%;
-    width:31%;
-    height:44%;
-  }
-  .lightning.two {
-    left:17%;
-    top:13%;
-    width:20%;
-    height:32%;
-  }
-}
-
 /* 움직임 줄이기 설정 */
 @media (prefers-reduced-motion:reduce) {
   .intro-enter::after,.petal { animation:none; }
-  .lightning.one,.castle-flash.spire,.castle-flash.wall,
-  .effect-layer::before { animation:reduced-flash-one 9.2s infinite; }
-  .lightning.two,.castle-flash.spire-two,.castle-flash.wall-two,
-  .effect-layer::after { animation:reduced-flash-two 13.5s infinite; }
-}
-@keyframes reduced-flash-one {
-  0%,18%,100% { opacity:0; }
-  18.3% { opacity:.7; }
-  19% { opacity:0; }
-}
-@keyframes reduced-flash-two {
-  0%,43%,100% { opacity:0; }
-  43.3% { opacity:.6; }
-  44% { opacity:0; }
 }
 
 /* 홈페이지 */
@@ -407,12 +212,6 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
   <div class="intro-art">
     <img class="intro-image" src="kmon-intro.png" alt="Kmon 인트로">
     <div class="effect-layer" aria-hidden="true">
-      <span class="lightning one"></span>
-      <span class="lightning two"></span>
-      <span class="castle-flash spire"></span>
-      <span class="castle-flash wall"></span>
-      <span class="castle-flash spire-two"></span>
-      <span class="castle-flash wall-two"></span>
       <span class="petal"></span>
       <span class="petal"></span>
       <span class="petal"></span>
