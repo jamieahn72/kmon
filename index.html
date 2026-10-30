@@ -9,9 +9,7 @@
   <meta name="description" content="Discover Korean monsters and mythical creatures with Kmon.">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --bg: #f2f5fb;
@@ -250,9 +248,9 @@
       color: var(--navy);
     }
 
-    /* 세로 상세 페이지 */
+    /* 캐릭터 상세 페이지 */
 
-    #sero-detail {
+    .character-detail {
       display: none;
       min-height: 80vh;
       padding: 24px 20px 40px;
@@ -294,18 +292,29 @@
       line-height: 1.6;
     }
 
-    .sero-gallery {
+    .character-gallery {
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
 
-    .sero-gallery img {
+    .character-gallery img {
       display: block;
       width: 100%;
       height: auto;
       border-radius: 12px;
       background: #e7ebf4;
+    }
+
+    .character-description {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.9;
+      white-space: pre-line;
     }
 
     .detail-bottom {
@@ -341,11 +350,11 @@
         transform: translateX(-50%);
       }
 
-      #sero-detail {
+      .character-detail {
         padding: 35px 30px 50px;
       }
 
-      .sero-gallery {
+      .character-gallery {
         gap: 24px;
       }
     }
@@ -363,7 +372,9 @@
 </head>
 
 <body>
+
   <main id="home-page">
+
     <section class="hero" id="home">
       <div class="hero-art">
         <img src="kmon-main-new.png" alt="팀 Kmon과 악귀들">
@@ -377,12 +388,10 @@
     <section id="bestiary">
       <div class="bestiary-heading">
         <div class="label">DISCOVER THE UNKNOWN</div>
-
         <h2 class="bestiary-title">
           <span class="title-k">K</span>
           <span class="title-text">몬스터 도감</span>
         </h2>
-
         <p class="intro">Kmon의 존재들을 하나씩 만나 보세요.</p>
       </div>
 
@@ -399,10 +408,15 @@
           </a>
         </article>
 
+        <!-- 체시 카드 -->
         <article class="card">
-          <div class="card-art">캐릭터 이미지 영역</div>
-          <h3>물귀신</h3>
-          <p>물가에 얽힌 이야기와 미스터리.</p>
+          <a class="card-link" href="#chesy">
+            <div class="card-art">
+              <img src="chesy_1.png" alt="체시(Chesy)">
+            </div>
+            <h3>체시(Chesy)</h3>
+            <p>Kmon팀소속, 세자매의 맏언니(처녀귀신)</p>
+          </a>
         </article>
 
         <article class="card">
@@ -428,6 +442,7 @@
           <h3>전설 속 괴물</h3>
           <p>오래된 이야기에서 태어난 특별한 존재들.</p>
         </article>
+
       </div>
     </section>
 
@@ -442,7 +457,6 @@
     <section id="cards">
       <div class="label">COLLECT YOUR WORLD</div>
       <h2>디지털 카드</h2>
-
       <div class="cards">
         <article class="card">
           <div class="card-art">카드 이미지 영역</div>
@@ -457,10 +471,12 @@
         </article>
       </div>
     </section>
+
   </main>
 
   <!-- 세로 상세 페이지 -->
-  <main id="sero-detail">
+  <main id="sero-detail" class="character-detail">
+
     <a class="detail-back" href="#bestiary">
       ← 도감으로 돌아가기
     </a>
@@ -471,13 +487,37 @@
       <p class="detail-intro">Kmon팀의 리더(저승사자)</p>
     </div>
 
-    <div class="sero-gallery" id="sero-gallery"></div>
+    <div class="character-gallery" id="sero-gallery"></div>
 
     <div class="detail-bottom">
       <a class="detail-back" href="#bestiary">
         ← 도감으로 돌아가기
       </a>
     </div>
+
+  </main>
+
+  <!-- 체시 상세 페이지 -->
+  <main id="chesy-detail" class="character-detail">
+
+    <a class="detail-back" href="#bestiary">
+      ← 도감으로 돌아가기
+    </a>
+
+    <div class="detail-heading">
+      <div class="label">KMON CHARACTER</div>
+      <h1>체시(Chesy)</h1>
+      <p class="detail-intro">Kmon팀소속, 세자매의 맏언니(처녀귀신)</p>
+    </div>
+
+    <div class="character-gallery" id="chesy-gallery"></div>
+
+    <div class="detail-bottom">
+      <a class="detail-back" href="#bestiary">
+        ← 도감으로 돌아가기
+      </a>
+    </div>
+
   </main>
 
   <footer id="page-footer">
@@ -505,47 +545,81 @@
 
   <script>
     // 세로 스틸 이미지 목록
-    // 이미지가 추가되면 아래에 파일명을 이어서 적으면 됩니다.
     const seroImages = [
       "sero_1.png",
       "sero_2.png"
     ];
 
-    // 세로 상세 페이지에 이미지 표시
-    const gallery = document.getElementById("sero-gallery");
+    // 체시 스틸 이미지 목록
+    const chesyImages = [
+      "chesy_thumbnail_1.png"
+    ];
 
-    seroImages.forEach((fileName, index) => {
-      const image = document.createElement("img");
+    // 체시 설명
+    const chesyDescription =
+      "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 Kmon팀에서 가지고 있다.\n\n" +
+      "평소엔 규율부장같지만 속마음은 츤데레같이 따뜻한 마음의 소유자이다.\n\n" +
+      "Kmon팀의 안살림을 맡고 있다.";
 
-      image.src = fileName;
-      image.alt = "세로 스틸 이미지 " + (index + 1);
-      image.loading = "lazy";
+    // 이미지와 설명을 순서대로 표시
+    function createGallery(galleryId, images, description) {
+      const gallery = document.getElementById(galleryId);
 
-      gallery.appendChild(image);
-    });
+      images.forEach((fileName, index) => {
+        const image = document.createElement("img");
+
+        image.src = fileName;
+        image.alt = "스틸 이미지 " + (index + 1);
+        image.loading = "lazy";
+
+        gallery.appendChild(image);
+
+        // 첫 번째 이미지 바로 아래에 설명 표시
+        if (index === 0 && description) {
+          const descriptionBox = document.createElement("div");
+          descriptionBox.className = "character-description";
+          descriptionBox.textContent = description;
+          gallery.appendChild(descriptionBox);
+        }
+      });
+    }
+
+    createGallery("sero-gallery", seroImages, "");
+    createGallery("chesy-gallery", chesyImages, chesyDescription);
 
     // 화면 전환
     function updatePage() {
-      const isSeroPage = window.location.hash === "#sero";
+      const hash = window.location.hash;
+
+      const pages = {
+        "#sero": "sero-detail",
+        "#chesy": "chesy-detail"
+      };
+
+      const selectedPage = pages[hash] || null;
+      const isDetailPage = selectedPage !== null;
 
       document.getElementById("home-page").style.display =
-        isSeroPage ? "none" : "block";
+        isDetailPage ? "none" : "block";
 
       document.getElementById("sero-detail").style.display =
-        isSeroPage ? "block" : "none";
+        selectedPage === "sero-detail" ? "block" : "none";
+
+      document.getElementById("chesy-detail").style.display =
+        selectedPage === "chesy-detail" ? "block" : "none";
 
       document.getElementById("page-footer").style.display =
-        isSeroPage ? "none" : "block";
+        isDetailPage ? "none" : "block";
 
       document.getElementById("bottom-nav").style.display =
-        isSeroPage ? "none" : "grid";
+        isDetailPage ? "none" : "grid";
 
       window.scrollTo(0, 0);
     }
 
     window.addEventListener("hashchange", updatePage);
-
     updatePage();
   </script>
+
 </body>
 </html>
