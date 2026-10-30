@@ -6,16 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F7F2E9">
   <title>KMON - Korean Monster Universe</title>
-  <meta name="description" content="Discover Korean monsters and mythical creatures with Kmon.">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --bg: #F7F2E9;
-      --panel: #ffffff;
+      --panel: #fff;
       --line: #e5dccd;
       --text: #202b4b;
       --muted: #737d91;
@@ -53,9 +50,7 @@
       margin: 0 auto;
     }
 
-    section {
-      padding: 30px 20px;
-    }
+    section { padding: 30px 20px; }
 
     /* 인트로 화면 */
     .intro-screen {
@@ -72,49 +67,61 @@
       background: #17131c;
     }
 
+    /* 이미지와 버튼이 같은 좌표계를 사용 */
+    .intro-art {
+      position: relative;
+      width: min(100vw, calc(100dvh * 9 / 16));
+      aspect-ratio: 9 / 16;
+      flex: 0 0 auto;
+      overflow: hidden;
+    }
+
     .intro-image {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      object-position: center;
     }
 
-    /* 투명한 입장 버튼 클릭 영역 */
+    /*
+      버튼 실제 위치:
+      왼쪽 약 24%, 너비 약 52%,
+      아래쪽 약 6%, 높이 약 6%
+    */
     .intro-enter {
       position: absolute;
-      left: 50%;
-      bottom: 5%;
-      transform: translateX(-50%);
-      width: 76%;
-      height: 10%;
-      min-height: 48px;
-      max-height: 90px;
+      left: 24%;
+      bottom: 6%;
+      width: 52%;
+      height: 6%;
+      min-height: 0;
+      max-height: none;
+      padding: 0;
       border: 0;
-      border-radius: 50px;
+      border-radius: 999px;
       background: transparent;
-      cursor: pointer;
       overflow: hidden;
       isolation: isolate;
+      cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* 버튼 안에서만 움직이는 골드빛 */
+    /* 버튼 내부에만 나타나는 빛 */
     .intro-enter::after {
       content: "";
       position: absolute;
       z-index: 1;
       top: 0;
       bottom: 0;
-      left: -55%;
-      width: 38%;
+      left: -45%;
+      width: 32%;
       border-radius: inherit;
       background: linear-gradient(
         100deg,
         transparent 0%,
-        rgba(255, 255, 225, 0.08) 25%,
-        rgba(255, 226, 151, 0.65) 50%,
-        rgba(255, 255, 225, 0.08) 75%,
+        rgba(255, 255, 225, 0.12) 25%,
+        rgba(255, 222, 145, 0.75) 50%,
+        rgba(255, 255, 225, 0.12) 75%,
         transparent 100%
       );
       animation: gold-shine 2.8s ease-in-out infinite;
@@ -122,47 +129,29 @@
     }
 
     @keyframes gold-shine {
-      0% {
-        left: -55%;
-      }
-      65%, 100% {
-        left: 120%;
-      }
+      0% { left: -45%; }
+      65%, 100% { left: 115%; }
     }
 
     .intro-screen.hide {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.55s ease, visibility 0.55s ease;
+      transition: opacity .55s ease, visibility .55s ease;
     }
 
-    /* PC에서는 세로 이미지를 적당한 크기로 제한 */
     @media (min-width: 768px) {
-      .intro-image {
-        width: auto;
-        height: 100%;
-        max-width: min(520px, 100vw);
-        object-fit: contain;
-      }
-
-      .intro-enter {
-        width: min(395px, 76%);
-        height: 9%;
-        bottom: 5%;
+      .intro-art {
+        width: min(520px, 100vw, calc(100dvh * 9 / 16));
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .intro-enter::after {
-        animation: none;
-      }
+      .intro-enter::after { animation: none; }
     }
 
     /* 홈페이지 */
-    #home-page {
-      display: none;
-    }
+    #home-page { display: none; }
 
     .world-banner {
       width: 100%;
@@ -251,12 +240,10 @@
 
     .card-link {
       display: block;
-      transition: transform 0.15s ease;
+      transition: transform .15s ease;
     }
 
-    .card-link:active {
-      transform: scale(0.98);
-    }
+    .card-link:active { transform: scale(.98); }
 
     .card-art {
       width: 100%;
@@ -319,7 +306,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       padding: 9px 4px calc(9px + env(safe-area-inset-bottom));
-      background: #ffffff;
+      background: #fff;
       border-top: 1px solid var(--line);
     }
 
@@ -334,14 +321,10 @@
       font-size: 11px;
     }
 
-    .bottom-nav .nav-icon {
-      font-size: 20px;
-    }
+    .bottom-nav .nav-icon { font-size: 20px; }
 
     .bottom-nav a:hover,
-    .bottom-nav a:focus {
-      color: var(--navy);
-    }
+    .bottom-nav a:focus { color: var(--navy); }
 
     /* 캐릭터 상세 페이지 */
     .character-detail {
@@ -364,13 +347,9 @@
       font-weight: 700;
     }
 
-    .detail-heading {
-      margin-bottom: 22px;
-    }
+    .detail-heading { margin-bottom: 22px; }
 
-    .detail-heading .label {
-      margin-bottom: 8px;
-    }
+    .detail-heading .label { margin-bottom: 8px; }
 
     .detail-heading h1 {
       margin: 0;
@@ -416,18 +395,10 @@
       text-align: center;
     }
 
-    .detail-bottom .detail-back {
-      margin-bottom: 0;
-    }
+    .detail-bottom .detail-back { margin-bottom: 0; }
 
     @media (min-width: 700px) {
-      section {
-        padding: 42px 30px;
-      }
-
-      .world-banner {
-        margin-top: 0;
-      }
+      section { padding: 42px 30px; }
 
       .bottom-nav {
         left: 50%;
@@ -436,43 +407,30 @@
         transform: translateX(-50%);
       }
 
-      .character-detail {
-        padding: 35px 30px 50px;
-      }
-
-      .character-gallery {
-        gap: 24px;
-      }
+      .character-detail { padding: 35px 30px 50px; }
+      .character-gallery { gap: 24px; }
     }
 
     @media (max-width: 380px) {
-      .bestiary-title .title-k {
-        font-size: 36px;
-      }
-
-      .bestiary-title .title-text {
-        font-size: 27px;
-      }
+      .bestiary-title .title-k { font-size: 36px; }
+      .bestiary-title .title-text { font-size: 27px; }
     }
   </style>
 </head>
 
 <body class="intro-active">
 
-  <!-- 첫 화면 인트로 -->
+  <!-- 인트로 -->
   <div class="intro-screen" id="intro-screen">
-    <img
-      class="intro-image"
-      src="kmon-intro.png"
-      alt="Kmon 인트로"
-    >
-
-    <button
-      class="intro-enter"
-      id="intro-enter"
-      type="button"
-      aria-label="Kmon World 입장하기"
-    ></button>
+    <div class="intro-art">
+      <img class="intro-image" src="kmon-intro.png" alt="Kmon 인트로">
+      <button
+        class="intro-enter"
+        id="intro-enter"
+        type="button"
+        aria-label="Kmon World 입장하기"
+      ></button>
+    </div>
   </div>
 
   <!-- 홈페이지 -->
@@ -482,21 +440,17 @@
       <img src="kmon-world.png" alt="Kmon의 세계">
     </section>
 
-    <!-- 몬스터 도감 -->
     <section id="bestiary">
       <div class="bestiary-heading">
         <div class="label">DISCOVER THE UNKNOWN</div>
-
         <h2 class="bestiary-title">
           <span class="title-k">K</span>
           <span class="title-text">몬스터 도감</span>
         </h2>
-
         <p class="intro">Kmon의 존재들을 하나씩 만나 보세요.</p>
       </div>
 
       <div class="cards">
-
         <article class="card">
           <div class="card-art">이미지 추후 적용</div>
           <h3>이달의 몬스터</h3>
@@ -540,32 +494,26 @@
           <h3>덤부(Dumboo)</h3>
           <p>이미지와 설명 추후 적용</p>
         </article>
-
       </div>
     </section>
 
-    <!-- 숏폼 영상 -->
     <section id="videos">
       <div class="label">WATCH KMON</div>
       <h2>숏폼 영상</h2>
-
       <div class="feature">
         준비된 Kmon 영상을 이 영역에 추가할 예정입니다.
       </div>
     </section>
 
-    <!-- 디지털 카드와 스토리 -->
     <section id="cards">
       <div class="label">COLLECT YOUR WORLD</div>
       <h2>디지털 카드</h2>
-
       <div class="cards">
         <article class="card">
           <div class="card-art">카드 이미지 영역</div>
           <h3>캐릭터 카드</h3>
           <p>좋아하는 Kmon 캐릭터를 만나 보세요.</p>
         </article>
-
         <article class="card">
           <div class="card-art">스토리 이미지 영역</div>
           <h3>특별한 이야기</h3>
@@ -573,53 +521,34 @@
         </article>
       </div>
     </section>
-
   </main>
 
   <!-- 세로 상세 페이지 -->
   <main id="sero-detail" class="character-detail">
-
-    <a class="detail-back" href="#bestiary">
-      ← 도감으로 돌아가기
-    </a>
-
+    <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
     <div class="detail-heading">
       <div class="label">KMON CHARACTER</div>
       <h1>세로(Sero)</h1>
       <p class="detail-intro">Kmon팀의 리더(저승사자)</p>
     </div>
-
     <div class="character-gallery" id="sero-gallery"></div>
-
     <div class="detail-bottom">
-      <a class="detail-back" href="#bestiary">
-        ← 도감으로 돌아가기
-      </a>
+      <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
     </div>
-
   </main>
 
   <!-- 체시 상세 페이지 -->
   <main id="chesy-detail" class="character-detail">
-
-    <a class="detail-back" href="#bestiary">
-      ← 도감으로 돌아가기
-    </a>
-
+    <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
     <div class="detail-heading">
       <div class="label">KMON CHARACTER</div>
       <h1>체시(Chesy)</h1>
       <p class="detail-intro">Kmon팀소속, 세자매의 맏언니(처녀귀신)</p>
     </div>
-
     <div class="character-gallery" id="chesy-gallery"></div>
-
     <div class="detail-bottom">
-      <a class="detail-back" href="#bestiary">
-        ← 도감으로 돌아가기
-      </a>
+      <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
     </div>
-
   </main>
 
   <footer id="page-footer">
@@ -628,72 +557,58 @@
 
   <!-- 하단 메뉴 -->
   <nav class="bottom-nav" id="bottom-nav" aria-label="주요 메뉴">
-
     <a href="#world">
       <span class="nav-icon">⌂</span>
       <span>홈</span>
     </a>
-
     <a href="#bestiary">
       <span class="nav-icon">♧</span>
       <span>도감</span>
     </a>
-
     <a href="#videos">
       <span class="nav-icon">▷</span>
       <span>영상</span>
     </a>
-
     <a href="#cards">
       <span class="nav-icon">▤</span>
       <span>카드·스토리</span>
     </a>
-
   </nav>
 
   <script>
-    /* 세로 이미지 목록 */
     const seroImages = [
       "sero_1.png",
       "sero_2.png"
     ];
 
-    /* 체시 이미지 목록 */
     const chesyImages = [
       "chesy_1.png"
     ];
 
-    /* 세로 설명 */
     const seroDescription =
       "Kmon팀의 리더이자 저승사자이며 귀신들을 관장한다.\n" +
       "염라대왕의 명을 받아 한국의 악귀들을 소탕해야하는 임무를 가지고 있지만 팀원들인 체시, 체리, 체미, 덤부가 딱히 도움이 되진 않는다.\n" +
       "늘 고독을 씹으며 혼자 있기를 좋아한다.";
 
-    /* 체시 설명 */
     const chesyDescription =
       "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 Kmon팀에서 가지고 있다.\n" +
       "평소엔 규율부장같지만 속마음은 츤데레같이 따뜻한 마음의 소유자이다.\n" +
       "Kmon팀의 안살림을 맡고 있다.";
 
-    /* 이미지와 설명 표시 */
     function createGallery(galleryId, images, description) {
       const gallery = document.getElementById(galleryId);
 
       images.forEach((fileName, index) => {
         const image = document.createElement("img");
-
         image.src = fileName;
         image.alt = "캐릭터 이미지 " + (index + 1);
         image.loading = "lazy";
-
         gallery.appendChild(image);
 
         if (index === 0 && description) {
           const descriptionBox = document.createElement("div");
-
           descriptionBox.className = "character-description";
           descriptionBox.textContent = description;
-
           gallery.appendChild(descriptionBox);
         }
       });
@@ -702,7 +617,7 @@
     createGallery("sero-gallery", seroImages, seroDescription);
     createGallery("chesy-gallery", chesyImages, chesyDescription);
 
-    /* 인트로 입장 버튼 */
+    /* 입장 버튼 */
     const introScreen = document.getElementById("intro-screen");
     const introEnter = document.getElementById("intro-enter");
 
@@ -720,7 +635,7 @@
 
     introEnter.addEventListener("click", enterKmonWorld);
 
-    /* 화면 전환 */
+    /* 페이지 전환 */
     function updatePage() {
       const hash = window.location.hash;
 
@@ -760,7 +675,6 @@
     }
 
     window.addEventListener("hashchange", updatePage);
-
     updatePage();
   </script>
 
