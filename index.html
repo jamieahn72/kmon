@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -42,7 +43,7 @@ section { padding:30px 20px; }
   pointer-events:none; z-index:2;
 }
 
-/* 번개: 선은 가늘고 불규칙하게, 가지는 구름 속에 희미하게 번지도록 */
+/* 번개 */
 .lightning-layer {
   position:absolute; inset:0; width:100%; height:100%;
   z-index:3; pointer-events:none; overflow:visible;
@@ -73,7 +74,7 @@ section { padding:30px 20px; }
 .bolt-two,.glow-two { animation:storm-flash-two 11.3s infinite; }
 .bolt-three,.glow-three { animation:storm-flash-three 9.9s infinite; }
 
-/* 각 번개 주변 보라색 구름의 짧은 반사광 */
+/* 구름 반사광 */
 .cloud-light {
   opacity:0; fill:#b78cff; filter:blur(12px);
   mix-blend-mode:screen;
@@ -125,7 +126,7 @@ section { padding:30px 20px; }
   31.9% { opacity:0; }
 }
 
-/* 성에 생기는 반사광은 작은 원형 조명 대신 실제 표면을 따라 번지는 얇은 면광 */
+/* 성 반사광 */
 .castle-flash {
   position:absolute; pointer-events:none; z-index:2; opacity:0;
   mix-blend-mode:screen;
@@ -184,7 +185,7 @@ section { padding:30px 20px; }
   44.12% { opacity:0; }
 }
 
-/* 두 번째 번개 때도 화면 전체에 아주 약한 섬광 */
+/* 화면 전체의 약한 섬광 */
 .effect-layer::after {
   content:""; position:absolute; inset:-2%; z-index:1;
   pointer-events:none; opacity:0;
@@ -221,7 +222,7 @@ section { padding:30px 20px; }
   100% { transform:translate3d(25px,112vh,0) rotate(560deg); opacity:0; }
 }
 
-/* 입장 버튼 효과: 원본 이미지 버튼 테두리와 정확히 겹치도록 */
+/* 입장 버튼 효과 */
 .intro-enter {
   position:absolute; z-index:5;
   left:24.57%; top:87.38%;
@@ -402,7 +403,6 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
         <ellipse class="cloud-light cloud-light-two" cx="28" cy="38" rx="14" ry="16"/>
         <ellipse class="cloud-light cloud-light-three" cx="16" cy="52" rx="13" ry="15"/>
 
-        <!-- 구름 속에서 희미하게 갈라지는 빛과 가늘게 이어지는 주 번개 -->
         <g class="glow-one lightning-glow">
           <path class="main-glow" d="M20 13 L17.5 17.4 L13.2 16.8 L16.4 20.5 L12.8 24.2 L19.1 25.4 L21.8 31.2 L19.3 37.1 L23.1 42.3 L20.2 49.1 L24.8 54.2 L22.1 60"/>
           <path class="branch" d="M17.5 17.4 L18.4 13.2 L21.5 10.2 M16.4 20.5 L10.8 20.2 L8.1 22.1 M19.1 25.4 L24.8 22.9 L27.6 19.4 M21.8 31.2 L27.4 29.5 L30.8 26.2 M23.1 42.3 L28.1 39.7"/>
@@ -459,11 +459,9 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
     </div>
     <div class="cards">
       <article class="card">
-        <a class="card-link" href="#egg">
-          <div class="card-art"><img src="egg_thumbnail_1.png" alt="달걀귀"></div>
-          <h3>이달의 몬스터</h3>
-          <p>악귀 : 달걀귀신</p>
-        </a>
+        <div class="card-art">이미지 추후 적용</div>
+        <h3>이달의 몬스터</h3>
+        <p>Monster of the Month<br>이미지와 설명 추후 적용</p>
       </article>
       <article class="card">
         <a class="card-link" href="#sero">
@@ -544,18 +542,6 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
   <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
 </main>
 
-<!-- 이달의 몬스터 상세 -->
-<main id="egg-detail" class="character-detail">
-  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
-  <div class="detail-heading">
-    <div class="label">MONSTER OF THE MONTH</div>
-    <h1>달걀귀</h1>
-    <p class="detail-intro">악귀 : 달걀귀신</p>
-  </div>
-  <div class="character-gallery" id="egg-gallery"></div>
-  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
-</main>
-
 <!-- 체시 상세 -->
 <main id="chesy-detail" class="character-detail">
   <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
@@ -581,7 +567,6 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 const seroImages = ["sero_1.png","sero_2.png"];
 const chesyImages = ["chesy_0.png","chesy_1.png","chesy_2.png","chesy_3.png"];
 const cheryImages = ["chery_1.png","chery_2.png","chery_3.png"];
-const eggImages = ["egg_1.png"];
 
 const seroDescription =
   "Kmon팀의 리더이자 저승사자이며 귀신들을 관장한다.\n" +
@@ -589,12 +574,9 @@ const seroDescription =
   "늘 고독을 씹으며 혼자 있기를 좋아한다.";
 
 const chesyDescription =
-  "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 Kmon팀에서 가지고 있다.\n" +
+  "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 가지고 있다.\n" +
   "평소엔 규율부장같지만 속마음은 츤데레같이 따뜻한 마음의 소유자이다.\n" +
   "Kmon팀의 안살림을 맡고 있다.";
-
-const eggDescription =
-  "불우한 닭장에서 태어난 '달걀귀' 매우 빠른 몸놀림을 가지고 있으며 조금 촐싹거린다.";
 
 function createGallery(galleryId, images, description) {
   const gallery = document.getElementById(galleryId);
@@ -615,7 +597,6 @@ function createGallery(galleryId, images, description) {
 createGallery("sero-gallery",seroImages,seroDescription);
 createGallery("chesy-gallery",chesyImages,chesyDescription);
 createGallery("chery-gallery",cheryImages,"");
-createGallery("egg-gallery",eggImages,eggDescription);
 
 /* 입장 버튼 */
 const introScreen = document.getElementById("intro-screen");
@@ -635,7 +616,7 @@ introEnter.addEventListener("click",enterKmonWorld);
 /* 페이지 전환 */
 function updatePage() {
   const hash = window.location.hash;
-  const pages = {"#sero":"sero-detail","#chesy":"chesy-detail","#chery":"chery-detail","#egg":"egg-detail"};
+  const pages = {"#sero":"sero-detail","#chesy":"chesy-detail","#chery":"chery-detail"};
   const selectedPage = pages[hash] || null;
   const isDetailPage = selectedPage !== null;
 
@@ -644,7 +625,6 @@ function updatePage() {
     document.getElementById("sero-detail").style.display = "none";
     document.getElementById("chesy-detail").style.display = "none";
     document.getElementById("chery-detail").style.display = "none";
-    document.getElementById("egg-detail").style.display = "none";
     document.getElementById("page-footer").style.display = "none";
     document.getElementById("bottom-nav").style.display = "none";
     return;
@@ -654,7 +634,6 @@ function updatePage() {
   document.getElementById("sero-detail").style.display = selectedPage === "sero-detail" ? "block" : "none";
   document.getElementById("chesy-detail").style.display = selectedPage === "chesy-detail" ? "block" : "none";
   document.getElementById("chery-detail").style.display = selectedPage === "chery-detail" ? "block" : "none";
-  document.getElementById("egg-detail").style.display = selectedPage === "egg-detail" ? "block" : "none";
   document.getElementById("page-footer").style.display = isDetailPage ? "none" : "block";
   document.getElementById("bottom-nav").style.display = isDetailPage ? "none" : "grid";
   window.scrollTo(0,0);
