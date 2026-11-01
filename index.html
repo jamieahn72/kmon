@@ -67,67 +67,236 @@ section { padding:30px 20px; }
   100% { transform:translate3d(25px,112vh,0) rotate(560deg); opacity:0; }
 }
 
-/* 왼쪽 먹구름의 지그재그 번개 */
-.lightning {
-  position:absolute; z-index:3; top:var(--top); left:var(--left);
-  width:var(--width); height:var(--height); opacity:0;
+/* 번개 효과: 보라색 구름 영역 */
+.lightning-layer {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:3;
   pointer-events:none;
-  background:linear-gradient(180deg,#fffef0 0%,#d9e8ff 45%,#fff 100%);
-  clip-path:polygon(55% 0,100% 0,62% 39%,91% 39%,18% 100%,39% 53%,8% 53%);
-  filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px #a9c8ff);
-  animation:lightning-flash var(--duration) steps(1,end) infinite;
-  animation-delay:var(--delay);
+  overflow:visible;
 }
+
+/* 번개 주변의 순간적인 빛 */
+.lightning-glow {
+  fill:none;
+  stroke:#b99aff;
+  stroke-width:13;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:0;
+  filter:blur(9px);
+  animation:lightning-glow 7.2s infinite;
+}
+.lightning-bolt {
+  fill:none;
+  stroke:#f4efff;
+  stroke-width:2.1;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:0;
+  filter:drop-shadow(0 0 3px #c7aaff)
+         drop-shadow(0 0 7px #8e69ff);
+  animation:lightning-flash 7.2s infinite;
+}
+
+/* 첫 번째 번개 */
+.bolt-one {
+  animation-delay:0s;
+}
+.glow-one {
+  animation-delay:0s;
+}
+
+/* 두 번째 번개: 첫 제안보다 조금 왼쪽 */
+.bolt-two {
+  animation-delay:2.4s;
+}
+.glow-two {
+  animation-delay:2.4s;
+}
+
+/* 세 번째 번개 */
+.bolt-three {
+  animation-delay:4.8s;
+}
+.glow-three {
+  animation-delay:4.8s;
+}
+
 @keyframes lightning-flash {
-  0%,8%,12%,18%,100% { opacity:0; }
-  9%,11% { opacity:.98; }
-  14%,16% { opacity:.72; }
+  0%,2%,5%,100% { opacity:0; }
+  1% { opacity:1; }
+  3% { opacity:.15; }
+  4% { opacity:.95; }
+}
+@keyframes lightning-glow {
+  0%,2%,5%,100% { opacity:0; }
+  1% { opacity:.65; }
+  3% { opacity:.08; }
+  4% { opacity:.45; }
 }
 
-/* 버튼 양 끝의 작은 금빛 반짝임 */
-.intro-enter::before {
-  content:""; position:absolute; z-index:2; inset:0;
-  border-radius:inherit; pointer-events:none;
-  background:
-    radial-gradient(circle at 7% 50%,rgba(255,248,205,.95) 0 1px,transparent 3px),
-    radial-gradient(circle at 93% 50%,rgba(255,248,205,.95) 0 1px,transparent 3px);
-  animation:gold-sparkle 2.2s ease-in-out infinite;
-}
-@keyframes gold-sparkle {
-  0%,100% { opacity:.35; filter:brightness(1); }
-  50% { opacity:1; filter:brightness(1.6); }
-}
-
-/* 입장 버튼 */
+/* 입장 버튼: 기존 위치와 크기 유지 */
 .intro-enter {
-  position:absolute; z-index:5; left:24%; bottom:6%;
-  width:52%; height:6%; min-height:0; padding:0;
-  border:0; border-radius:999px; background:transparent;
-  overflow:hidden; isolation:isolate; cursor:pointer;
+  position:absolute;
+  z-index:5;
+  left:24%;
+  bottom:6%;
+  width:52%;
+  height:6%;
+  min-height:0;
+  padding:0;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  overflow:hidden;
+  isolation:isolate;
+  cursor:pointer;
   -webkit-tap-highlight-color:transparent;
 }
+
+/* 버튼 안쪽을 스치는 금빛 */
 .intro-enter::after {
-  content:""; position:absolute; z-index:1; top:0; bottom:0;
-  left:-42%; width:24%; border-radius:inherit;
-  background:linear-gradient(100deg,transparent 0%,rgba(255,255,225,.12) 25%,rgba(255,232,170,.9) 50%,rgba(255,255,225,.12) 75%,transparent 100%);
-  animation:gold-shine 3.2s ease-in-out infinite;
+  content:"";
+  position:absolute;
+  z-index:1;
+  top:0;
+  bottom:0;
+  left:-45%;
+  width:32%;
+  border-radius:inherit;
+  background:linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255,255,225,.12) 25%,
+    rgba(255,222,145,.75) 50%,
+    rgba(255,255,225,.12) 75%,
+    transparent 100%
+  );
+  animation:gold-shine 3.4s ease-in-out infinite;
   pointer-events:none;
 }
-@keyframes gold-shine {
-  0% { left:-42%; }
-  65%,100% { left:118%; }
+
+/* 버튼 테두리의 은은한 반짝임 */
+.intro-enter::before {
+  content:"";
+  position:absolute;
+  z-index:2;
+  inset:0;
+  border-radius:inherit;
+  border:1px solid rgba(255,239,190,0);
+  box-shadow:0 0 0 rgba(255,220,145,0);
+  animation:button-edge-glow 3.4s ease-in-out infinite;
+  pointer-events:none;
 }
+
+@keyframes gold-shine {
+  0% { left:-45%; opacity:0; }
+  12% { opacity:1; }
+  65% { left:115%; opacity:.9; }
+  75%,100% { left:115%; opacity:0; }
+}
+
+@keyframes button-edge-glow {
+  0%,100% {
+    border-color:rgba(255,239,190,0);
+    box-shadow:0 0 0 rgba(255,220,145,0);
+  }
+  18% {
+    border-color:rgba(255,239,190,.15);
+    box-shadow:0 0 3px rgba(255,220,145,.12);
+  }
+  35% {
+    border-color:rgba(255,244,205,.8);
+    box-shadow:
+      0 0 5px rgba(255,220,145,.55),
+      inset 0 0 4px rgba(255,240,190,.3);
+  }
+  52% {
+    border-color:rgba(255,239,190,.12);
+    box-shadow:0 0 2px rgba(255,220,145,.12);
+  }
+}
+
+/* 버튼 양 끝의 작은 별빛 */
+.button-sparkle {
+  position:absolute;
+  z-index:4;
+  top:50%;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#fff9dc;
+  opacity:0;
+  transform:translateY(-50%) scale(.4);
+  box-shadow:
+    0 0 3px 1px rgba(255,246,204,.9),
+    0 0 8px 2px rgba(255,210,125,.65);
+  pointer-events:none;
+  animation:sparkle-twinkle 3.4s ease-in-out infinite;
+}
+.button-sparkle.left { left:4%; animation-delay:.3s; }
+.button-sparkle.right { right:4%; animation-delay:1.7s; }
+
+.button-sparkle::before,
+.button-sparkle::after {
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  background:rgba(255,249,220,.9);
+  transform:translate(-50%,-50%);
+  border-radius:2px;
+}
+.button-sparkle::before { width:1px; height:11px; }
+.button-sparkle::after { width:11px; height:1px; }
+
+@keyframes sparkle-twinkle {
+  0%,12%,100% {
+    opacity:0;
+    transform:translateY(-50%) scale(.35);
+  }
+  18% {
+    opacity:.9;
+    transform:translateY(-50%) scale(1);
+  }
+  25% {
+    opacity:.25;
+    transform:translateY(-50%) scale(.65);
+  }
+  32% {
+    opacity:.8;
+    transform:translateY(-50%) scale(.9);
+  }
+  40%,90% {
+    opacity:0;
+    transform:translateY(-50%) scale(.3);
+  }
+}
+
 .intro-screen.hide {
-  opacity:0; visibility:hidden; pointer-events:none;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
   transition:opacity .55s ease,visibility .55s ease;
 }
+
 @media (min-width:768px) {
   .intro-art { width:min(520px,100vw,calc(100dvh * 9 / 16)); }
 }
 
 /* 움직임 줄이기 설정 */
 @media (prefers-reduced-motion:reduce) {
-  .intro-enter::after,.intro-enter::before,.petal,.lightning { animation:none; }
+  .intro-enter::after,
+  .intro-enter::before,
+  .button-sparkle,
+  .petal,
+  .lightning-bolt,
+  .lightning-glow {
+    animation:none;
+  }
 }
 
 /* 홈페이지 */
@@ -223,6 +392,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 }
 .detail-bottom { margin-top:28px; text-align:center; }
 .detail-bottom .detail-back { margin-bottom:0; }
+
 @media (min-width:700px) {
   section { padding:42px 30px; }
   .bottom-nav { left:50%; right:auto; width:min(100%,900px); transform:translateX(-50%); }
@@ -241,6 +411,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 <div class="intro-screen" id="intro-screen">
   <div class="intro-art">
     <img class="intro-image" src="kmon-intro.png" alt="Kmon 인트로">
+
     <div class="effect-layer" aria-hidden="true">
       <span class="petal"></span>
       <span class="petal"></span>
@@ -250,11 +421,37 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
       <span class="petal"></span>
       <span class="petal"></span>
       <span class="petal"></span>
-      <span class="lightning" style="--top:19%;--left:10%;--width:8%;--height:25%;--duration:5.8s;--delay:.4s"></span>
-      <span class="lightning" style="--top:30%;--left:24%;--width:7%;--height:22%;--duration:6.7s;--delay:2.1s"></span>
-      <span class="lightning" style="--top:16%;--left:36%;--width:7%;--height:27%;--duration:7.4s;--delay:4.3s"></span>
     </div>
-    <button class="intro-enter" id="intro-enter" type="button" aria-label="Kmon World 입장하기"></button>
+
+    <!-- 번개: 배경 이미지와 별도 레이어 -->
+    <svg class="lightning-layer"
+         viewBox="0 0 100 177.78"
+         preserveAspectRatio="none"
+         aria-hidden="true">
+
+      <!-- 1번 번개 -->
+      <path class="lightning-glow glow-one"
+            d="M 10 34 L 13 39 L 11 43 L 16 48 L 14 53 L 19 59"/>
+      <path class="lightning-bolt bolt-one"
+            d="M 10 34 L 13 39 L 11 43 L 16 48 L 14 53 L 19 59"/>
+
+      <!-- 2번 번개: 이전 제안보다 조금 왼쪽 -->
+      <path class="lightning-glow glow-two"
+            d="M 27 38 L 24 43 L 28 47 L 24 52 L 29 57 L 26 63"/>
+      <path class="lightning-bolt bolt-two"
+            d="M 27 38 L 24 43 L 28 47 L 24 52 L 29 57 L 26 63"/>
+
+      <!-- 3번 번개 -->
+      <path class="lightning-glow glow-three"
+            d="M 13 57 L 17 62 L 14 67 L 19 72 L 17 77"/>
+      <path class="lightning-bolt bolt-three"
+            d="M 13 57 L 17 62 L 14 67 L 19 72 L 17 77"/>
+    </svg>
+
+    <button class="intro-enter" id="intro-enter" type="button" aria-label="Kmon World 입장하기">
+      <span class="button-sparkle left"></span>
+      <span class="button-sparkle right"></span>
+    </button>
   </div>
 </div>
 
