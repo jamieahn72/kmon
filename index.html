@@ -42,7 +42,7 @@ section { padding:30px 20px; }
   pointer-events:none; z-index:2;
 }
 
-/* 번개: 가느다란 불규칙한 섬광과 구름 속으로 퍼지는 희미한 빛 */
+/* 번개: 선은 가늘고 불규칙하게, 가지는 구름 속에 희미하게 번지도록 */
 .lightning-layer {
   position:absolute; inset:0; width:100%; height:100%;
   z-index:3; pointer-events:none; overflow:visible;
@@ -478,9 +478,11 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
         </a>
       </article>
       <article class="card">
-        <div class="card-art">이미지 추후 적용</div>
-        <h3>체리(Chery)</h3>
-        <p>이미지와 설명 추후 적용</p>
+        <a class="card-link" href="#chery">
+          <div class="card-art"><img src="chery_thumbnail_1.png" alt="체리(Chery)"></div>
+          <h3>체리(Chery)</h3>
+          <p>Kmon 캐릭터</p>
+        </a>
       </article>
       <article class="card">
         <div class="card-art">이미지 추후 적용</div>
@@ -529,6 +531,17 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
   <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
 </main>
 
+<!-- 체리 상세 -->
+<main id="chery-detail" class="character-detail">
+  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
+  <div class="detail-heading">
+    <div class="label">KMON CHARACTER</div>
+    <h1>체리(Chery)</h1>
+  </div>
+  <div class="character-gallery" id="chery-gallery"></div>
+  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
+</main>
+
 <!-- 체시 상세 -->
 <main id="chesy-detail" class="character-detail">
   <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
@@ -553,6 +566,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 <script>
 const seroImages = ["sero_1.png","sero_2.png"];
 const chesyImages = ["chesy_1.png"];
+const cheryImages = ["chery_1.png","chery_2.png","chery_3.png"];
 
 const seroDescription =
   "Kmon팀의 리더이자 저승사자이며 귀신들을 관장한다.\n" +
@@ -582,6 +596,7 @@ function createGallery(galleryId, images, description) {
 }
 createGallery("sero-gallery",seroImages,seroDescription);
 createGallery("chesy-gallery",chesyImages,chesyDescription);
+createGallery("chery-gallery",cheryImages,"");
 
 /* 입장 버튼 */
 const introScreen = document.getElementById("intro-screen");
@@ -601,7 +616,7 @@ introEnter.addEventListener("click",enterKmonWorld);
 /* 페이지 전환 */
 function updatePage() {
   const hash = window.location.hash;
-  const pages = {"#sero":"sero-detail","#chesy":"chesy-detail"};
+  const pages = {"#sero":"sero-detail","#chesy":"chesy-detail","#chery":"chery-detail"};
   const selectedPage = pages[hash] || null;
   const isDetailPage = selectedPage !== null;
 
@@ -609,6 +624,7 @@ function updatePage() {
     document.getElementById("home-page").style.display = "none";
     document.getElementById("sero-detail").style.display = "none";
     document.getElementById("chesy-detail").style.display = "none";
+    document.getElementById("chery-detail").style.display = "none";
     document.getElementById("page-footer").style.display = "none";
     document.getElementById("bottom-nav").style.display = "none";
     return;
@@ -617,6 +633,7 @@ function updatePage() {
   document.getElementById("home-page").style.display = isDetailPage ? "none" : "block";
   document.getElementById("sero-detail").style.display = selectedPage === "sero-detail" ? "block" : "none";
   document.getElementById("chesy-detail").style.display = selectedPage === "chesy-detail" ? "block" : "none";
+  document.getElementById("chery-detail").style.display = selectedPage === "chery-detail" ? "block" : "none";
   document.getElementById("page-footer").style.display = isDetailPage ? "none" : "block";
   document.getElementById("bottom-nav").style.display = isDetailPage ? "none" : "grid";
   window.scrollTo(0,0);
