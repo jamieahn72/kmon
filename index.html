@@ -42,7 +42,7 @@ section { padding:30px 20px; }
   pointer-events:none; z-index:2;
 }
 
-/* 번개: 선은 가늘고 불규칙하게, 가지는 구름 속에 희미하게 번지도록 */
+/* 번개 */
 .lightning-layer {
   position:absolute; inset:0; width:100%; height:100%;
   z-index:3; pointer-events:none; overflow:visible;
@@ -73,7 +73,7 @@ section { padding:30px 20px; }
 .bolt-two,.glow-two { animation:storm-flash-two 11.3s infinite; }
 .bolt-three,.glow-three { animation:storm-flash-three 9.9s infinite; }
 
-/* 각 번개 주변 보라색 구름의 짧은 반사광 */
+/* 구름 반사광 */
 .cloud-light {
   opacity:0; fill:#b78cff; filter:blur(12px);
   mix-blend-mode:screen;
@@ -125,7 +125,7 @@ section { padding:30px 20px; }
   31.9% { opacity:0; }
 }
 
-/* 성에 생기는 반사광은 작은 원형 조명 대신 실제 표면을 따라 번지는 얇은 면광 */
+/* 성 반사광 */
 .castle-flash {
   position:absolute; pointer-events:none; z-index:2; opacity:0;
   mix-blend-mode:screen;
@@ -184,7 +184,7 @@ section { padding:30px 20px; }
   44.12% { opacity:0; }
 }
 
-/* 두 번째 번개 때도 화면 전체에 아주 약한 섬광 */
+/* 화면 전체의 약한 섬광 */
 .effect-layer::after {
   content:""; position:absolute; inset:-2%; z-index:1;
   pointer-events:none; opacity:0;
@@ -221,7 +221,7 @@ section { padding:30px 20px; }
   100% { transform:translate3d(25px,112vh,0) rotate(560deg); opacity:0; }
 }
 
-/* 입장 버튼 효과: 원본 이미지 버튼 테두리와 정확히 겹치도록 */
+/* 입장 버튼 효과 */
 .intro-enter {
   position:absolute; z-index:5;
   left:24.57%; top:87.38%;
@@ -402,7 +402,6 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
         <ellipse class="cloud-light cloud-light-two" cx="28" cy="38" rx="14" ry="16"/>
         <ellipse class="cloud-light cloud-light-three" cx="16" cy="52" rx="13" ry="15"/>
 
-        <!-- 구름 속에서 희미하게 갈라지는 빛과 가늘게 이어지는 주 번개 -->
         <g class="glow-one lightning-glow">
           <path class="main-glow" d="M20 13 L17.5 17.4 L13.2 16.8 L16.4 20.5 L12.8 24.2 L19.1 25.4 L21.8 31.2 L19.3 37.1 L23.1 42.3 L20.2 49.1 L24.8 54.2 L22.1 60"/>
           <path class="branch" d="M17.5 17.4 L18.4 13.2 L21.5 10.2 M16.4 20.5 L10.8 20.2 L8.1 22.1 M19.1 25.4 L24.8 22.9 L27.6 19.4 M21.8 31.2 L27.4 29.5 L30.8 26.2 M23.1 42.3 L28.1 39.7"/>
@@ -565,7 +564,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 
 <script>
 const seroImages = ["sero_1.png","sero_2.png"];
-const chesyImages = ["chesy_1.png"];
+const chesyImages = ["chesy_0.png","chesy_1.png","chesy_2.png","chesy_3.png"];
 const cheryImages = ["chery_1.png","chery_2.png","chery_3.png"];
 
 const seroDescription =
