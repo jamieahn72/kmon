@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -68,6 +67,37 @@ section { padding:30px 20px; }
   100% { transform:translate3d(25px,112vh,0) rotate(560deg); opacity:0; }
 }
 
+/* 왼쪽 먹구름의 지그재그 번개 */
+.lightning {
+  position:absolute; z-index:3; top:var(--top); left:var(--left);
+  width:var(--width); height:var(--height); opacity:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,#fffef0 0%,#d9e8ff 45%,#fff 100%);
+  clip-path:polygon(55% 0,100% 0,62% 39%,91% 39%,18% 100%,39% 53%,8% 53%);
+  filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px #a9c8ff);
+  animation:lightning-flash var(--duration) steps(1,end) infinite;
+  animation-delay:var(--delay);
+}
+@keyframes lightning-flash {
+  0%,8%,12%,18%,100% { opacity:0; }
+  9%,11% { opacity:.98; }
+  14%,16% { opacity:.72; }
+}
+
+/* 버튼 양 끝의 작은 금빛 반짝임 */
+.intro-enter::before {
+  content:""; position:absolute; z-index:2; inset:0;
+  border-radius:inherit; pointer-events:none;
+  background:
+    radial-gradient(circle at 7% 50%,rgba(255,248,205,.95) 0 1px,transparent 3px),
+    radial-gradient(circle at 93% 50%,rgba(255,248,205,.95) 0 1px,transparent 3px);
+  animation:gold-sparkle 2.2s ease-in-out infinite;
+}
+@keyframes gold-sparkle {
+  0%,100% { opacity:.35; filter:brightness(1); }
+  50% { opacity:1; filter:brightness(1.6); }
+}
+
 /* 입장 버튼 */
 .intro-enter {
   position:absolute; z-index:5; left:24%; bottom:6%;
@@ -78,14 +108,14 @@ section { padding:30px 20px; }
 }
 .intro-enter::after {
   content:""; position:absolute; z-index:1; top:0; bottom:0;
-  left:-45%; width:32%; border-radius:inherit;
-  background:linear-gradient(100deg,transparent 0%,rgba(255,255,225,.12) 25%,rgba(255,222,145,.75) 50%,rgba(255,255,225,.12) 75%,transparent 100%);
-  animation:gold-shine 2.8s ease-in-out infinite;
+  left:-42%; width:24%; border-radius:inherit;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,225,.12) 25%,rgba(255,232,170,.9) 50%,rgba(255,255,225,.12) 75%,transparent 100%);
+  animation:gold-shine 3.2s ease-in-out infinite;
   pointer-events:none;
 }
 @keyframes gold-shine {
-  0% { left:-45%; }
-  65%,100% { left:115%; }
+  0% { left:-42%; }
+  65%,100% { left:118%; }
 }
 .intro-screen.hide {
   opacity:0; visibility:hidden; pointer-events:none;
@@ -97,7 +127,7 @@ section { padding:30px 20px; }
 
 /* 움직임 줄이기 설정 */
 @media (prefers-reduced-motion:reduce) {
-  .intro-enter::after,.petal { animation:none; }
+  .intro-enter::after,.intro-enter::before,.petal,.lightning { animation:none; }
 }
 
 /* 홈페이지 */
@@ -220,6 +250,9 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
       <span class="petal"></span>
       <span class="petal"></span>
       <span class="petal"></span>
+      <span class="lightning" style="--top:19%;--left:10%;--width:8%;--height:25%;--duration:5.8s;--delay:.4s"></span>
+      <span class="lightning" style="--top:30%;--left:24%;--width:7%;--height:22%;--duration:6.7s;--delay:2.1s"></span>
+      <span class="lightning" style="--top:16%;--left:36%;--width:7%;--height:27%;--duration:7.4s;--delay:4.3s"></span>
     </div>
     <button class="intro-enter" id="intro-enter" type="button" aria-label="Kmon World 입장하기"></button>
   </div>
