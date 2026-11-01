@@ -119,109 +119,12 @@ section { padding:30px 20px; }
 }
 @keyframes cloud-flash-three {
   0%,31%,100% { opacity:0; }
-  31.23% { opacity:.25; }
+  31.23% { opacity:.26; }
   31.48% { opacity:.06; }
-  31.6% { opacity:.17; }
+  31.6% { opacity:.18; }
   31.9% { opacity:0; }
 }
 
-/* 성에 생기는 반사광은 작은 원형 조명 대신 실제 표면을 따라 번지는 얇은 면광 */
-.castle-flash {
-  position:absolute; pointer-events:none; z-index:2; opacity:0;
-  mix-blend-mode:screen;
-  background:linear-gradient(90deg,
-    rgba(210,220,255,0) 0%,
-    rgba(225,230,255,.2) 35%,
-    rgba(245,246,255,.42) 52%,
-    rgba(205,216,255,.12) 78%,
-    rgba(210,220,255,0) 100%);
-}
-.castle-flash.spire {
-  left:7%; top:27%; width:10%; height:5%;
-  transform:rotate(-24deg); filter:blur(3px);
-  animation:castle-reflect-one 8.7s infinite;
-}
-.castle-flash.wall {
-  left:2%; top:34%; width:17%; height:2.5%;
-  transform:rotate(-3deg); filter:blur(4px);
-  animation:castle-reflect-one 8.7s infinite;
-}
-.castle-flash.spire-two {
-  left:12%; top:25%; width:8%; height:4%;
-  transform:rotate(18deg); filter:blur(3px);
-  animation:castle-reflect-two 11.3s infinite;
-}
-.castle-flash.wall-two {
-  left:5%; top:36%; width:13%; height:2%;
-  transform:rotate(2deg); filter:blur(4px);
-  animation:castle-reflect-two 11.3s infinite;
-}
-@keyframes sky-flash-one {
-  0%,18%,100% { opacity:0; }
-  18.25% { opacity:.52; }
-  18.42% { opacity:.04; }
-  18.58% { opacity:.34; }
-  18.82% { opacity:0; }
-  19.05% { opacity:.12; }
-  19.18% { opacity:0; }
-}
-@keyframes castle-reflect-one {
-  0%,18%,100% { opacity:0; }
-  18.25% { opacity:.8; }
-  18.42% { opacity:.08; }
-  18.58% { opacity:.52; }
-  18.82% { opacity:0; }
-  19.05% { opacity:.18; }
-  19.18% { opacity:0; }
-}
-@keyframes castle-reflect-two {
-  0%,43%,100% { opacity:0; }
-  43.2% { opacity:.7; }
-  43.38% { opacity:.06; }
-  43.55% { opacity:.42; }
-  43.78% { opacity:0; }
-  44% { opacity:.15; }
-  44.12% { opacity:0; }
-}
-
-/* 두 번째 번개 때도 화면 전체에 아주 약한 섬광 */
-.effect-layer::after {
-  content:""; position:absolute; inset:-2%; z-index:1;
-  pointer-events:none; opacity:0;
-  background:linear-gradient(24deg,
-    rgba(175,190,255,.04),
-    rgba(232,237,255,.17) 48%,
-    rgba(180,194,255,.05));
-  mix-blend-mode:screen;
-  animation:sky-flash-two 11.3s infinite;
-}
-
-/* 벚꽃잎 */
-.petal {
-  position:absolute; top:-8%; width:12px; height:17px;
-  border-radius:80% 10% 80% 10%;
-  background:linear-gradient(135deg,#fff0fa,#ffb6d8 55%,#ed78b4);
-  box-shadow:0 0 5px rgba(255,180,220,.35);
-  opacity:0; animation:petal-fall linear infinite;
-}
-.petal:nth-child(7) { left:72%; animation-duration:9s; animation-delay:0s; }
-.petal:nth-child(8) { left:87%; width:9px; height:13px; animation-duration:11s; animation-delay:2s; }
-.petal:nth-child(9) { left:94%; animation-duration:8s; animation-delay:4s; }
-.petal:nth-child(10) { left:78%; width:8px; height:12px; animation-duration:10s; animation-delay:5s; }
-.petal:nth-child(11) { left:98%; animation-duration:12s; animation-delay:1s; }
-.petal:nth-child(12) { left:67%; width:10px; height:14px; animation-duration:9.5s; animation-delay:3s; }
-.petal:nth-child(13) { left:83%; animation-duration:13s; animation-delay:6s; }
-.petal:nth-child(14) { left:91%; width:7px; height:11px; animation-duration:10.5s; animation-delay:7s; }
-
-@keyframes petal-fall {
-  0% { transform:translate3d(0,-5vh,0) rotate(0deg); opacity:0; }
-  10% { opacity:.9; }
-  50% { transform:translate3d(-24px,52vh,0) rotate(240deg); opacity:.85; }
-  90% { opacity:.7; }
-  100% { transform:translate3d(25px,112vh,0) rotate(560deg); opacity:0; }
-}
-
-/* 입장 버튼 효과: 원본 이미지 버튼 테두리와 정확히 겹치도록 */
 .intro-enter {
   position:absolute; z-index:5;
   left:24.57%; top:87.38%;
@@ -232,365 +135,253 @@ section { padding:30px 20px; }
   -webkit-tap-highlight-color:transparent;
 }
 .intro-enter::before {
-  content:""; position:absolute; inset:0; z-index:2;
-  border:1px solid rgba(255,231,177,0);
+  content:""; position:absolute; inset:0;
   border-radius:inherit;
-  box-shadow:inset 0 0 0 rgba(255,238,194,0);
-  animation:button-edge-sparkle 3.1s ease-in-out infinite;
-  pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0) 45%,rgba(0,0,0,.12));
+  opacity:.75;
 }
 .intro-enter::after {
-  content:""; position:absolute; z-index:1; top:0; bottom:0;
-  left:-45%; width:32%; border-radius:inherit;
-  background:linear-gradient(100deg,transparent 0%,rgba(255,255,225,.12) 25%,rgba(255,222,145,.75) 50%,rgba(255,255,225,.12) 75%,transparent 100%);
-  animation:gold-shine 3.1s ease-in-out infinite;
-  pointer-events:none;
-}
-@keyframes gold-shine {
-  0% { left:-45%; }
-  65%,100% { left:115%; }
-}
-@keyframes button-edge-sparkle {
-  0%,100% { border-color:rgba(255,231,177,0); box-shadow:inset 0 0 0 rgba(255,238,194,0); }
-  42% { border-color:rgba(255,231,177,.88); box-shadow:inset 0 0 5px rgba(255,238,194,.4),0 0 4px rgba(255,225,165,.45); }
-  58% { border-color:rgba(255,231,177,.16); box-shadow:inset 0 0 2px rgba(255,238,194,.12); }
-}
-.button-sparkle {
-  position:absolute; z-index:3; top:50%; width:8px; height:8px;
-  opacity:0; transform:translateY(-50%) scale(.35) rotate(45deg);
-  background:#fff9df;
-  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);
-  filter:drop-shadow(0 0 3px #fff0b5);
-  animation:button-star 3.1s ease-in-out infinite;
-  pointer-events:none;
-}
-.button-sparkle.left { left:7%; }
-.button-sparkle.right { right:7%; animation-delay:1.55s; }
-@keyframes button-star {
-  0%,100% { opacity:0; transform:translateY(-50%) scale(.3) rotate(0deg); }
-  43% { opacity:.95; transform:translateY(-50%) scale(1) rotate(45deg); }
-  60% { opacity:.12; transform:translateY(-50%) scale(.45) rotate(80deg); }
-}
-.intro-screen.hide {
-  opacity:0; visibility:hidden; pointer-events:none;
-  transition:opacity .55s ease,visibility .55s ease;
-}
-@media (min-width:768px) {
-  .intro-art { width:min(520px,100vw,calc(100dvh * 9 / 16)); }
+  content:""; position:absolute; inset:2px;
+  border-radius:inherit;
+  border:1px solid rgba(255,255,255,.42);
+  box-shadow:0 0 10px rgba(255,255,255,.2),inset 0 0 8px rgba(255,255,255,.16);
 }
 
-/* 움직임 줄이기 설정 */
-@media (prefers-reduced-motion:reduce) {
-  .intro-enter::after,.intro-enter::before,.button-sparkle,.petal,
-  .lightning-bolt,.lightning-glow,.cloud-light { animation:none; }
+/* 공통 */
+.site-header {
+  width:100%; max-width:900px; margin:0 auto;
+  padding:18px 20px; display:flex; align-items:center;
+  justify-content:space-between; gap:16px;
 }
-
-/* 홈페이지 */
-#home-page { display:none; }
-.world-banner {
-  width:100%; max-width:900px; aspect-ratio:2.5 / 1;
-  margin:0 auto; padding:0; overflow:hidden;
+.logo { font-size:25px; font-weight:900; letter-spacing:2px; }
+.header-link {
+  font-size:13px; color:var(--muted); font-weight:700;
 }
-.world-banner img {
-  display:block; width:100%; height:100%;
-  object-fit:cover; object-position:center;
+.hero {
+  padding:10px 20px 25px;
 }
-.bestiary-heading { margin:0; line-height:1; }
-.label {
-  color:#65718d; font-size:10px; font-weight:700;
-  letter-spacing:1.5px; line-height:1; margin-bottom:2px;
+.hero img {
+  display:block; width:100%; max-width:860px; height:auto;
+  margin:0 auto; border-radius:18px;
 }
-.bestiary-title {
-  display:flex; align-items:baseline; margin:0;
-  padding:0; line-height:1; white-space:nowrap;
+.section-title {
+  margin:0 0 20px; font-size:25px; font-weight:900;
 }
-.bestiary-title .title-k {
-  color:var(--orange); font-family:Arial,sans-serif;
-  font-size:39px; font-weight:900; letter-spacing:-2px;
-  line-height:1; margin-right:1px;
-}
-.bestiary-title .title-text {
-  color:var(--navy); font-family:Arial,"Noto Sans KR",sans-serif;
-  font-size:30px; font-weight:900; letter-spacing:-1.5px; line-height:1;
-}
-.intro { color:var(--muted); line-height:1.3; font-size:13px; margin:2px 0 0; }
-
-/* 도감 */
-.cards {
+.character-grid {
   display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px; margin-top:20px;
+  gap:16px;
 }
-.card {
-  min-width:0; padding:10px; border:1px solid var(--line);
-  border-radius:12px; background:var(--panel); color:var(--text);
+.card-link {
+  display:block; background:#fff; border:1px solid var(--line);
+  border-radius:16px; overflow:hidden;
+  transition:transform .2s ease,box-shadow .2s ease;
 }
-.card-link { display:block; transition:transform .15s ease; }
 .card-link:active { transform:scale(.98); }
 .card-art {
-  width:100%; aspect-ratio:1 / 1; display:flex;
-  align-items:center; justify-content:center; overflow:hidden;
-  margin-bottom:10px; border-radius:8px; background:#eee8df;
-  color:var(--muted); font-size:11px; text-align:center;
+  width:100%; aspect-ratio:1/1; background:#eee8dc;
+  overflow:hidden;
 }
-.card-art img { display:block; width:100%; height:100%; object-fit:contain; }
-.card h3 { margin:8px 0; font-size:15px; }
-.card p { margin:0; color:var(--muted); font-size:12px; line-height:1.6; }
-.feature {
-  padding:20px; border:1px solid var(--line); border-radius:12px;
-  background:var(--panel); color:var(--muted); font-size:14px; line-height:1.7;
+.card-art img {
+  width:100%; height:100%; display:block;
+  object-fit:cover;
 }
-footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
+.card-copy { padding:13px 14px 16px; }
+.card-copy h3 { margin:0 0 7px; font-size:17px; }
+.card-copy p { margin:0; color:var(--muted); font-size:12px; line-height:1.5; }
 
-/* 하단 메뉴 */
-.bottom-nav {
-  position:fixed; bottom:0; left:0; right:0; z-index:20;
-  display:grid; grid-template-columns:repeat(4,1fr);
-  padding:9px 4px calc(9px + env(safe-area-inset-bottom));
-  background:#fff; border-top:1px solid var(--line);
+.character-detail {
+  display:none; padding:22px 20px 50px;
 }
-.bottom-nav a {
-  display:flex; flex-direction:column; align-items:center;
-  justify-content:center; gap:4px; min-height:48px;
-  color:var(--muted); font-size:11px;
+.detail-top {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin-bottom:18px;
 }
-.bottom-nav .nav-icon { font-size:20px; }
-.bottom-nav a:hover,.bottom-nav a:focus { color:var(--navy); }
-
-/* 캐릭터 상세 */
-.character-detail { display:none; min-height:80vh; padding:24px 20px 40px; }
-.detail-back {
-  display:inline-flex; align-items:center; gap:7px; margin-bottom:24px;
-  padding:10px 15px; border:1px solid var(--line); border-radius:20px;
-  background:#fff; color:var(--navy); font-size:13px; font-weight:700;
+.detail-top h1 { margin:0; font-size:27px; }
+.back-link {
+  display:inline-flex; align-items:center;
+  padding:9px 13px; border-radius:999px;
+  background:#fff; border:1px solid var(--line);
+  font-size:13px; font-weight:700;
 }
-.detail-heading { margin-bottom:22px; }
-.detail-heading .label { margin-bottom:8px; }
-.detail-heading h1 { margin:0; color:var(--navy); font-size:32px; font-weight:900; }
-.detail-intro { margin:9px 0 0; color:var(--muted); font-size:14px; line-height:1.6; }
-.character-gallery { display:flex; flex-direction:column; gap:18px; }
+.detail-intro {
+  color:var(--muted); font-size:14px; line-height:1.7;
+  margin:0 0 20px;
+}
+.character-gallery {
+  display:flex; flex-direction:column; gap:18px;
+}
 .character-gallery img {
-  display:block; width:100%; height:auto; border-radius:12px; background:#eee8df;
+  display:block; width:100%; height:auto;
+  border-radius:14px; background:#eee8dc;
 }
 .character-description {
-  padding:16px; border:1px solid var(--line); border-radius:12px;
-  background:#fff; color:var(--text); font-size:15px;
-  line-height:1.5; white-space:pre-line;
+  white-space:pre-line; font-size:14px; line-height:1.8;
+  color:var(--text); padding:18px;
+  background:#fff; border:1px solid var(--line);
+  border-radius:14px;
 }
-.detail-bottom { margin-top:28px; text-align:center; }
-.detail-bottom .detail-back { margin-bottom:0; }
-@media (min-width:700px) {
-  section { padding:42px 30px; }
-  .bottom-nav { left:50%; right:auto; width:min(100%,900px); transform:translateX(-50%); }
-  .character-detail { padding:35px 30px 50px; }
-  .character-gallery { gap:24px; }
+.site-footer {
+  text-align:center; padding:35px 20px;
+  color:var(--muted); font-size:12px;
 }
-@media (max-width:380px) {
-  .bestiary-title .title-k { font-size:36px; }
-  .bestiary-title .title-text { font-size:27px; }
+
+@media (min-width:650px) {
+  .character-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .card-copy h3 { font-size:19px; }
 }
 </style>
 </head>
 <body class="intro-active">
 
-<!-- 인트로 -->
 <div class="intro-screen" id="intro-screen">
   <div class="intro-art">
-    <img class="intro-image" src="kmon-intro.png" alt="Kmon 인트로">
-    <div class="effect-layer" aria-hidden="true">
-      <svg class="lightning-layer" viewBox="0 0 100 177.16" preserveAspectRatio="none">
-        <ellipse class="cloud-light cloud-light-one" cx="20" cy="24" rx="15" ry="14"/>
-        <ellipse class="cloud-light cloud-light-two" cx="28" cy="38" rx="14" ry="16"/>
-        <ellipse class="cloud-light cloud-light-three" cx="16" cy="52" rx="13" ry="15"/>
-
-        <!-- 구름 속에서 희미하게 갈라지는 빛과 가늘게 이어지는 주 번개 -->
-        <g class="glow-one lightning-glow">
-          <path class="main-glow" d="M20 13 L17.5 17.4 L13.2 16.8 L16.4 20.5 L12.8 24.2 L19.1 25.4 L21.8 31.2 L19.3 37.1 L23.1 42.3 L20.2 49.1 L24.8 54.2 L22.1 60"/>
-          <path class="branch" d="M17.5 17.4 L18.4 13.2 L21.5 10.2 M16.4 20.5 L10.8 20.2 L8.1 22.1 M19.1 25.4 L24.8 22.9 L27.6 19.4 M21.8 31.2 L27.4 29.5 L30.8 26.2 M23.1 42.3 L28.1 39.7"/>
+    <img class="intro-image" src="kmon-intro.png" alt="KMON">
+    <div class="effect-layer">
+      <svg class="lightning-layer" viewBox="0 0 928 1648" preserveAspectRatio="none" aria-hidden="true">
+        <g class="lightning-glow glow-one">
+          <path class="main-glow" d="M180 180 L165 235 L188 260 L145 320 L166 330 L130 390"/>
+          <path class="branch" d="M165 235 L125 250 L110 285 M188 260 L220 290"/>
         </g>
-        <g class="bolt-one lightning-bolt">
-          <path d="M20 13 L17.5 17.4 L13.2 16.8 L16.4 20.5 L12.8 24.2 L19.1 25.4 L21.8 31.2 L19.3 37.1 L23.1 42.3 L20.2 49.1 L24.8 54.2 L22.1 60"/>
+        <g class="lightning-bolt bolt-one">
+          <path d="M180 180 L165 235 L188 260 L145 320 L166 330 L130 390"/>
         </g>
-
-        <g class="glow-two lightning-glow">
-          <path class="main-glow" d="M30 27 L26.3 31.2 L22.5 30.4 L27.1 35.1 L23.4 39.3 L29.8 40.4 L32.1 46.2 L28.4 52.1 L31.8 57.3 L29.1 64"/>
-          <path class="branch" d="M26.3 31.2 L25.6 26.1 L28.8 22.2 M27.1 35.1 L21.2 34.4 L18.3 36.8 M29.8 40.4 L35.2 37.8 L38.8 34.2 M32.1 46.2 L37.2 44.5"/>
+        <g class="lightning-glow glow-two">
+          <path class="main-glow" d="M710 150 L690 210 L720 235 L675 300 L700 315 L660 380"/>
+          <path class="branch" d="M690 210 L650 230 L635 270 M720 235 L755 260"/>
         </g>
-        <g class="bolt-two lightning-bolt">
-          <path d="M30 27 L26.3 31.2 L22.5 30.4 L27.1 35.1 L23.4 39.3 L29.8 40.4 L32.1 46.2 L28.4 52.1 L31.8 57.3 L29.1 64"/>
+        <g class="lightning-bolt bolt-two">
+          <path d="M710 150 L690 210 L720 235 L675 300 L700 315 L660 380"/>
         </g>
-
-        <g class="glow-three lightning-glow">
-          <path class="main-glow" d="M16 44 L13.3 48.2 L9.4 47.5 L14.1 52.2 L11.2 56.3 L17.1 58.4 L19.2 64.2 L16.4 70.1 L20 75"/>
-          <path class="branch" d="M13.3 48.2 L14.1 43.5 L17.8 39.2 M14.1 52.2 L8.7 53.5 L6.1 56 M17.1 58.4 L22.3 55.8 L25.8 52.4"/>
+        <g class="lightning-glow glow-three">
+          <path class="main-glow" d="M480 90 L455 145 L480 170 L440 225 L460 245 L425 300"/>
+          <path class="branch" d="M455 145 L420 165 L400 195 M480 170 L515 190"/>
         </g>
-        <g class="bolt-three lightning-bolt">
-          <path d="M16 44 L13.3 48.2 L9.4 47.5 L14.1 52.2 L11.2 56.3 L17.1 58.4 L19.2 64.2 L16.4 70.1 L20 75"/>
+        <g class="lightning-bolt bolt-three">
+          <path d="M480 90 L455 145 L480 170 L440 225 L460 245 L425 300"/>
         </g>
+        <ellipse class="cloud-light cloud-light-one" cx="165" cy="285" rx="95" ry="75"/>
+        <ellipse class="cloud-light cloud-light-two" cx="690" cy="260" rx="100" ry="80"/>
+        <ellipse class="cloud-light cloud-light-three" cx="455" cy="190" rx="90" ry="70"/>
       </svg>
-      <span class="castle-flash spire"></span>
-      <span class="castle-flash wall"></span>
-      <span class="castle-flash spire-two"></span>
-      <span class="castle-flash wall-two"></span>
-      <span class="petal"></span><span class="petal"></span>
-      <span class="petal"></span><span class="petal"></span>
-      <span class="petal"></span><span class="petal"></span>
-      <span class="petal"></span><span class="petal"></span>
     </div>
-    <button class="intro-enter" id="intro-enter" type="button" aria-label="Kmon World 입장하기">
-      <span class="button-sparkle left"></span>
-      <span class="button-sparkle right"></span>
-    </button>
+    <button class="intro-enter" id="intro-enter" aria-label="KMON 시작"></button>
   </div>
 </div>
 
-<!-- 홈페이지 -->
-<main id="home-page">
-  <section class="world-banner" id="world">
-    <img src="kmon-world.png" alt="Kmon의 세계">
+<header class="site-header">
+  <a class="logo" href="#home">KMON</a>
+  <a class="header-link" href="#characters">CHARACTERS</a>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <img src="kmon-world.png" alt="KMON WORLD">
   </section>
-  <section id="bestiary">
-    <div class="bestiary-heading">
-      <div class="label">DISCOVER THE UNKNOWN</div>
-      <h2 class="bestiary-title">
-        <span class="title-k">K</span>
-        <span class="title-text">몬스터 도감</span>
-      </h2>
-      <p class="intro">Kmon의 존재들을 하나씩 만나 보세요.</p>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <a class="card-link" href="#egg">
-          <div class="card-art"><img src="egg_thumbnail_1.png" alt="달걀귀"></div>
-          <h3>이달의 몬스터</h3>
+
+  <section id="characters">
+    <h2 class="section-title">CHARACTERS</h2>
+    <div class="character-grid">
+
+      <a class="card-link" href="#egg">
+        <div class="card-art"><img src="egg_thumbnail_1.png" alt="달걀귀"></div>
+        <div class="card-copy">
+          <h3>달걀귀</h3>
           <p>악귀 : 달걀귀신</p>
-        </a>
-      </article>
-      <article class="card">
-        <a class="card-link" href="#sero">
-          <div class="card-art"><img src="sero_thumbnail_1.png" alt="세로(Sero)"></div>
+        </div>
+      </a>
+
+      <a class="card-link" href="#sero">
+        <div class="card-art"><img src="sero_thumbnail_1.png" alt="세로(Sero)"></div>
+        <div class="card-copy">
           <h3>세로(Sero)</h3>
-          <p>Kmon팀의 리더(저승사자)</p>
-        </a>
-      </article>
-      <article class="card">
-        <a class="card-link" href="#chesy">
-          <div class="card-art"><img src="chesy_thumbnail_1.png" alt="체시(Chesy)"></div>
+          <p>Kmon팀의 리더</p>
+        </div>
+      </a>
+
+      <a class="card-link" href="#chesy">
+        <div class="card-art"><img src="chesy_thumbnail_1.png" alt="체시(Chesy)"></div>
+        <div class="card-copy">
           <h3>체시(Chesy)</h3>
           <p>Kmon팀소속, 세자매의 맏언니(처녀귀신)</p>
-        </a>
-      </article>
-      <article class="card">
-        <a class="card-link" href="#chery">
-          <div class="card-art"><img src="chery_thumbnail_1.png" alt="체리(Chery)"></div>
+        </div>
+      </a>
+
+      <a class="card-link" href="#chery">
+        <div class="card-art"><img src="chery_thumbnail_1.png" alt="체리(Chery)"></div>
+        <div class="card-copy">
           <h3>체리(Chery)</h3>
           <p>Kmon팀소속, 세자매의 둘째(처녀귀신)</p>
-        </a>
-      </article>
-      <article class="card">
-        <a class="card-link" href="#chemi">
-          <div class="card-art"><img src="chemi_thumbnail_1.png" alt="체미(Chemi)"></div>
+        </div>
+      </a>
+
+      <a class="card-link" href="#chemi">
+        <div class="card-art"><img src="chemi_thumbnail_1.png" alt="체미(Chemi)"></div>
+        <div class="card-copy">
           <h3>체미(Chemi)</h3>
           <p>Kmon팀소속, 세자매의 막내(처녀귀신)</p>
-        </a>
-      </article>
-      <article class="card">
-        <div class="card-art">이미지 추후 적용</div>
-        <h3>덤부(Dumboo)</h3>
-        <p>이미지와 설명 추후 적용</p>
-      </article>
-    </div>
-  </section>
-  <section id="videos">
-    <div class="label">WATCH KMON</div>
-    <h2>숏폼 영상</h2>
-    <div class="feature">준비된 Kmon 영상을 이 영역에 추가할 예정입니다.</div>
-  </section>
-  <section id="cards">
-    <div class="label">COLLECT YOUR WORLD</div>
-    <h2>디지털 카드</h2>
-    <div class="cards">
-      <article class="card">
-        <div class="card-art">카드 이미지 영역</div>
-        <h3>캐릭터 카드</h3>
-        <p>좋아하는 Kmon 캐릭터를 만나 보세요.</p>
-      </article>
-      <article class="card">
-        <div class="card-art">스토리 이미지 영역</div>
-        <h3>특별한 이야기</h3>
-        <p>캐릭터들의 숨겨진 이야기를 탐험하세요.</p>
-      </article>
+        </div>
+      </a>
+
+      <div class="card-link">
+        <div class="card-art"><img src="dumboo_thumbnail_1.png" alt="덤부(Dumboo)"></div>
+        <div class="card-copy">
+          <h3>덤부(Dumboo)</h3>
+          <p>Kmon팀 소속</p>
+        </div>
+      </div>
+
     </div>
   </section>
 </main>
 
-<!-- 세로 상세 -->
 <main id="sero-detail" class="character-detail">
-  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
-  <div class="detail-heading">
-    <div class="label">KMON CHARACTER</div>
+  <div class="detail-top">
     <h1>세로(Sero)</h1>
-    <p class="detail-intro">Kmon팀의 리더(저승사자)</p>
+    <a class="back-link" href="#characters">← 캐릭터 목록</a>
   </div>
+  <p class="detail-intro">Kmon팀의 리더</p>
   <div class="character-gallery" id="sero-gallery"></div>
-  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
 </main>
 
-<!-- 체리 상세 -->
 <main id="chery-detail" class="character-detail">
-  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
-  <div class="detail-heading">
-    <div class="label">KMON CHARACTER</div>
+  <div class="detail-top">
     <h1>체리(Chery)</h1>
-    <p class="detail-intro">Kmon팀소속, 세자매의 둘째(처녀귀신)</p>
+    <a class="back-link" href="#characters">← 캐릭터 목록</a>
   </div>
+  <p class="detail-intro">Kmon팀소속, 세자매의 둘째(처녀귀신)</p>
   <div class="character-gallery" id="chery-gallery"></div>
-  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
 </main>
 
-<!-- 체미 상세 -->
 <main id="chemi-detail" class="character-detail">
-  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
-  <div class="detail-heading">
-    <div class="label">KMON CHARACTER</div>
+  <div class="detail-top">
     <h1>체미(Chemi)</h1>
-    <p class="detail-intro">Kmon팀소속, 세자매의 막내(처녀귀신)</p>
+    <a class="back-link" href="#characters">← 캐릭터 목록</a>
   </div>
+  <p class="detail-intro">Kmon팀소속, 세자매의 막내(처녀귀신)</p>
   <div class="character-gallery" id="chemi-gallery"></div>
-  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
 </main>
 
-<!-- 이달의 몬스터 상세 -->
 <main id="egg-detail" class="character-detail">
-  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
-  <div class="detail-heading">
-    <div class="label">MONSTER OF THE MONTH</div>
+  <div class="detail-top">
     <h1>달걀귀</h1>
-    <p class="detail-intro">악귀 : 달걀귀신</p>
+    <a class="back-link" href="#characters">← 캐릭터 목록</a>
   </div>
+  <p class="detail-intro">악귀 : 달걀귀신</p>
   <div class="character-gallery" id="egg-gallery"></div>
-  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
 </main>
 
-<!-- 체시 상세 -->
 <main id="chesy-detail" class="character-detail">
-  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
-  <div class="detail-heading">
-    <div class="label">KMON CHARACTER</div>
+  <div class="detail-top">
     <h1>체시(Chesy)</h1>
-    <p class="detail-intro">Kmon팀소속, 세자매의 맏언니(처녀귀신)</p>
+    <a class="back-link" href="#characters">← 캐릭터 목록</a>
   </div>
+  <p class="detail-intro">Kmon팀소속, 세자매의 맏언니(처녀귀신)</p>
   <div class="character-gallery" id="chesy-gallery"></div>
-  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
 </main>
 
-<footer id="page-footer">© Kmon · Discover Korean Monsters</footer>
-
-<nav class="bottom-nav" id="bottom-nav" aria-label="주요 메뉴">
-  <a href="#world"><span class="nav-icon">⌂</span><span>홈</span></a>
-  <a href="#bestiary"><span class="nav-icon">♧</span><span>도감</span></a>
-  <a href="#videos"><span class="nav-icon">▷</span><span>영상</span></a>
-  <a href="#cards"><span class="nav-icon">▤</span><span>카드·스토리</span></a>
-</nav>
+<footer class="site-footer">
+  KMON · Korean Monster Universe
+</footer>
 
 <script>
 const seroImages = ["sero_1.png","sero_2.png"];
@@ -600,9 +391,7 @@ const chemiImages = ["chemi_1.png"];
 const eggImages = ["egg_1.png"];
 
 const seroDescription =
-  "Kmon팀의 리더이자 저승사자이며 귀신들을 관장한다.\n" +
-  "염라대왕의 명을 받아 한국의 악귀들을 소탕해야하는 임무를 가지고 있지만 팀원들인 체시, 체리, 체미, 덤부가 딱히 도움이 되진 않는다.\n" +
-  "늘 고독을 씹으며 혼자 있기를 좋아한다.";
+  "염라대왕의 명을 받아 한국의 악귀들을 소탕해야하는 임무를 가지고 있지만 팀원들인 체시, 체리, 체미, 덤부가 딱히 도움이 되진 않는다.";
 
 const chesyDescription =
   "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 Kmon팀에서 가지고 있다.\n" +
@@ -620,72 +409,79 @@ const chemiDescription =
 const eggDescription =
   "불우한 닭장에서 태어난 '달걀귀' 매우 빠른 몸놀림을 가지고 있으며 조금 촐싹거린다.";
 
-function createGallery(galleryId, images, description) {
-  const gallery = document.getElementById(galleryId);
-  images.forEach((fileName,index) => {
-    const image = document.createElement("img");
-    image.src = fileName;
-    image.alt = "캐릭터 이미지 " + (index+1);
-    image.loading = "lazy";
-    gallery.appendChild(image);
+function createGallery(targetId,images,description) {
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  images.forEach((src,index) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = src.replace(/\.[^.]+$/,"");
+    img.loading = "lazy";
+    target.appendChild(img);
+
     if (index === 0 && description) {
-      const descriptionBox = document.createElement("div");
-      descriptionBox.className = "character-description";
-      descriptionBox.textContent = description;
-      gallery.appendChild(descriptionBox);
+      const text = document.createElement("div");
+      text.className = "character-description";
+      text.textContent = description;
+      target.appendChild(text);
     }
   });
 }
+
 createGallery("sero-gallery",seroImages,seroDescription);
 createGallery("chesy-gallery",chesyImages,chesyDescription);
 createGallery("chery-gallery",cheryImages,cheryDescription);
 createGallery("chemi-gallery",chemiImages,chemiDescription);
 createGallery("egg-gallery",eggImages,eggDescription);
 
-/* 입장 버튼 */
 const introScreen = document.getElementById("intro-screen");
 const introEnter = document.getElementById("intro-enter");
 
-function enterKmonWorld() {
-  introScreen.classList.add("hide");
+function closeIntro() {
+  introScreen.style.display = "none";
   document.body.classList.remove("intro-active");
-  document.getElementById("home-page").style.display = "block";
-  document.getElementById("bottom-nav").style.display = "grid";
-  document.getElementById("page-footer").style.display = "block";
-  history.replaceState(null,"","#world");
-  window.scrollTo(0,0);
+  if (!location.hash) location.hash = "#home";
 }
-introEnter.addEventListener("click",enterKmonWorld);
 
-/* 페이지 전환 */
+introEnter.addEventListener("click",closeIntro);
+
 function updatePage() {
-  const hash = window.location.hash;
-  const pages = {"#sero":"sero-detail","#chesy":"chesy-detail","#chery":"chery-detail","#chemi":"chemi-detail","#egg":"egg-detail"};
-  const selectedPage = pages[hash] || null;
-  const isDetailPage = selectedPage !== null;
+  const hash = location.hash || "#home";
+  const pages = {
+    "#sero":"sero-detail",
+    "#chesy":"chesy-detail",
+    "#chery":"chery-detail",
+    "#chemi":"chemi-detail",
+    "#egg":"egg-detail"
+  };
 
-  if (document.body.classList.contains("intro-active")) {
-    document.getElementById("home-page").style.display = "none";
+  const selectedPage = pages[hash];
+
+  if (hash === "#home" || hash === "#characters" || !selectedPage) {
+    document.getElementById("home").style.display = "block";
     document.getElementById("sero-detail").style.display = "none";
     document.getElementById("chesy-detail").style.display = "none";
     document.getElementById("chery-detail").style.display = "none";
     document.getElementById("chemi-detail").style.display = "none";
     document.getElementById("egg-detail").style.display = "none";
-    document.getElementById("page-footer").style.display = "none";
-    document.getElementById("bottom-nav").style.display = "none";
+    if (hash === "#characters") {
+      setTimeout(() => document.getElementById("characters").scrollIntoView(),50);
+    } else {
+      window.scrollTo(0,0);
+    }
     return;
   }
 
-  document.getElementById("home-page").style.display = isDetailPage ? "none" : "block";
+  document.getElementById("home").style.display = "none";
   document.getElementById("sero-detail").style.display = selectedPage === "sero-detail" ? "block" : "none";
   document.getElementById("chesy-detail").style.display = selectedPage === "chesy-detail" ? "block" : "none";
   document.getElementById("chery-detail").style.display = selectedPage === "chery-detail" ? "block" : "none";
   document.getElementById("chemi-detail").style.display = selectedPage === "chemi-detail" ? "block" : "none";
   document.getElementById("egg-detail").style.display = selectedPage === "egg-detail" ? "block" : "none";
-  document.getElementById("page-footer").style.display = isDetailPage ? "none" : "block";
-  document.getElementById("bottom-nav").style.display = isDetailPage ? "none" : "grid";
   window.scrollTo(0,0);
 }
+
 window.addEventListener("hashchange",updatePage);
 updatePage();
 </script>
