@@ -311,170 +311,194 @@ section { padding:30px 20px; }
 }
 .bestiary-title .title-text {
   color:var(--navy); font-family:Arial,"Noto Sans KR",sans-serif;
-  font-size:30px; font-weight:900; letter-spacing:-1.5px; line-height:1;
+  font-size:29px; font-weight:900; letter-spacing:-1.5px;
 }
-.intro { color:var(--muted); line-height:1.3; font-size:13px; margin:2px 0 0; }
-
-/* 도감 */
+.bestiary-heading .intro {
+  margin:8px 0 0; color:var(--muted);
+  font-size:13px; line-height:1.5;
+}
 .cards {
   display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px; margin-top:20px;
+  gap:14px; margin-top:20px;
 }
 .card {
-  min-width:0; padding:10px; border:1px solid var(--line);
-  border-radius:12px; background:var(--panel); color:var(--text);
+  min-width:0; overflow:hidden; background:#fff;
+  border:1px solid var(--line); border-radius:15px;
+  box-shadow:0 4px 14px rgba(39,48,71,.05);
 }
-.card-link { display:block; transition:transform .15s ease; }
-.card-link:active { transform:scale(.98); }
+.card-link { display:block; height:100%; }
 .card-art {
-  width:100%; aspect-ratio:1 / 1; display:flex;
-  align-items:center; justify-content:center; overflow:hidden;
-  margin-bottom:10px; border-radius:8px; background:#eee8df;
-  color:var(--muted); font-size:11px; text-align:center;
+  width:100%; aspect-ratio:1 / 1;
+  overflow:hidden; background:#eee7db;
+  display:flex; align-items:center; justify-content:center;
+  color:#8b8b8b; font-size:13px;
 }
-.card-art img { display:block; width:100%; height:100%; object-fit:contain; }
-.card h3 { margin:8px 0; font-size:15px; }
-.card p { margin:0; color:var(--muted); font-size:12px; line-height:1.6; }
+.card-art img {
+  display:block; width:100%; height:100%;
+  object-fit:cover;
+}
+.card h3 {
+  margin:12px 12px 5px; font-size:16px;
+  font-weight:800; line-height:1.35;
+}
+.card p {
+  margin:0 12px 14px; color:var(--muted);
+  font-size:12px; line-height:1.5;
+}
+.more-monsters-wrap { text-align:center; margin:24px 0 8px; }
+.more-monsters-button {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:170px; padding:12px 24px;
+  border-radius:999px; background:#5276a5;
+  color:white; font-size:14px; font-weight:700;
+}
+#videos,#cards { padding-top:20px; }
+#videos h2,#cards h2 { margin:8px 0 14px; font-size:22px; }
 .feature {
-  padding:20px; border:1px solid var(--line); border-radius:12px;
-  background:var(--panel); color:var(--muted); font-size:14px; line-height:1.7;
+  padding:28px 16px; border:1px dashed #c9c1b4;
+  border-radius:14px; text-align:center; color:var(--muted);
+  background:rgba(255,255,255,.45); font-size:13px;
 }
-footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 
 /* 전체 몬스터 도감 */
-.more-monsters-wrap { text-align:center; margin-top:22px; }
-.more-monsters-button {
-  display:inline-block; padding:12px 28px; border-radius:999px;
-  background:var(--navy); color:#fff; font-size:14px; font-weight:700;
+#monster-index-page {
+  display:none; min-height:80vh; padding:28px 20px 45px;
 }
-#monster-index-page { display:none; min-height:80vh; padding:28px 20px 45px; }
+.index-heading { margin-bottom:20px; }
+.index-heading h1 { margin:0 0 8px; font-size:25px; }
+.index-heading p { margin:0; color:var(--muted); font-size:13px; }
 .index-grid {
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
-  grid-template-rows:repeat(4,auto); gap:10px; margin-top:20px;
+  gap:12px;
 }
 .index-card {
-  min-width:0; padding:8px; border:1px solid var(--line);
-  border-radius:10px; background:#fff; text-align:center;
+  min-width:0; overflow:hidden; border-radius:12px;
+  background:#fff; border:1px solid var(--line);
 }
-.index-card .card-art { margin-bottom:7px; }
-.index-card h3 { margin:6px 0 3px; font-size:13px; }
-.index-card p { margin:0; color:var(--muted); font-size:10px; line-height:1.4; }
+.index-card .card-art { aspect-ratio:1/1; }
+.index-card h3 {
+  margin:9px 8px 4px; font-size:13px; line-height:1.35;
+}
+.index-card p {
+  margin:0 8px 10px; font-size:10px;
+  line-height:1.45; color:var(--muted);
+}
 .index-card.preparing {
-  min-height:100%; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; color:var(--muted);
-  background:rgba(255,255,255,.55); border-style:dashed;
+  aspect-ratio:1/1; display:flex;
+  align-items:center; justify-content:center;
+  background:#eee9e0; border:1px dashed #c9c1b4;
 }
-.index-card.preparing .preparing-label {
-  display:flex; width:100%; aspect-ratio:1/1;
-  align-items:center; justify-content:center; font-size:13px; font-weight:700;
+.preparing-label {
+  color:#999184; font-size:13px; font-weight:700;
 }
-.pagination {
-  display:flex; justify-content:center; align-items:center;
-  flex-wrap:wrap; gap:8px; margin-top:20px;
+#monster-pagination {
+  display:flex; justify-content:center; gap:8px; margin:24px 0;
 }
-.pagination button {
-  min-width:36px; padding:8px 11px; border:1px solid var(--line);
-  border-radius:8px; background:#fff; color:var(--text); font-weight:700;
+#monster-pagination button {
+  min-width:34px; height:34px; border:1px solid var(--line);
+  border-radius:50%; background:#fff; color:var(--text);
+  cursor:pointer;
 }
-.pagination button[aria-current="page"] { background:var(--navy); color:#fff; }
-@media (min-width:700px) {
-  .index-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+#monster-pagination button[aria-current="page"] {
+  color:#fff; background:#5276a5; border-color:#5276a5;
 }
 
-/* 하단 메뉴 */
+/* 상세페이지 */
+.character-detail {
+  display:none; padding:28px 20px 45px;
+  min-height:80vh;
+}
+.detail-back {
+  display:inline-block; margin:0 0 20px;
+  color:#5276a5; font-size:13px; font-weight:700;
+}
+.detail-heading { margin-bottom:20px; }
+.detail-heading h1 { margin:0 0 8px; font-size:27px; }
+.detail-intro {
+  margin:8px 0 0; color:var(--muted);
+  font-size:13px; line-height:1.6;
+}
+.character-gallery {
+  display:flex; flex-direction:column; gap:16px;
+}
+.character-gallery img {
+  display:block; width:100%; height:auto;
+  border-radius:12px; background:#eee7db;
+}
+.character-description {
+  white-space:pre-line; padding:18px;
+  border-radius:12px; background:#fff;
+  border:1px solid var(--line);
+  color:#39435b; font-size:14px; line-height:1.8;
+}
+.detail-bottom { margin-top:28px; }
+.site-footer,#page-footer {
+  padding:24px 16px; text-align:center;
+  color:#92909a; font-size:11px;
+}
 .bottom-nav {
-  position:fixed; bottom:0; left:0; right:0; z-index:20;
-  display:grid; grid-template-columns:repeat(4,1fr);
-  padding:9px 4px calc(9px + env(safe-area-inset-bottom));
-  background:#fff; border-top:1px solid var(--line);
+  position:fixed; z-index:100; left:0; right:0; bottom:0;
+  display:none; grid-template-columns:repeat(4,1fr);
+  padding:8px 4px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.96);
+  border-top:1px solid var(--line);
+  box-shadow:0 -4px 15px rgba(30,40,60,.06);
 }
 .bottom-nav a {
   display:flex; flex-direction:column; align-items:center;
-  justify-content:center; gap:4px; min-height:48px;
-  color:var(--muted); font-size:11px;
+  gap:3px; color:#66718a; font-size:10px;
 }
-.bottom-nav .nav-icon { font-size:20px; }
-.bottom-nav a:hover,.bottom-nav a:focus { color:var(--navy); }
+.nav-icon { font-size:19px; line-height:1.1; }
 
-/* 캐릭터 상세 */
-.character-detail { display:none; min-height:80vh; padding:24px 20px 40px; }
-.detail-back {
-  display:inline-flex; align-items:center; gap:7px; margin-bottom:24px;
-  padding:10px 15px; border:1px solid var(--line); border-radius:20px;
-  background:#fff; color:var(--navy); font-size:13px; font-weight:700;
-}
-.detail-heading { margin-bottom:22px; }
-.detail-heading .label { margin-bottom:8px; }
-.detail-heading h1 { margin:0; color:var(--navy); font-size:32px; font-weight:900; }
-.detail-intro { margin:9px 0 0; color:var(--muted); font-size:14px; line-height:1.6; }
-.character-gallery { display:flex; flex-direction:column; gap:18px; }
-.character-gallery img {
-  display:block; width:100%; height:auto; border-radius:12px; background:#eee8df;
-}
-.character-description {
-  padding:16px; border:1px solid var(--line); border-radius:12px;
-  background:#fff; color:var(--text); font-size:15px;
-  line-height:1.5; white-space:pre-line;
-}
-.detail-bottom { margin-top:28px; text-align:center; }
-.detail-bottom .detail-back { margin-bottom:0; }
-@media (min-width:700px) {
-  section { padding:42px 30px; }
-  .bottom-nav { left:50%; right:auto; width:min(100%,900px); transform:translateX(-50%); }
-  .character-detail { padding:35px 30px 50px; }
-  .character-gallery { gap:24px; }
-}
-@media (max-width:380px) {
-  .bestiary-title .title-k { font-size:36px; }
-  .bestiary-title .title-text { font-size:27px; }
+@media (min-width:600px) {
+  .cards { grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+  .card h3 { font-size:17px; }
+  .card p { font-size:13px; }
+  .index-grid { gap:18px; }
+  .index-card h3 { font-size:15px; }
+  .index-card p { font-size:12px; }
 }
 </style>
 </head>
 <body class="intro-active">
 
-<!-- 인트로 -->
+<!-- 인트로 화면 -->
 <div class="intro-screen" id="intro-screen">
   <div class="intro-art">
-    <img class="intro-image" src="kmon-intro.png" alt="Kmon 인트로">
-    <div class="effect-layer" aria-hidden="true">
-      <svg class="lightning-layer" viewBox="0 0 100 177.16" preserveAspectRatio="none">
-        <ellipse class="cloud-light cloud-light-one" cx="20" cy="24" rx="15" ry="14"/>
-        <ellipse class="cloud-light cloud-light-two" cx="28" cy="38" rx="14" ry="16"/>
-        <ellipse class="cloud-light cloud-light-three" cx="16" cy="52" rx="13" ry="15"/>
-
-        <g class="glow-one lightning-glow">
-          <path class="main-glow" d="M20 13 L17.5 17.4 L13.2 16.8 L16.4 20.5 L12.8 24.2 L19.1 25.4 L21.8 31.2 L19.3 37.1 L23.1 42.3 L20.2 49.1 L24.8 54.2 L22.1 60"/>
-          <path class="branch" d="M17.5 17.4 L18.4 13.2 L21.5 10.2 M16.4 20.5 L10.8 20.2 L8.1 22.1 M19.1 25.4 L24.8 22.9 L27.6 19.4 M21.8 31.2 L27.4 29.5 L30.8 26.2 M23.1 42.3 L28.1 39.7"/>
-        </g>
-        <g class="bolt-one lightning-bolt">
-          <path d="M20 13 L17.5 17.4 L13.2 16.8 L16.4 20.5 L12.8 24.2 L19.1 25.4 L21.8 31.2 L19.3 37.1 L23.1 42.3 L20.2 49.1 L24.8 54.2 L22.1 60"/>
-        </g>
-
-        <g class="glow-two lightning-glow">
-          <path class="main-glow" d="M30 27 L26.3 31.2 L22.5 30.4 L27.1 35.1 L23.4 39.3 L29.8 40.4 L32.1 46.2 L28.4 52.1 L31.8 57.3 L29.1 64"/>
-          <path class="branch" d="M26.3 31.2 L25.6 26.1 L28.8 22.2 M27.1 35.1 L21.2 34.4 L18.3 36.8 M29.8 40.4 L35.2 37.8 L38.8 34.2 M32.1 46.2 L37.2 44.5"/>
-        </g>
-        <g class="bolt-two lightning-bolt">
-          <path d="M30 27 L26.3 31.2 L22.5 30.4 L27.1 35.1 L23.4 39.3 L29.8 40.4 L32.1 46.2 L28.4 52.1 L31.8 57.3 L29.1 64"/>
-        </g>
-
-        <g class="glow-three lightning-glow">
-          <path class="main-glow" d="M16 44 L13.3 48.2 L9.4 47.5 L14.1 52.2 L11.2 56.3 L17.1 58.4 L19.2 64.2 L16.4 70.1 L20 75"/>
-          <path class="branch" d="M13.3 48.2 L14.1 43.5 L17.8 39.2 M14.1 52.2 L8.7 53.5 L6.1 56 M17.1 58.4 L22.3 55.8 L25.8 52.4"/>
-        </g>
-        <g class="bolt-three lightning-bolt">
-          <path d="M16 44 L13.3 48.2 L9.4 47.5 L14.1 52.2 L11.2 56.3 L17.1 58.4 L19.2 64.2 L16.4 70.1 L20 75"/>
-        </g>
-      </svg>
-      <span class="castle-flash spire"></span>
-      <span class="castle-flash wall"></span>
-      <span class="castle-flash spire-two"></span>
-      <span class="castle-flash wall-two"></span>
+    <img class="intro-image" src="kmon-intro.png" alt="Kmon World">
+    <div class="effect-layer">
       <span class="petal"></span><span class="petal"></span>
       <span class="petal"></span><span class="petal"></span>
       <span class="petal"></span><span class="petal"></span>
       <span class="petal"></span><span class="petal"></span>
     </div>
+    <svg class="lightning-layer" viewBox="0 0 928 1648" preserveAspectRatio="none" aria-hidden="true">
+      <g class="lightning-glow glow-one">
+        <path class="main-glow" d="M710 150 L690 210 L720 235 L675 300 L700 315 L660 380"/>
+      </g>
+      <g class="lightning-bolt bolt-one">
+        <path d="M710 150 L690 210 L720 235 L675 300 L700 315 L660 380"/>
+      </g>
+      <g class="lightning-glow glow-two">
+        <path class="main-glow" d="M250 100 L280 165 L245 200 L300 260 L270 300 L325 370"/>
+      </g>
+      <g class="lightning-bolt bolt-two">
+        <path d="M250 100 L280 165 L245 200 L300 260 L270 300 L325 370"/>
+      </g>
+      <g class="lightning-glow glow-three">
+        <path class="main-glow" d="M480 90 L455 145 L480 170 L440 225 L460 245 L425 300"/>
+      </g>
+      <g class="lightning-bolt bolt-three">
+        <path d="M480 90 L455 145 L480 170 L440 225 L460 245 L425 300"/>
+      </g>
+      <ellipse class="cloud-light cloud-light-one" cx="165" cy="285" rx="95" ry="75"/>
+      <ellipse class="cloud-light cloud-light-two" cx="690" cy="260" rx="100" ry="80"/>
+      <ellipse class="cloud-light cloud-light-three" cx="455" cy="190" rx="90" ry="70"/>
+    </svg>
+    <div class="castle-flash spire"></div>
+    <div class="castle-flash wall"></div>
+    <div class="castle-flash spire-two"></div>
+    <div class="castle-flash wall-two"></div>
     <button class="intro-enter" id="intro-enter" type="button" aria-label="Kmon World 입장하기">
       <span class="button-sparkle left"></span>
       <span class="button-sparkle right"></span>
@@ -487,6 +511,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
   <section class="world-banner" id="world">
     <img src="kmon-world.png" alt="Kmon의 세계">
   </section>
+
   <section id="bestiary">
     <div class="bestiary-heading">
       <div class="label">DISCOVER THE UNKNOWN</div>
@@ -496,12 +521,14 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
       </h2>
       <p class="intro">Kmon의 존재들을 하나씩 만나 보세요.</p>
     </div>
+
     <div class="cards">
       <article class="card">
         <div class="card-art">이미지 추후 적용</div>
         <h3>이달의 몬스터</h3>
         <p>Monster of the Month<br>이미지와 설명 추후 적용</p>
       </article>
+
       <article class="card">
         <a class="card-link" href="#sero">
           <div class="card-art"><img src="sero_thumbnail_1.png" alt="세로(Sero)"></div>
@@ -509,6 +536,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
           <p>Kmon팀의 리더(저승사자)</p>
         </a>
       </article>
+
       <article class="card">
         <a class="card-link" href="#chesy">
           <div class="card-art"><img src="chesy_thumbnail_1.png" alt="체시(Chesy)"></div>
@@ -516,6 +544,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
           <p>Kmon팀소속, 세자매의 맏언니(처녀귀신)</p>
         </a>
       </article>
+
       <article class="card">
         <a class="card-link" href="#chery">
           <div class="card-art"><img src="chery_thumbnail_1.png" alt="체리(Chery)"></div>
@@ -523,6 +552,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
           <p>Kmon 캐릭터</p>
         </a>
       </article>
+
       <article class="card">
         <a class="card-link" href="#chemi">
           <div class="card-art"><img src="chemi_thumbnail_1.png" alt="체미(Chemi)"></div>
@@ -530,21 +560,27 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
           <p>Kmon팀소속, 세자매의 막내(처녀귀신)</p>
         </a>
       </article>
+
       <article class="card">
-        <div class="card-art">이미지 추후 적용</div>
-        <h3>덤부(Dumboo)</h3>
-        <p>이미지와 설명 추후 적용</p>
+        <a class="card-link" href="#dumboo">
+          <div class="card-art"><img src="dumboo_thumbnail_1.png" alt="덤부(Dumboo)"></div>
+          <h3>덤부(Dumboo)</h3>
+          <p>Kmon팀소속, 몽달귀신(총각귀신)</p>
+        </a>
       </article>
     </div>
+
     <div class="more-monsters-wrap">
       <a class="more-monsters-button" href="#monster-index">몬스터 더보기</a>
     </div>
   </section>
+
   <section id="videos">
     <div class="label">WATCH KMON</div>
     <h2>숏폼 영상</h2>
     <div class="feature">준비된 Kmon 영상을 이 영역에 추가할 예정입니다.</div>
   </section>
+
   <section id="cards">
     <div class="label">COLLECT YOUR WORLD</div>
     <h2>디지털 카드</h2>
@@ -565,25 +601,25 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 
 <!-- 전체 몬스터 도감 -->
 <main id="monster-index-page">
-  <a class="detail-back" href="#bestiary">← 메인으로 돌아가기</a>
-  <div class="detail-heading">
+  <a class="detail-back" href="#world">← 메인으로 돌아가기</a>
+  <div class="index-heading">
     <div class="label">KMON BESTIARY</div>
-    <h1>몬스터 도감</h1>
-    <p class="detail-intro">Kmon의 존재들을 하나씩 만나 보세요.</p>
+    <h1>K 몬스터 도감</h1>
+    <p>Kmon의 몬스터들을 만나 보세요.</p>
   </div>
   <div class="index-grid" id="monster-index-grid"></div>
-  <div class="pagination" id="monster-pagination" aria-label="도감 페이지"></div>
+  <div id="monster-pagination"></div>
 </main>
 
-<!-- 달걀귀신 상세 -->
-<main id="egg-detail" class="character-detail">
+<!-- 세로 상세 -->
+<main id="sero-detail" class="character-detail">
   <a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a>
   <div class="detail-heading">
     <div class="label">KMON CHARACTER</div>
-    <h1>달걀귀</h1>
-    <p class="detail-intro">악귀 : 달걀귀신</p>
+    <h1>세로(Sero)</h1>
+    <p class="detail-intro">Kmon팀의 리더(저승사자)</p>
   </div>
-  <div class="character-gallery" id="egg-gallery"></div>
+  <div class="character-gallery" id="sero-gallery"></div>
   <div class="detail-bottom"><a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a></div>
 </main>
 
@@ -599,16 +635,39 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
   <div class="detail-bottom"><a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a></div>
 </main>
 
+<!-- 달걀귀 상세 -->
+<main id="egg-detail" class="character-detail">
+  <a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a>
+  <div class="detail-heading">
+    <div class="label">KMON MONSTER</div>
+    <h1>달걀귀</h1>
+    <p class="detail-intro">악귀 : 달걀귀신</p>
+  </div>
+  <div class="character-gallery" id="egg-gallery"></div>
+  <div class="detail-bottom"><a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a></div>
+</main>
+
+<!-- 덤부 상세 -->
+<main id="dumboo-detail" class="character-detail">
+  <a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a>
+  <div class="detail-heading">
+    <div class="label">KMON CHARACTER</div>
+    <h1>덤부(Dumboo)</h1>
+    <p class="detail-intro">Kmon팀소속, 몽달귀신(총각귀신)</p>
+  </div>
+  <div class="character-gallery" id="dumboo-gallery"></div>
+  <div class="detail-bottom"><a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a></div>
+</main>
+
 <!-- 세로 상세 -->
-<main id="sero-detail" class="character-detail">
+<main id="sero-detail-copy" class="character-detail">
   <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
   <div class="detail-heading">
     <div class="label">KMON CHARACTER</div>
     <h1>세로(Sero)</h1>
     <p class="detail-intro">Kmon팀의 리더(저승사자)</p>
   </div>
-  <div class="character-gallery" id="sero-gallery"></div>
-  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
+  <div class="character-gallery"></div>
 </main>
 
 <!-- 체리 상세 -->
@@ -649,6 +708,7 @@ const chesyImages = ["chesy_0.png","chesy_1.png","chesy_2.png","chesy_3.png"];
 const cheryImages = ["chery_1.png","chery_2.png","chery_3.png"];
 const chemiImages = ["chemi_1.png"];
 const eggImages = ["egg_1.png"];
+const dumbooImages = ["dumboo_1.png","dumboo_2.png"];
 
 const seroDescription =
   "Kmon팀의 리더이자 저승사자이며 귀신들을 관장한다.\n" +
@@ -667,15 +727,21 @@ const chemiDescription =
 const eggDescription =
   "불우한 닭장에서 태어난 '달걀귀' 매우 빠른 몸놀림을 가지고 있으며 조금 촐싹거린다.";
 
+const dumbooDescription =
+  "몽달귀신(총각귀신)인 덤부(Dumboo), 이성이 좋아하지 않은 외모로 101번째 프로포즈를 하다가 집으로 돌아오는 길에 교통사고로 귀신이 되었다.\n" +
+  "지금은 Kmon팀원이 되어 악귀 소탕하는 일에 전념하고 있으며 힘이 쎄다.";
+
 function createGallery(galleryId, images, description) {
   const gallery = document.getElementById(galleryId);
   if (!gallery) return;
+
   images.forEach((fileName,index) => {
     const image = document.createElement("img");
     image.src = fileName;
     image.alt = "캐릭터 이미지 " + (index+1);
     image.loading = "lazy";
     gallery.appendChild(image);
+
     if (index === 0 && description) {
       const descriptionBox = document.createElement("div");
       descriptionBox.className = "character-description";
@@ -684,21 +750,26 @@ function createGallery(galleryId, images, description) {
     }
   });
 }
+
 createGallery("sero-gallery",seroImages,seroDescription);
 createGallery("chesy-gallery",chesyImages,chesyDescription);
 createGallery("chery-gallery",cheryImages,"");
 createGallery("chemi-gallery",chemiImages,chemiDescription);
 createGallery("egg-gallery",eggImages,eggDescription);
+createGallery("dumboo-gallery",dumbooImages,dumbooDescription);
 
 /* 전체 몬스터 도감 데이터: 등록 순서대로 추가 */
 const monsters = [
-  {name:"달걀귀", description:"악귀 : 달걀귀신", thumbnail:"egg_thumbnail_1.png", hash:"#egg"},
   {name:"세로(Sero)", description:"Kmon팀의 리더(저승사자)", thumbnail:"sero_thumbnail_1.png", hash:"#sero"},
   {name:"체시(Chesy)", description:"Kmon팀소속, 세자매의 맏언니(처녀귀신)", thumbnail:"chesy_thumbnail_1.png", hash:"#chesy"},
   {name:"체리(Chery)", description:"Kmon 캐릭터", thumbnail:"chery_thumbnail_1.png", hash:"#chery"},
   {name:"체미(Chemi)", description:"Kmon팀소속, 세자매의 막내(처녀귀신)", thumbnail:"chemi_thumbnail_1.png", hash:"#chemi"},
-  {name:"덤부(Dumboo)", description:"Kmon팀 소속", thumbnail:"dumboo_thumbnail_1.png", hash:""}
+  {name:"덤부(Dumboo)", description:"Kmon팀소속, 몽달귀신(총각귀신)", thumbnail:"dumboo_thumbnail_1.png", hash:"#dumboo"},
+  {name:"준비중", placeholder:true},
+  {name:"준비중", placeholder:true},
+  {name:"달걀귀", description:"악귀 : 달걀귀신", thumbnail:"egg_thumbnail_1.png", hash:"#egg"}
 ];
+
 const MONSTERS_PER_PAGE = 12;
 let monsterIndexPage = 1;
 
@@ -715,6 +786,19 @@ function renderMonsterIndex(page=1) {
   const visible = monsters.slice(start,start+MONSTERS_PER_PAGE);
 
   visible.forEach(monster => {
+    if (monster.placeholder) {
+      const card = document.createElement("div");
+      card.className = "index-card preparing";
+
+      const label = document.createElement("div");
+      label.className = "preparing-label";
+      label.textContent = "준비중";
+
+      card.appendChild(label);
+      grid.appendChild(card);
+      return;
+    }
+
     const card = document.createElement("article");
     card.className = "index-card";
 
@@ -742,7 +826,6 @@ function renderMonsterIndex(page=1) {
     grid.appendChild(card);
   });
 
-  /* 12칸이 채워지지 않으면 나머지를 준비중으로 표시 */
   for (let i=visible.length;i<MONSTERS_PER_PAGE;i++) {
     const card = document.createElement("div");
     card.className = "index-card preparing";
@@ -760,6 +843,7 @@ function renderMonsterIndex(page=1) {
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = String(i);
+
     if (i===monsterIndexPage) button.setAttribute("aria-current","page");
     button.addEventListener("click",()=>renderMonsterIndex(i));
     pagination.appendChild(button);
@@ -776,9 +860,11 @@ function enterKmonWorld() {
   document.getElementById("home-page").style.display = "block";
   document.getElementById("bottom-nav").style.display = "grid";
   document.getElementById("page-footer").style.display = "block";
+
   history.replaceState(null,"","#world");
   window.scrollTo(0,0);
 }
+
 introEnter.addEventListener("click",enterKmonWorld);
 
 /* 페이지 전환 */
@@ -790,7 +876,8 @@ function updatePage() {
     "#chesy":"chesy-detail",
     "#chery":"chery-detail",
     "#chemi":"chemi-detail",
-    "#egg":"egg-detail"
+    "#egg":"egg-detail",
+    "#dumboo":"dumboo-detail"
   };
 
   const selectedPage = pages[hash] || null;
@@ -803,6 +890,7 @@ function updatePage() {
     document.getElementById("chery-detail").style.display = "none";
     document.getElementById("chemi-detail").style.display = "none";
     document.getElementById("egg-detail").style.display = "none";
+    document.getElementById("dumboo-detail").style.display = "none";
     document.getElementById("monster-index-page").style.display = "none";
     document.getElementById("page-footer").style.display = "none";
     document.getElementById("bottom-nav").style.display = "none";
@@ -814,11 +902,13 @@ function updatePage() {
 
   document.getElementById("home-page").style.display = showHome ? "block" : "none";
   document.getElementById("monster-index-page").style.display = isIndexPage ? "block" : "none";
+
   document.getElementById("sero-detail").style.display = selectedPage === "sero-detail" ? "block" : "none";
   document.getElementById("chesy-detail").style.display = selectedPage === "chesy-detail" ? "block" : "none";
   document.getElementById("chery-detail").style.display = selectedPage === "chery-detail" ? "block" : "none";
   document.getElementById("chemi-detail").style.display = selectedPage === "chemi-detail" ? "block" : "none";
   document.getElementById("egg-detail").style.display = selectedPage === "egg-detail" ? "block" : "none";
+  document.getElementById("dumboo-detail").style.display = selectedPage === "dumboo-detail" ? "block" : "none";
 
   document.getElementById("page-footer").style.display = (isDetailPage || isIndexPage) ? "none" : "block";
   document.getElementById("bottom-nav").style.display = (isDetailPage || isIndexPage) ? "none" : "grid";
