@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -458,11 +457,15 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
       <p class="intro">Kmon의 존재들을 하나씩 만나 보세요.</p>
     </div>
     <div class="cards">
+      <!-- 달걀귀 -->
       <article class="card">
-        <div class="card-art">이미지 추후 적용</div>
-        <h3>이달의 몬스터</h3>
-        <p>Monster of the Month<br>이미지와 설명 추후 적용</p>
+        <a class="card-link" href="#egg">
+          <div class="card-art"><img src="egg_thumbnail_1.png" alt="달걀귀"></div>
+          <h3>이달의 몬스터</h3>
+          <p>악귀 : 달걀귀신</p>
+        </a>
       </article>
+
       <article class="card">
         <a class="card-link" href="#sero">
           <div class="card-art"><img src="sero_thumbnail_1.png" alt="세로(Sero)"></div>
@@ -481,14 +484,19 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
         <a class="card-link" href="#chery">
           <div class="card-art"><img src="chery_thumbnail_1.png" alt="체리(Chery)"></div>
           <h3>체리(Chery)</h3>
-          <p>Kmon 캐릭터</p>
+          <p>Kmon팀소속, 세자매의 둘째(처녀귀신)</p>
         </a>
       </article>
+
+      <!-- 체미 -->
       <article class="card">
-        <div class="card-art">이미지 추후 적용</div>
-        <h3>체미(Chemi)</h3>
-        <p>이미지와 설명 추후 적용</p>
+        <a class="card-link" href="#chemi">
+          <div class="card-art"><img src="chemi_thumbnail_1.png" alt="체미(Chemi)"></div>
+          <h3>체미(Chemi)</h3>
+          <p>Kmon팀소속, 세자매의 막내(처녀귀신)</p>
+        </a>
       </article>
+
       <article class="card">
         <div class="card-art">이미지 추후 적용</div>
         <h3>덤부(Dumboo)</h3>
@@ -537,6 +545,7 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
   <div class="detail-heading">
     <div class="label">KMON CHARACTER</div>
     <h1>체리(Chery)</h1>
+    <p class="detail-intro">Kmon팀소속, 세자매의 둘째(처녀귀신)</p>
   </div>
   <div class="character-gallery" id="chery-gallery"></div>
   <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
@@ -554,6 +563,30 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
   <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
 </main>
 
+<!-- 달걀귀 상세 -->
+<main id="egg-detail" class="character-detail">
+  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
+  <div class="detail-heading">
+    <div class="label">MONSTER OF THE MONTH</div>
+    <h1>달걀귀</h1>
+    <p class="detail-intro">악귀 : 달걀귀신</p>
+  </div>
+  <div class="character-gallery" id="egg-gallery"></div>
+  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
+</main>
+
+<!-- 체미 상세 -->
+<main id="chemi-detail" class="character-detail">
+  <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
+  <div class="detail-heading">
+    <div class="label">KMON CHARACTER</div>
+    <h1>체미(Chemi)</h1>
+    <p class="detail-intro">Kmon팀소속, 세자매의 막내(처녀귀신)</p>
+  </div>
+  <div class="character-gallery" id="chemi-gallery"></div>
+  <div class="detail-bottom"><a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a></div>
+</main>
+
 <footer id="page-footer">© Kmon · Discover Korean Monsters</footer>
 
 <nav class="bottom-nav" id="bottom-nav" aria-label="주요 메뉴">
@@ -567,6 +600,8 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 const seroImages = ["sero_1.png","sero_2.png"];
 const chesyImages = ["chesy_0.png","chesy_1.png","chesy_2.png","chesy_3.png"];
 const cheryImages = ["chery_1.png","chery_2.png","chery_3.png"];
+const eggImages = ["egg_1.png"];
+const chemiImages = ["chemi_1.png"];
 
 const seroDescription =
   "Kmon팀의 리더이자 저승사자이며 귀신들을 관장한다.\n" +
@@ -577,6 +612,17 @@ const chesyDescription =
   "처녀귀신 세자매의 맏언니 체시는 기숙사 사감같은 존재감을 가지고 있다.\n" +
   "평소엔 규율부장같지만 속마음은 츤데레같이 따뜻한 마음의 소유자이다.\n" +
   "Kmon팀의 안살림을 맡고 있다.";
+
+const cheryDescription =
+  "처녀귀신 세자매의 둘째이며 약간 공주병에 걸려있다.\n" +
+  "이쁜것을 좋아하며 꾸미기를 즐겨한다. 싸움은 잘 못하지만 Kmon팀의 분위기를 담당한다.";
+
+const eggDescription =
+  "불우한 닭장에서 태어난 '달걀귀' 매우 빠른 몸놀림을 가지고 있으며 조금 촐싹거린다.";
+
+const chemiDescription =
+  "처녀귀신 세자매의 막내이며 말광량이 같은 성격의 소유자다.\n" +
+  "좌충우돌하지만 매우 재빠르며 악귀들 소탕하는데 1등공신이며 세로가 가장 신임하는 존재이다.";
 
 function createGallery(galleryId, images, description) {
   const gallery = document.getElementById(galleryId);
@@ -594,9 +640,12 @@ function createGallery(galleryId, images, description) {
     }
   });
 }
+
 createGallery("sero-gallery",seroImages,seroDescription);
 createGallery("chesy-gallery",chesyImages,chesyDescription);
-createGallery("chery-gallery",cheryImages,"");
+createGallery("chery-gallery",cheryImages,cheryDescription);
+createGallery("egg-gallery",eggImages,eggDescription);
+createGallery("chemi-gallery",chemiImages,chemiDescription);
 
 /* 입장 버튼 */
 const introScreen = document.getElementById("intro-screen");
@@ -616,7 +665,13 @@ introEnter.addEventListener("click",enterKmonWorld);
 /* 페이지 전환 */
 function updatePage() {
   const hash = window.location.hash;
-  const pages = {"#sero":"sero-detail","#chesy":"chesy-detail","#chery":"chery-detail"};
+  const pages = {
+    "#sero":"sero-detail",
+    "#chesy":"chesy-detail",
+    "#chery":"chery-detail",
+    "#egg":"egg-detail",
+    "#chemi":"chemi-detail"
+  };
   const selectedPage = pages[hash] || null;
   const isDetailPage = selectedPage !== null;
 
@@ -625,6 +680,8 @@ function updatePage() {
     document.getElementById("sero-detail").style.display = "none";
     document.getElementById("chesy-detail").style.display = "none";
     document.getElementById("chery-detail").style.display = "none";
+    document.getElementById("egg-detail").style.display = "none";
+    document.getElementById("chemi-detail").style.display = "none";
     document.getElementById("page-footer").style.display = "none";
     document.getElementById("bottom-nav").style.display = "none";
     return;
@@ -634,6 +691,8 @@ function updatePage() {
   document.getElementById("sero-detail").style.display = selectedPage === "sero-detail" ? "block" : "none";
   document.getElementById("chesy-detail").style.display = selectedPage === "chesy-detail" ? "block" : "none";
   document.getElementById("chery-detail").style.display = selectedPage === "chery-detail" ? "block" : "none";
+  document.getElementById("egg-detail").style.display = selectedPage === "egg-detail" ? "block" : "none";
+  document.getElementById("chemi-detail").style.display = selectedPage === "chemi-detail" ? "block" : "none";
   document.getElementById("page-footer").style.display = isDetailPage ? "none" : "block";
   document.getElementById("bottom-nav").style.display = isDetailPage ? "none" : "grid";
   window.scrollTo(0,0);
