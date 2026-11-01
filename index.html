@@ -531,7 +531,13 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
           <p>Kmon팀소속, 몽달귀신(총각귀신)</p>
         </a>
       </article>
-      <article class="card preparing-home"><div class="preparing-label">준비중</div><h3>6번째 몬스터</h3></article>
+      <article class="card">
+        <a class="card-link" href="#ddboaq">
+          <div class="card-art"><img src="ddboaq_thumbnail_1.png" alt="뚱보아귀(Hungry Monster)"></div>
+          <h3>뚱보아귀(Hungry Monster)</h3>
+          <p>악귀 : 뚱보아귀</p>
+        </a>
+      </article>
     </div>
     <div class="more-monsters-wrap">
       <a class="more-monsters-button" href="#monster-index">몬스터 더보기</a>
@@ -608,6 +614,18 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
   <div class="detail-bottom"><a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a></div>
 </main>
 
+<!-- 뚱보아귀 상세 -->
+<main id="ddboaq-detail" class="character-detail">
+  <a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a>
+  <div class="detail-heading">
+    <div class="label">KMON CHARACTER</div>
+    <h1>뚱보아귀(Hungry Monster)</h1>
+    <p class="detail-intro">악귀 : 뚱보아귀</p>
+  </div>
+  <div class="character-gallery" id="ddboaq-gallery"></div>
+  <div class="detail-bottom"><a class="detail-back" href="#monster-index">← 도감으로 돌아가기</a></div>
+</main>
+
 <!-- 세로 상세 -->
 <main id="sero-detail" class="character-detail">
   <a class="detail-back" href="#bestiary">← 도감으로 돌아가기</a>
@@ -659,6 +677,7 @@ const cheryImages = ["chery_1.png","chery_2.png","chery_3.png"];
 const chemiImages = ["chemi_1.png"];
 const eggImages = ["egg_1.png"];
 const dumbooImages = ["dumboo_1.png","dumboo_2.png"];
+const ddboaqImages = ["ddboaq_1.png","ddboaq_2.png","ddboaq_3.png"];
 
 const seroDescription =
   "Kmon팀의 리더이자 저승사자이며 귀신들을 관장한다.\n" +
@@ -680,6 +699,9 @@ const eggDescription =
 const dumbooDescription =
   "몽달귀신(총각귀신)인 덤부(Dumboo), 이성이 좋아하지 않은 외모로 101번째 프로포즈를 하다가 집으로 돌아오는 길에 교통사고로 귀신이 되었다.\n" +
   "지금은 Kmon팀원이 되어 악귀 소탕하는 일에 전념하고 있으며 힘이 쎄다.";
+
+const ddboaqDescription =
+  "배고픔을 참지못해 항상 음식을 찾고 먹고 또 먹는다. 어떤 이유인지는 모르지만 항상 배가 고파 한없이 먹지만 해결이 안된다. 악귀중 가장 덩치가 크다.";
 
 function createGallery(galleryId, images, description) {
   const gallery = document.getElementById(galleryId);
@@ -703,6 +725,7 @@ createGallery("chery-gallery",cheryImages,"");
 createGallery("chemi-gallery",chemiImages,chemiDescription);
 createGallery("egg-gallery",eggImages,eggDescription);
 createGallery("dumboo-gallery",dumbooImages,dumbooDescription);
+createGallery("ddboaq-gallery",ddboaqImages,ddboaqDescription);
 
 /* 전체 몬스터 도감 데이터: 등록 순서대로 추가 */
 const monsters = [
@@ -711,6 +734,7 @@ const monsters = [
   {name:"체리(Chery)", description:"Kmon 캐릭터", thumbnail:"chery_thumbnail_1.png", hash:"#chery"},
   {name:"체미(Chemi)", description:"Kmon팀소속, 세자매의 막내(처녀귀신)", thumbnail:"chemi_thumbnail_1.png", hash:"#chemi"},
   {name:"덤부(Dumboo)", description:"Kmon팀소속, 몽달귀신(총각귀신)", thumbnail:"dumboo_thumbnail_1.png", hash:"#dumboo"},
+  {name:"뚱보아귀(Hungry Monster)", description:"악귀 : 뚱보아귀", thumbnail:"ddboaq_thumbnail_1.png", hash:"#ddboaq"},
   {name:"준비중", placeholder:true},
   {name:"준비중", placeholder:true},
   {name:"달걀귀", description:"악귀 : 달걀귀신", thumbnail:"egg_thumbnail_1.png", hash:"#egg"}
@@ -805,7 +829,8 @@ function updatePage() {
     "#chery":"chery-detail",
     "#chemi":"chemi-detail",
     "#egg":"egg-detail",
-    "#dumboo":"dumboo-detail"
+    "#dumboo":"dumboo-detail",
+    "#ddboaq":"ddboaq-detail"
   };
   const selectedPage = pages[hash] || null;
   const isDetailPage = selectedPage !== null;
@@ -818,6 +843,7 @@ function updatePage() {
     document.getElementById("chemi-detail").style.display = "none";
     document.getElementById("egg-detail").style.display = "none";
     document.getElementById("dumboo-detail").style.display = "none";
+    document.getElementById("ddboaq-detail").style.display = "none";
     document.getElementById("monster-index-page").style.display = "none";
     document.getElementById("page-footer").style.display = "none";
     document.getElementById("bottom-nav").style.display = "none";
@@ -834,6 +860,7 @@ function updatePage() {
   document.getElementById("chemi-detail").style.display = selectedPage === "chemi-detail" ? "block" : "none";
   document.getElementById("egg-detail").style.display = selectedPage === "egg-detail" ? "block" : "none";
   document.getElementById("dumboo-detail").style.display = selectedPage === "dumboo-detail" ? "block" : "none";
+  document.getElementById("ddboaq-detail").style.display = selectedPage === "ddboaq-detail" ? "block" : "none";
   document.getElementById("page-footer").style.display = (isDetailPage || isIndexPage) ? "none" : "block";
   document.getElementById("bottom-nav").style.display = (isDetailPage || isIndexPage) ? "none" : "grid";
   if (isIndexPage) renderMonsterIndex(monsterIndexPage);
