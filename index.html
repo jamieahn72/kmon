@@ -318,37 +318,23 @@ section { padding:30px 20px; }
   letter-spacing:-1.5px;
   line-height:1;
 }
-.section-title {
-  margin:0;
-  padding:0;
-}
+.section-title { margin:0; padding:0; }
 .intro { color:var(--muted); line-height:1.3; font-size:13px; margin:2px 0 0; }
 
-/* 숏폼 영상 */
-.shortform-video {
-  width:min(100%,240px);
+/* 에피소드 가로형 영상 */
+.episode-video {
+  width:min(100%,640px);
+  aspect-ratio:16 / 9;
   margin:16px auto 0;
   overflow:hidden;
   border-radius:12px;
   background:#17131c;
 }
-.shortform-video video {
+.episode-video video {
   display:block;
   width:100%;
-  height:auto;
-  max-height:60vh;
-  aspect-ratio:9 / 16;
+  height:100%;
   object-fit:contain;
-}
-@media (max-width:699px) {
-  .shortform-video {
-    width:min(100%,280px,85vw);
-  }
-}
-@media (max-width:380px) {
-  .shortform-video {
-    width:min(85vw,240px);
-  }
 }
 
 /* 도감 */
@@ -583,8 +569,8 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 
   <section id="videos">
     <div class="label">WATCH KMON</div>
-    <h2 class="section-title">숏폼 영상</h2>
-    <div class="shortform-video">
+    <h2 class="section-title">에피소드 영상</h2>
+    <div class="episode-video">
       <video controls playsinline preload="metadata">
         <source src="ddboaq_vod_1.mp4" type="video/mp4">
         브라우저에서 영상을 재생할 수 없습니다.
